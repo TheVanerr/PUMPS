@@ -1,0 +1,1582 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pompa & Nozzle Seçici</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: sabit sol gezinme + iki sütunlu çalışma alanı (girdi paneli | sonuçlar). Mavi-kopya teknik çizim havası, debi=camgöbeği, çalışma noktası=sinyal turuncusu */
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --surface2:#f5f8fa; --line:#d5dee6; --line2:#e6ecf1;
+  --ink:#0f1e2c; --muted:#5a6b7c; --faint:#8a99a8;
+  --water:#0e8fb0; --water-soft:#d9f0f6; --signal:#e8590c; --signal-soft:#fde8dc;
+  --pump:#2f5d8a; --ok:#15803d; --ok-soft:#dcfce7; --warn:#b45309; --warn-soft:#fef3c7; --bad:#b91c1c; --bad-soft:#fee2e2;
+  --nav:#0f1e2c; --nav-ink:#c9d6e2; --nav-active:#ffffff;
+  --grid:#e3e9ef; --shadow:0 1px 2px rgba(15,30,44,.06),0 4px 16px rgba(15,30,44,.05);
+  --hero:#0f2236; --hero-ink:#e7f0f8; --hero-muted:#8ea6bd; --hero-acc:#5fd0f0; --hero-sig:#ff9a52; --hero-line:rgba(255,255,255,.12); --hero-grid:rgba(120,190,240,.10); --hero-grid2:rgba(120,190,240,.045);
+  --f-display:"Archivo","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",Consolas,"Cascadia Mono",monospace;
+  --f-math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  --r:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b141d; --surface:#111d29; --surface2:#0e1923; --line:#22344a; --line2:#1a2a3b;
+  --ink:#e4ecf3; --muted:#93a5b8; --faint:#62768a;
+  --water:#38bdf8; --water-soft:#0c2f40; --signal:#fb8b3c; --signal-soft:#3a1f0e;
+  --pump:#7fb0e0; --ok:#4ade80; --ok-soft:#0f2e1c; --warn:#fbbf24; --warn-soft:#33270b; --bad:#f87171; --bad-soft:#3a1414;
+  --nav:#070e15; --nav-ink:#8fa3b7; --nav-active:#ffffff; --grid:#1b2b3c; --shadow:0 1px 2px rgba(0,0,0,.3); --hero:#0c1c2c;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0b141d; --surface:#111d29; --surface2:#0e1923; --line:#22344a; --line2:#1a2a3b;
+  --ink:#e4ecf3; --muted:#93a5b8; --faint:#62768a;
+  --water:#38bdf8; --water-soft:#0c2f40; --signal:#fb8b3c; --signal-soft:#3a1f0e;
+  --pump:#7fb0e0; --ok:#4ade80; --ok-soft:#0f2e1c; --warn:#fbbf24; --warn-soft:#33270b; --bad:#f87171; --bad-soft:#3a1414;
+  --nav:#070e15; --nav-ink:#8fa3b7; --nav-active:#ffffff; --grid:#1b2b3c; --shadow:0 1px 2px rgba(0,0,0,.3); --hero:#0c1c2c;
+  color-scheme:dark;}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+.num,.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100%}
+nav.side{background:var(--nav);color:var(--nav-ink);padding:22px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.brand{display:flex;gap:10px;align-items:center;padding:0 8px 20px;color:#fff}
+.brand svg{flex:none}
+.brand b{font:800 16px/1.1 var(--f-display);letter-spacing:.01em;display:block}
+.brand small{font:500 11px var(--f-mono);color:var(--nav-ink);letter-spacing:.04em}
+.navbtn{display:flex;gap:10px;align-items:center;background:none;border:0;color:var(--nav-ink);text-align:left;padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:500}
+.navbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.navbtn.on{background:rgba(56,189,248,.14);color:var(--nav-active)}
+.navbtn .k{font:600 10px var(--f-mono);opacity:.6;margin-left:auto}
+.navbtn svg{flex:none;opacity:.85}
+.side .foot{margin-top:auto;font-size:11.5px;line-height:1.5;padding:12px 8px 0;border-top:1px solid rgba(255,255,255,.08)}
+.side .foot button{background:rgba(255,255,255,.07);border:0;color:var(--nav-ink);border-radius:6px;padding:6px 10px;cursor:pointer;margin-top:8px}
+
+main{min-width:0;padding:22px 32px 40px;width:100%;max-width:1520px;justify-self:center}
+.head{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+.head h1{font:800 26px/1.15 var(--f-display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.head p{margin:4px 0 0;color:var(--muted);max-width:70ch}
+.work{display:grid;grid-template-columns:minmax(330px,410px) minmax(0,1fr);gap:20px;align-items:start}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.panel>header{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line2)}
+.panel>header h3{margin:0;font:700 13px var(--f-display);letter-spacing:.06em;text-transform:uppercase}
+.panel>header .sub{color:var(--muted);font-size:12px;margin-left:auto}
+.panel .body{padding:14px;display:flex;flex-direction:column;gap:12px}
+.tag{font:600 10.5px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label{font-size:12px;color:var(--muted);font-weight:500}
+.f .hint{font-size:11.5px;color:var(--faint)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+input[type=number],input[type=text],select,textarea{background:var(--surface2);border:1px solid var(--line);border-radius:7px;padding:7px 9px;width:100%;min-width:0}
+input[type=number]{font-family:var(--f-mono)}
+input:hover,select:hover{border-color:var(--faint)}
+.unit{position:relative}
+.unit input{padding-right:46px}
+.unit span{position:absolute;right:9px;top:50%;transform:translateY(-50%);font:500 11px var(--f-mono);color:var(--faint);pointer-events:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:7px 12px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--water);color:var(--water)}
+.btn.pri{background:var(--water);border-color:var(--water);color:#fff}
+.btn.pri:hover{filter:brightness(1.08);color:#fff}
+.btn.sm{padding:4px 9px;font-size:12.5px}
+.btn.ghost{border-color:transparent;background:none;color:var(--muted)}
+.btn.ghost:hover{color:var(--bad)}
+
+/* picker */
+.pick{display:flex;gap:10px;align-items:center;border:1px dashed var(--line);border-radius:9px;padding:8px;cursor:pointer;background:var(--surface2);text-align:left;width:100%}
+.pick:hover{border-color:var(--water)}
+.pick .ph{width:54px;height:54px;border-radius:7px;background:var(--surface);display:grid;place-items:center;overflow:hidden;flex:none;border:1px solid var(--line2)}
+.pick .ph img{width:100%;height:100%;object-fit:contain;background:#fff}
+.pick .t{min-width:0;flex:1}
+.pick .t b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick .t small{color:var(--muted);font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick .chg{font-size:12px;color:var(--water);font-weight:600}
+
+/* segments */
+.seg{border:1px solid var(--line);border-radius:9px;padding:10px;display:flex;flex-direction:column;gap:9px;background:var(--surface2)}
+.seg .top{display:flex;gap:8px;align-items:center}
+.seg .top input{font-weight:600;background:transparent;border-color:transparent;padding:3px 5px}
+.seg .top input:hover,.seg .top input:focus{border-color:var(--line);background:var(--surface)}
+.fits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 10px}
+.fit{display:flex;align-items:center;gap:6px;font-size:12.5px;min-width:0}
+.fit span{flex:1;min-width:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fit span i{font-style:normal;font-family:var(--f-mono);font-size:10.5px;color:var(--faint)}
+.step{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface);flex:none}
+.step button{border:0;background:none;width:24px;cursor:pointer;color:var(--muted);padding:0}
+.step button:hover{background:var(--water-soft);color:var(--water)}
+.step input{width:34px;border:0;border-radius:0;text-align:center;padding:3px 0;background:transparent}
+details.adv summary{cursor:pointer;color:var(--muted);font-size:12.5px;user-select:none}
+details.adv[open] summary{margin-bottom:8px}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;min-width:0}
+.kpi .l{font-size:11.5px;color:var(--muted);font-weight:500}
+.kpi .v{font:600 22px/1.2 var(--f-mono);font-variant-numeric:tabular-nums;margin-top:3px;white-space:nowrap}
+.kpi .v small{font-size:12px;color:var(--muted);font-weight:500;margin-left:3px}
+.kpi .s{font-size:11.5px;color:var(--faint);margin-top:2px;font-family:var(--f-mono)}
+.kpi.hl{border-color:var(--signal);background:linear-gradient(0deg,var(--signal-soft),var(--surface) 70%)}
+.kpi.hl .v{color:var(--signal)}
+
+.chartbox{position:relative;padding:8px 10px 6px}
+.chartbox svg{display:block;width:100%;height:auto;overflow:visible}
+.chartbox .read{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:6px 9px;font:12px/1.45 var(--f-mono);box-shadow:var(--shadow);white-space:nowrap;z-index:2}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:0 14px 12px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+
+.pill{display:inline-flex;align-items:center;gap:4px;font:600 11px var(--f-mono);padding:2px 7px;border-radius:99px;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.info{background:var(--water-soft);color:var(--water)}
+.alerts{display:flex;flex-direction:column;gap:6px}
+.alert{display:flex;gap:8px;align-items:flex-start;padding:8px 11px;border-radius:8px;font-size:13px}
+.alert.warn{background:var(--warn-soft);color:var(--warn)}
+.alert.bad{background:var(--bad-soft);color:var(--bad)}
+.alert.ok{background:var(--ok-soft);color:var(--ok)}
+.alert.info{background:var(--water-soft);color:var(--water)}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{font:600 11px var(--f-body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line2);vertical-align:middle}
+td.n,th.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--surface2)}
+tr.sel td{background:var(--water-soft)}
+
+/* stacked breakdown */
+.stack{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.stack div{min-width:2px}
+.stackleg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px 14px;font-size:12.5px;margin-top:10px}
+.stackleg div{display:flex;align-items:center;gap:7px;min-width:0}
+.stackleg i{width:10px;height:10px;border-radius:3px;flex:none}
+.stackleg b{margin-left:auto;font:500 12px var(--f-mono)}
+
+/* ranking list */
+.rank{display:flex;flex-direction:column}
+.ri{display:grid;grid-template-columns:34px 56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line2);cursor:pointer}
+.ri:hover{background:var(--surface2)}
+.ri.sel{background:var(--water-soft)}
+.ri .no{font:700 18px var(--f-display);color:var(--faint);text-align:center}
+.ri:nth-child(-n+3) .no{color:var(--signal)}
+.ri .th{width:56px;height:56px;border-radius:8px;background:#fff;border:1px solid var(--line2);overflow:hidden;display:grid;place-items:center}
+.ri .th.thbtn{padding:0;cursor:zoom-in;position:relative;transition:box-shadow .15s,border-color .15s}
+.ri .th.thbtn:hover{border-color:var(--water);box-shadow:0 0 0 3px var(--water-soft)}
+.ri .th.thbtn::after{content:"";position:absolute;right:3px;bottom:3px;width:16px;height:16px;border-radius:50%;background:var(--water) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Cpath d='M15 15l5 5'/%3E%3C/svg%3E") center/10px no-repeat;opacity:0;transition:opacity .15s}
+.ri .th.thbtn:hover::after,.ri .th.thbtn:focus-visible::after{opacity:1}
+.qrank{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--signal-soft);color:var(--signal);font:700 13px var(--f-mono);margin-right:10px;vertical-align:2px}
+.quick{display:flex;flex-direction:column;gap:16px}
+.qtop{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;align-items:start}
+.qimg{height:150px;background:#fff;border:1px solid var(--line2);border-radius:12px;padding:10px}
+.qimg img{width:100%;height:100%;object-fit:contain;display:block}
+.qinfo{display:flex;flex-direction:column;gap:8px;min-width:0}
+.qinfo small{color:var(--muted);font-size:12.5px}
+.qinfo p{margin:0;font-size:13px;color:var(--ink);line-height:1.5}
+.qchips{display:flex;flex-wrap:wrap;gap:6px}
+.qchips span{font:500 12px var(--f-mono);background:var(--surface2);border:1px solid var(--line2);border-radius:6px;padding:3px 8px}
+.qprice{font:700 20px var(--f-mono);color:var(--ok)}
+.qprice small{font:500 11.5px var(--f-body);color:var(--muted);margin-left:8px}
+.qsys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.qsys div{background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:3px;align-items:flex-start;min-width:0}
+.qsys div.hl{background:var(--signal-soft)}
+.qsys span{font-size:11.5px;color:var(--muted)}
+.qsys b{font:600 19px var(--f-mono);white-space:nowrap}
+.qsys .hl b{color:var(--signal)}
+.qsys b small{font-size:11px;color:var(--muted);margin-left:3px;font-weight:500}
+.qsys em{font:normal 11.5px var(--f-mono);color:var(--faint)}
+.qfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--faint)}
+@media (max-width:600px){.qtop{grid-template-columns:minmax(0,1fr)}.qimg{height:180px}.qsys{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ri .th img{width:100%;height:100%;object-fit:contain}
+.ri .mid{min-width:0}
+.ri .mid b{font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ri .mid small{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ri .meta{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px;font:12px var(--f-mono);color:var(--muted)}
+.ri .meta span b{color:var(--ink);font-weight:600;display:inline}
+.ri .right{text-align:right;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.ri .big{font:600 18px var(--f-mono)}
+.ri .big small{font-size:11px;color:var(--muted)}
+.dual{display:flex;gap:6px;align-items:center}
+.dual .th{width:44px;height:44px}
+
+/* catalog */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.toolbar input[type=text]{max-width:280px}
+.toolbar select{width:auto}
+.seg-tabs{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:3px}
+.seg-tabs button{border:0;background:none;padding:6px 14px;border-radius:6px;cursor:pointer;color:var(--muted);font-weight:500}
+.seg-tabs button.on{background:var(--ink);color:var(--surface)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line2);background:var(--surface2)}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 8px 6px 14px;cursor:pointer;font-weight:600;font-size:13px}
+.chip span{font:600 11.5px var(--f-mono);background:var(--surface2);border-radius:99px;padding:2px 8px;color:var(--ok)}
+.chip span i{font-style:normal;color:var(--faint)}
+.chip:hover{border-color:var(--water)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.chip.on span{background:rgba(255,255,255,.14);color:var(--surface)}
+.chip.on span i{color:inherit;opacity:.7}
+.sortseg{display:inline-flex;background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:3px;flex:none}
+.sortseg button{border:0;background:none;padding:6px 12px;border-radius:7px;cursor:pointer;color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
+.sortseg button:hover{color:var(--ink)}
+.sortseg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(15,30,44,.15);outline:1px solid var(--line)}
+.sortinfo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line2);font-size:12.5px;color:var(--muted)}
+.sortinfo>span{flex:1;min-width:220px;line-height:1.5}
+.sortinfo .sl{font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.sortinfo{padding:12px 14px}
+.sortinfo .eur{display:inline-flex;align-items:center;gap:6px;flex:none}
+.sortinfo label{font:600 12px var(--f-mono);color:var(--ink)}
+.sortinfo input{padding:4px 8px}
+.rdiv{padding:9px 14px;background:var(--surface2);border-bottom:1px solid var(--line2);font:700 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.ri .meta .pp b{color:var(--water)}
+.ri .meta i.pill{font-style:normal;padding:1px 6px;font-size:10.5px;vertical-align:1px}
+.kindtabs{display:flex}.kindtabs button{flex:1}
+.chiphint{font-size:11.5px;color:var(--faint);margin-left:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--water);transform:translateY(-1px)}
+.card .img{height:160px;background:#fff;border-bottom:1px solid var(--line2);padding:12px;overflow:hidden;position:relative}
+.card .img img{width:100%;height:100%;object-fit:contain;display:block}
+.card .c{padding:10px 12px;display:flex;flex-direction:column;gap:3px;flex:1;position:relative;background:var(--surface)}
+.card .c b{font-weight:600}
+.card .code{font:700 19px/1.15 var(--f-mono);letter-spacing:-.01em;color:var(--ink)}
+.card .ang{position:absolute;top:10px;right:10px;font:700 12px var(--f-mono);background:var(--ink);color:var(--surface);padding:3px 8px;border-radius:99px}
+.card .c small{color:var(--muted);font-size:12px}
+.card .spark{margin-top:auto;padding-top:6px}
+.card .specs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.more{display:flex;justify-content:center;padding:16px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(5,12,20,.55);display:grid;place-items:center;z-index:50;padding:16px}
+.dlg{background:var(--surface);border-radius:12px;width:min(920px,100%);max-height:calc(100vh - 32px);display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line)}
+.dlg>header{display:flex;gap:10px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.dlg>header h3{margin:0;font:700 17px var(--f-display);flex:1;min-width:0}
+.dlg .content{overflow:auto;padding:16px}
+.plist{display:flex;flex-direction:column}
+.pli{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 6px;border-bottom:1px solid var(--line2);cursor:pointer;border-radius:6px}
+.pli:hover{background:var(--water-soft)}
+.pli .th{width:48px;height:48px;background:#fff;border-radius:6px;border:1px solid var(--line2);display:grid;place-items:center;overflow:hidden}
+.pli .th img{width:100%;height:100%;object-fit:contain}
+.pli b{font-weight:600;display:block}
+.pli small{color:var(--muted);font-size:12px}
+.pli .r{font:12px var(--f-mono);color:var(--muted);text-align:right}
+.detail{display:grid;grid-template-columns:260px minmax(0,1fr);gap:18px}
+.detail .bigimg{background:#fff;border:1px solid var(--line2);border-radius:10px;aspect-ratio:1;display:grid;place-items:center;max-width:100%}
+.detail .bigimg img{max-width:90%;max-height:90%}
+dl.specs{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:12px 0 0;font-size:13px}
+dl.specs dt{color:var(--muted)}
+dl.specs dd{margin:0;font-family:var(--f-mono);font-size:12.5px}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+.help{max-width:78ch}
+.help h2{font:700 18px var(--f-display);margin:26px 0 8px}
+.help p,.help li{color:var(--ink);line-height:1.65}
+.help code{font-family:var(--f-mono);background:var(--surface2);padding:1px 5px;border-radius:4px;font-size:12.5px}
+.formula{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font:13px/1.8 var(--f-mono);overflow-x:auto}
+
+@media (max-width:1100px){.work{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .fits{grid-template-columns:minmax(0,1fr)}
+  .row3{grid-template-columns:1fr 1fr}
+  nav.side{position:sticky;top:0;height:auto;flex-direction:row;overflow-x:auto;padding:10px 12px;z-index:20;gap:2px}
+  .brand,.side .foot,.navbtn .k{display:none}
+  .navbtn{white-space:nowrap;padding:8px 10px}
+  main{padding:16px 16px 40px}
+  .detail{grid-template-columns:1fr}
+  .row3{grid-template-columns:1fr 1fr}
+  .ri{grid-template-columns:44px minmax(0,1fr);}
+  .ri .no{display:none}
+  .ri .right{grid-column:1/-1;flex-direction:row;justify-content:flex-start;align-items:center}
+}
+/* ---- hesap yöntemi: ortalanmış 1160px sütun; koyu mavi-kopya üst bant, dikey hesap zinciri, üç grup girdili laboratuvar ---- */
+.method{max-width:1160px;margin:0 auto;display:flex;flex-direction:column;gap:56px;padding-bottom:40px}
+.m-hero{position:relative;border-radius:18px;overflow:hidden;background-color:var(--hero);color:var(--hero-ink);
+  background-image:linear-gradient(var(--hero-grid) 1px,transparent 1px),linear-gradient(90deg,var(--hero-grid) 1px,transparent 1px),linear-gradient(var(--hero-grid2) 1px,transparent 1px),linear-gradient(90deg,var(--hero-grid2) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;padding:44px 48px 36px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:36px;align-items:center}
+.m-hero .eyebrow{font:600 11.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--hero-acc)}
+.m-hero h1{font:800 clamp(28px,3.4vw,42px)/1.08 var(--f-display);margin:12px 0 16px;letter-spacing:-.02em;text-wrap:balance}
+.m-hero h1 em{font-style:normal;color:var(--hero-acc)}
+.m-hero p{margin:0;color:var(--hero-muted);font-size:15px;line-height:1.7;max-width:48ch}
+.m-hero .hstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:28px;background:var(--hero-line);border:1px solid var(--hero-line);border-radius:12px;overflow:hidden}
+.m-hero .hstats div{background:var(--hero);padding:12px 14px}
+.m-hero .hstats span{display:block;font:500 11px var(--f-mono);color:var(--hero-muted);letter-spacing:.04em;text-transform:uppercase}
+.m-hero .hstats b{display:block;white-space:nowrap;font:600 22px/1.25 var(--f-mono);margin-top:4px;font-variant-numeric:tabular-nums}
+.m-hero .hstats b small{font-size:12px;color:var(--hero-muted);font-weight:500;margin-left:3px}
+.m-hero .hstats div:first-child b{color:var(--hero-sig)}
+.sch svg{width:100%;height:auto;display:block}
+.sch .lbl{font:600 12px var(--f-mono);fill:var(--hero-ink)}
+.sch .lbl.sig{fill:var(--hero-sig)}
+.sch .lbl.acc{fill:var(--hero-acc)}
+.sch .cap{font:500 11px var(--f-body);fill:var(--hero-muted)}
+
+.sec-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 18px;align-items:end;margin-bottom:22px}
+.sec-head .k{font:700 12px var(--f-mono);color:var(--water);letter-spacing:.12em;text-transform:uppercase;grid-column:1/-1}
+.sec-head h2{font:800 30px/1.1 var(--f-display);margin:0;letter-spacing:-.02em}
+.sec-head p{margin:0;color:var(--muted);max-width:60ch;line-height:1.6;justify-self:end;text-align:right}
+
+.chain{list-style:none;margin:0;padding:0;position:relative;display:flex;flex-direction:column;gap:14px}
+.chain::before{content:"";position:absolute;left:21px;top:20px;bottom:20px;width:2px;background:linear-gradient(var(--water),var(--signal));opacity:.35;border-radius:2px}
+.fstep{display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;position:relative}
+.fdot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 15px var(--f-mono);background:var(--surface);border:2px solid var(--water);color:var(--water);position:relative;z-index:1;margin-top:14px}
+.fstep:last-child .fdot{border-color:var(--signal);color:var(--signal)}
+.fcard2{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.fcard2:hover{border-color:var(--water);box-shadow:var(--shadow)}
+.fcard2 .fl{padding:22px 24px;background:var(--surface2);border-right:1px solid var(--line2);display:flex;flex-direction:column;gap:14px;justify-content:center;min-width:0}
+.fcard2 .fl h3{margin:0;font:700 17px var(--f-display);letter-spacing:-.01em}
+.fcard2 .fr{padding:20px 24px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.fcard2 .fr p{margin:0;color:var(--ink);font-size:14px;line-height:1.65}
+.exv{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font:13px var(--f-mono);background:var(--signal-soft);color:var(--ink);border-radius:8px;padding:8px 12px}
+.exv::before{content:"örnekte";font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.exv b{color:var(--signal);font-weight:600}
+.math{font-family:var(--f-math);font-size:24px;line-height:2.1;color:var(--ink);overflow-x:auto;overflow-y:hidden}
+.math i{font-style:italic}
+.math sub,.math sup{font-size:.62em;line-height:0}
+.math sub{vertical-align:-.3em}.math sup{vertical-align:.55em}
+.math .eq{display:inline-block;white-space:nowrap;margin-right:1.1em}
+.math .eq:last-child{margin-right:0}
+.math.sm{font-size:19px}
+.math .bp{font-size:1.75em;font-weight:300;vertical-align:-.12em;line-height:0;margin:0 .04em}
+.math .aside{display:block;font:13px var(--f-body);color:var(--muted);line-height:1.5;white-space:normal}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .15em;line-height:1.15}
+.frac>span:first-child{border-bottom:1.4px solid currentColor;padding:0 .25em .08em}
+.frac>span:last-child{padding:.08em .25em 0}
+.frac .frac{font-size:.9em}
+.frac .bp{font-size:1.45em}
+dl.syms{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin:0;font-size:13px;padding-top:12px;border-top:1px dashed var(--line)}
+dl.syms.two{grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr)}
+dl.syms dt{font-family:var(--f-math);font-size:16px;text-align:right;color:var(--water);line-height:1.3}
+dl.syms dd{margin:0;color:var(--muted);line-height:1.45}
+dl.syms em{font-style:normal;font-family:var(--f-mono);font-size:11.5px;color:var(--faint);margin-left:6px}
+
+.lab2{display:flex;flex-direction:column;gap:18px}
+.lgroups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.lgroup{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.lgroup h4{margin:0;display:flex;align-items:center;gap:8px;font:700 13px var(--f-display);letter-spacing:.06em;text-transform:uppercase}
+.lgroup h4 i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) 112px;grid-template-areas:"l n" "r r";gap:4px 10px;align-items:center}
+.lrow label{grid-area:l;font-size:13px;color:var(--ink);font-weight:500}
+.lrow .unit{grid-area:n}
+.lrow input[type=number]{padding:5px 8px;text-align:right;padding-right:44px}
+.lrow input[type=range]{grid-area:r;width:100%;margin:2px 0;-webkit-appearance:none;appearance:none;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--c) var(--p,50%),var(--line) var(--p,50%));outline-offset:4px}
+.lrow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--surface);border:3px solid var(--c);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.lrow input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--surface);border:3px solid var(--c);cursor:pointer}
+.lactions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.lres{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:14px;align-items:start}
+.lres .col{gap:14px}
+.compo{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.compo .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.compo .top h4{margin:0;font:700 13px var(--f-display);letter-spacing:.06em;text-transform:uppercase}
+.compo .top b{font:600 30px var(--f-mono);color:var(--signal)}
+.compo .top b small{font-size:13px;color:var(--muted);margin-left:4px}
+.cbar{display:flex;height:44px;border-radius:10px;overflow:hidden;margin:14px 0 12px;gap:2px}
+.cbar div{display:flex;align-items:center;justify-content:center;font:600 12px var(--f-mono);color:#fff;min-width:3px;overflow:hidden;white-space:nowrap;transition:flex-grow .35s ease}
+.cleg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cleg div{display:flex;flex-direction:column;gap:2px;border-left:3px solid var(--c);padding-left:10px;min-width:0}
+.cleg span{font-size:12px;color:var(--muted)}
+.cleg b{font:600 15px var(--f-mono)}
+.steps{display:flex;flex-direction:column}
+.st{display:grid;grid-template-columns:26px 132px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:9px 16px;border-bottom:1px solid var(--line2);font-size:13px}
+.st:last-child{border-bottom:0}
+.st .sn{font:600 11px var(--f-mono);color:var(--faint)}
+.st .sl{color:var(--muted);font-weight:500}
+.st .se{font:12px var(--f-mono);color:var(--ink);overflow-wrap:anywhere}
+.st .sr{font:600 13.5px var(--f-mono);white-space:nowrap;text-align:right}
+.st.tot{background:var(--signal-soft)}
+.st.tot .sr{color:var(--signal);font-size:15px}
+.score{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.score div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.score b{font:700 14px var(--f-display)}
+.score span{font-size:13px;color:var(--muted);line-height:1.55}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.notes div{border-top:2px solid var(--line);padding-top:12px;font-size:13.5px;line-height:1.6;color:var(--ink)}
+.notes b{display:block;font:700 13px var(--f-display);margin-bottom:4px}
+.guide .g-hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.paths{display:flex;flex-direction:column;gap:10px}
+.path{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;background:rgba(255,255,255,.04);border:1px solid var(--hero-line);border-radius:12px;padding:14px 16px;color:var(--hero-ink);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.path:hover{background:rgba(95,208,240,.10);border-color:var(--hero-acc);transform:translateX(3px)}
+.path .pn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 16px var(--f-mono);border:2px solid var(--hero-acc);color:var(--hero-acc)}
+.path .pt{min-width:0}
+.path .pt b{display:block;font:700 15.5px var(--f-display)}
+.path .pt small{display:block;color:var(--hero-muted);font-size:13px;margin-top:2px}
+.path .pg{font:600 12px var(--f-mono);color:var(--hero-sig);white-space:nowrap}
+.gsec{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+.gsteps{list-style:none;margin:0;padding:0;counter-reset:gs;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.gsteps li{counter-increment:gs;display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 14px;padding:16px 20px;border-bottom:1px solid var(--line2)}
+.gsteps li:last-child{border-bottom:0}
+.gsteps li::before{content:counter(gs);grid-row:1/3;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--f-mono);background:var(--water-soft);color:var(--water)}
+.gsteps b{font:700 14.5px var(--f-display)}
+.gsteps span{color:var(--muted);font-size:13.5px;line-height:1.6}
+.gtips{background:var(--signal-soft);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;position:sticky;top:16px}
+.gtips h4{margin:0;font:700 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--signal)}
+.gtips p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink);padding-left:14px;position:relative}
+.gtips p::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--signal)}
+.gtips .btn{align-self:flex-start;margin-top:4px}
+.gloss{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.gloss div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.gloss span:not(.pill){font-size:13.5px;line-height:1.55;color:var(--muted)}
+.keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.keys div{background:var(--surface);padding:14px 18px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center;font-size:13.5px}
+.keys div>span{font-weight:600;font-size:13px;color:var(--ink)}
+kbd{display:inline-block;font:600 12px var(--f-mono);background:var(--surface2);border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:2px 8px;margin:0 2px}
+.faq{display:flex;flex-direction:column;gap:8px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 20px;transition:border-color .2s}
+.faq details[open]{border-color:var(--water)}
+.faq summary{cursor:pointer;padding:16px 0;font:700 15px var(--f-display);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:600 20px/1 var(--f-mono);color:var(--water);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:0 0 16px;color:var(--muted);line-height:1.65;max-width:80ch}
+.reset{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px dashed var(--line);border-radius:14px;padding:18px 22px}
+.reset h3{margin:0 0 4px;font:700 15px var(--f-display)}
+.reset p{margin:0;color:var(--muted);font-size:13.5px}
+#resetAll.armed{background:var(--bad);border-color:var(--bad);color:#fff}
+@media (max-width:1100px){.guide .g-hero,.gsec{grid-template-columns:minmax(0,1fr)}.gtips{position:static}.gloss{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.gloss,.keys{grid-template-columns:minmax(0,1fr)}.keys div{grid-template-columns:minmax(0,1fr)}.path{grid-template-columns:34px minmax(0,1fr)}.path .pn{width:34px;height:34px}.path .pg{grid-column:2}}
+@media (max-width:1100px){.m-hero{grid-template-columns:minmax(0,1fr);padding:32px 26px}.lres,.fcard2{grid-template-columns:minmax(0,1fr)}.fcard2 .fl{border-right:0;border-bottom:1px solid var(--line2)}.score{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.lgroups,.notes{grid-template-columns:minmax(0,1fr)}.sec-head{grid-template-columns:minmax(0,1fr)}.sec-head p{justify-self:start;text-align:left}.cleg{grid-template-columns:repeat(2,minmax(0,1fr))}.chain::before{left:15px}.fstep{grid-template-columns:32px minmax(0,1fr);gap:10px}.fdot{width:32px;height:32px;font-size:13px}.st{grid-template-columns:22px minmax(0,1fr) auto}.st .se{grid-column:2/-1;grid-row:2}.m-hero .hstats b{font-size:17px}.score{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" id="nav">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="none" stroke="#38bdf8" stroke-width="2.2"/><path d="M17 5 A12 12 0 0 1 29 17 L17 17Z" fill="#38bdf8" opacity=".85"/><circle cx="17" cy="17" r="3.2" fill="#fb8b3c"/></svg>
+      <div><b>Pompa &amp; Nozzle</b><small>SEÇİM · ANALİZ</small></div>
+    </div>
+    <button class="navbtn" data-mode="analiz"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M5 16l4-6 4 3 6-8"/></svg>Sistem Analizi<span class="k">1</span></button>
+    <button class="navbtn" data-mode="pompa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="12" r="6"/><path d="M16 12h5M10 6V3"/></svg>Pompa Seçimi<span class="k">2</span></button>
+    <button class="navbtn" data-mode="kombi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h10l3 3v6H4zM17 12h3M20 8v8"/></svg>Pompa + Nozzle<span class="k">3</span></button>
+    <button class="navbtn" data-mode="katalog"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Katalog<span class="k">4</span></button>
+    <button class="navbtn" data-mode="yontem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>Hesap Yöntemi<span class="k">5</span></button>
+    <button class="navbtn" data-mode="kilavuz"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6M9 11h6"/></svg>Nasıl Kullanılır<span class="k">6</span></button>
+    <div class="foot">
+      <div id="dbinfo"></div>
+      <button id="themeBtn" type="button">Tema: Sistem</button>
+    </div>
+  </nav>
+  <main id="main"></main>
+</div>
+<div id="modalRoot"></div>
+
+<script>
+/* ================= VERİ ================= */
+const PUMPS_RAW = /*__PUMPS__*/[];
+const NOZZLES_RAW = /*__NOZZLES__*/[];
+const IMG = /*__IMAGES__*/{};
+
+/* ================= SABİTLER ================= */
+const G = 9.80665;
+const MATERIALS = {
+  galv:{name:'Galvaniz çelik', eps:0.15, sizes:[['½"',16.0],['¾"',21.6],['1"',27.2],['1¼"',35.9],['1½"',41.8],['2"',53.0],['2½"',68.8],['3"',80.8],['4"',105.3],['5"',130.0],['6"',155.4]]},
+  pe:{name:'PE100 PN10', eps:0.007, sizes:[['Ø20',16.0],['Ø25',21.0],['Ø32',28.0],['Ø40',35.2],['Ø50',44.0],['Ø63',55.4],['Ø75',66.0],['Ø90',79.2],['Ø110',96.8],['Ø125',110.2],['Ø160',141.0]]},
+  pvc:{name:'PVC-U PN10', eps:0.0015, sizes:[['Ø20',17.0],['Ø25',22.0],['Ø32',28.4],['Ø40',36.2],['Ø50',45.2],['Ø63',57.0],['Ø75',67.8],['Ø90',81.4],['Ø110',99.4],['Ø125',113.0],['Ø160',144.6]]},
+  ss:{name:'Paslanmaz 10S', eps:0.015, sizes:[['½"',17.1],['¾"',22.5],['1"',27.9],['1¼"',36.7],['1½"',42.8],['2"',54.8],['2½"',66.9],['3"',82.8],['4"',108.2]]},
+  hose:{name:'Hortum', eps:0.01, sizes:[['½" (13)',13],['¾" (19)',19],['1" (25)',25],['1¼" (32)',32],['1½" (38)',38],['2" (51)',51]]},
+  custom:{name:'Özel', eps:0.05, sizes:[]}
+};
+const FITTINGS = [
+  ['n90','90° dirsek',0.75],['n45','45° dirsek',0.35],['teeR','T (düz geçiş)',0.4],['teeB','T (yan çıkış)',1.2],
+  ['ball','Küresel vana',0.05],['gate','Sürgülü vana',0.17],['check','Çekvalf',2.0],['filt','Y-filtre',3.0]
+];
+const NU_T = [[0,1.792e-6,999.8],[10,1.307e-6,999.7],[20,1.004e-6,998.2],[30,0.801e-6,995.7],[40,0.658e-6,992.2],[50,0.553e-6,988.0],[60,0.475e-6,983.2],[70,0.413e-6,977.8],[80,0.365e-6,971.8],[90,0.326e-6,965.3]];
+const SEG_COLORS = ['#0e8fb0','#2f5d8a','#7c3aed','#0f766e','#a16207','#be185d'];
+
+/* ================= DURUM ================= */
+const DEF = {
+  mode:'analiz', T:20, dz:3, extraBar:0,
+  segs:[{name:'Ana hat',mat:'galv',size:'1½"',id:41.8,eps:0.15,L:30,par:1,n90:4,n45:0,teeR:0,teeB:0,ball:1,gate:0,check:1,filt:0,kx:0},
+        {name:'Nozzle kolu',mat:'galv',size:'1¼"',id:35.9,eps:0.15,L:4,par:1,n90:0,n45:0,teeR:3,teeB:1,ball:0,gate:0,check:0,filt:0,kx:0}],
+  nozzleId:null, nN:10, pumpId:null,
+  targetP:3, tol:10, sort:'perf', eurUsd:1.10,
+  pf:{brand:'all',maxKw:'',rpm:'all',volt:'all',cat:'all',kind:'centri'},
+  nf:{series:'all',angle:'all',qTot:'',qTol:20,perPump:true},
+  cat:{tab:'pump',q:'',brand:'all',group:'all',limit:48},
+  custom:{pumps:[],nozzles:[]},
+  lab:null, labRef:null, migFilt:true,
+  theme:'system'
+};
+let S = load();
+{ const h=(location.hash||'').slice(1); if(['analiz','pompa','kombi','katalog','yontem','kilavuz'].includes(h)) S.mode=h; }
+function load(){
+  let s=null; try{ s=JSON.parse(localStorage.getItem('pns_state_v1')||'null'); }catch(e){}
+  const base = JSON.parse(JSON.stringify(DEF));
+  if(!s) return base;
+  for(const k in base){ if(s[k]!==undefined){ base[k] = (typeof base[k]==='object' && !Array.isArray(base[k]) && base[k]) ? Object.assign(base[k], s[k]) : s[k]; } }
+  // tek seferlik geçiş: sac filtre kaybı ihmal edilir, kayıtlı hatlardaki Y-filtre sıfırlanır
+  if(!s.migFilt){ (base.segs||[]).forEach(g=>{ g.filt=0; }); if(base.lab && base.lab.K===8) base.lab.K=5; }
+  base.migFilt=true;
+  if(!['perf','price','fp'].includes(base.sort)) base.sort='perf';
+  return base;
+}
+let saveT=null;
+function save(){ clearTimeout(saveT); saveT=setTimeout(()=>{ try{ localStorage.setItem('pns_state_v1', JSON.stringify(S)); }catch(e){} },250); }
+
+/* ================= YARDIMCI ================= */
+const $ = (s,el=document)=>el.querySelector(s);
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = (v,d=2)=> (v==null||!isFinite(v)) ? '–' : v.toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtA = v => { if(v==null||!isFinite(v)) return '–'; if(v===0) return '0'; const a=Math.abs(v); return fmt(v, a>=100?0:a>=10?1:a>=1?2:3); };
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+function fluid(T){ T=clamp(+T||20,0,90); for(let i=0;i<NU_T.length-1;i++){ const a=NU_T[i],b=NU_T[i+1]; if(T<=b[0]){ const t=(T-a[0])/(b[0]-a[0]); return {nu:a[1]+t*(b[1]-a[1]), rho:a[2]+t*(b[2]-a[2])}; } } return {nu:NU_T.at(-1)[1],rho:NU_T.at(-1)[2]}; }
+const imgTag = (k,alt='') => k && IMG[k] ? `<img src="${IMG[k]}" alt="${esc(alt)}" loading="lazy">` : `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".4"><circle cx="10" cy="12" r="6"/><path d="M16 12h5M10 6V3"/></svg>`;
+
+/* Monoton kübik (Fritsch-Carlson) eğri */
+function makeCurve(xs, ys){
+  const n=xs.length;
+  if(n===1) return x=>ys[0];
+  const d=[], m=new Array(n);
+  for(let i=0;i<n-1;i++) d.push((ys[i+1]-ys[i])/(xs[i+1]-xs[i]));
+  m[0]=d[0]; m[n-1]=d[n-2];
+  for(let i=1;i<n-1;i++){ m[i] = (d[i-1]*d[i]<=0) ? 0 : (d[i-1]+d[i])/2; }
+  for(let i=0;i<n-1;i++){
+    if(d[i]===0){ m[i]=0; m[i+1]=0; continue; }
+    const a=m[i]/d[i], b=m[i+1]/d[i], h=a*a+b*b;
+    if(h>9){ const t=3/Math.sqrt(h); m[i]=t*a*d[i]; m[i+1]=t*b*d[i]; }
+  }
+  const sEnd = Math.min(d[n-2], -1e-3), sStart = d[0];
+  return function(x){
+    if(x<=xs[0]) return ys[0] + sStart*(x-xs[0]);
+    if(x>=xs[n-1]) return ys[n-1] + sEnd*(x-xs[n-1]);
+    let i=0; while(i<n-2 && x>xs[i+1]) i++;
+    const h=xs[i+1]-xs[i], t=(x-xs[i])/h, t2=t*t, t3=t2*t;
+    return (2*t3-3*t2+1)*ys[i] + (t3-2*t2+t)*h*m[i] + (-2*t3+3*t2)*ys[i+1] + (t3-t2)*h*m[i+1];
+  };
+}
+
+/* ================= VERİ HAZIRLAMA ================= */
+function toM3h(q,u){ u=(u||'m3/h').toLowerCase(); if(u.includes('l/min')||u.includes('lt/dk')||u.includes('l/dk')) return q*0.06; if(u.includes('l/s')) return q*3.6; return q; }
+function priceCur(p){ p=String(p||''); return /€|eur/i.test(p)?'EUR':/\$|usd/i.test(p)?'USD':null; }
+function priceNum(p){ if(!p) return null; const m=String(p).replace(/\./g,'').replace(',', '.').match(/[\d.]+/); return m?parseFloat(m[0]):null; }
+function prepPump(p,i){
+  let pts = p.q.map((q,k)=>[toM3h(+q,p.q_unit), +p.h[k]]).filter(a=>isFinite(a[0])&&isFinite(a[1]));
+  pts.sort((a,b)=>a[0]-b[0]);
+  const xs=[],ys=[]; for(const [x,y] of pts){ if(xs.length && Math.abs(x-xs.at(-1))<1e-9) continue; xs.push(x); ys.push(y); }
+  const kw = p.kw ?? (p.hp!=null ? +p.hp*0.7457 : null);
+  return Object.assign({}, p, {id:p.id||('P'+i), qs:xs, hs:ys, qmax:xs.at(-1), qmin:xs[0], hmax:Math.max(...ys), kwN:kw, priceV:priceNum(p.price), priceCur:priceCur(p.price), f:makeCurve(xs,ys)});
+}
+function prepNoz(n,i){
+  let q2=+n.q2bar_lpm, e=+(n.exp||0.5);
+  if(n.points && n.points.length>=2){
+    const pts=n.points.filter(a=>a[0]>0&&a[1]>0);
+    if(pts.length>=2){ // log-log regresyon
+      const X=pts.map(a=>Math.log(a[0])), Y=pts.map(a=>Math.log(a[1])); const mx=X.reduce((a,b)=>a+b)/X.length, my=Y.reduce((a,b)=>a+b)/Y.length;
+      let sxy=0,sxx=0; X.forEach((x,k)=>{sxy+=(x-mx)*(Y[k]-my); sxx+=(x-mx)**2;});
+      if(sxx>0){ const ee=sxy/sxx; if(ee>0.3&&ee<0.7) e=ee; }
+      if(!(q2>0)){ q2=Math.exp(my + e*(Math.log(2)-mx)); }
+      n.p_range = n.p_range || [Math.min(...pts.map(a=>a[0])), Math.max(...pts.map(a=>a[0]))];
+    }
+  }
+  return Object.assign({}, n, {id:n.id||('N'+i), q2, e, p_range:n.p_range||[0.5,10]});
+}
+let PUMPS=[], NOZZLES=[];
+function rebuildDB(){
+  PUMPS = PUMPS_RAW.concat(S.custom.pumps).map(prepPump).filter(p=>p.qs.length>=2);
+  NOZZLES = NOZZLES_RAW.concat(S.custom.nozzles).map(prepNoz).filter(n=>n.q2>0);
+  if(!S.pumpId || !PUMPS.find(p=>p.id===S.pumpId)) S.pumpId = (PUMPS.find(p=>/25-200\/40/.test(p.model))||PUMPS[0]||{}).id;
+  if(!S.nozzleId || !NOZZLES.find(n=>n.id===S.nozzleId)) S.nozzleId = (NOZZLES.find(n=>n.code==='490.804')||NOZZLES.find(n=>n.code==='632.804')||NOZZLES[0]||{}).id;
+  const brands=[...new Set(PUMPS.map(p=>p.brand))];
+  $('#dbinfo').innerHTML = `<b style="color:#fff">${PUMPS.length}</b> pompa · <b style="color:#fff">${NOZZLES.length}</b> nozzle<br>${brands.map(esc).join(', ')} · Lechler`;
+}
+const pumpById = id => PUMPS.find(p=>p.id===id);
+const nozById = id => NOZZLES.find(n=>n.id===id);
+const nozQ = (n,p) => n.q2*Math.pow(p/2, n.e);          // l/dk
+const nozP = (n,q) => 2*Math.pow(q/n.q2, 1/n.e);         // bar
+
+/* ================= HİDROLİK ================= */
+function friction(Re, rr){
+  if(Re<1) return 0;
+  if(Re<2300) return 64/Re;
+  const fT = 0.25/Math.pow(Math.log10(rr/3.7 + 5.74/Math.pow(Re,0.9)),2);
+  if(Re<4000){ const fl=64/2300, t=(Re-2300)/1700; return fl+(fT-fl)*t; }
+  return fT;
+}
+function segK(s){ let k=+s.kx||0; for(const [key,,kv] of FITTINGS) k += (+s[key]||0)*kv; return k; }
+/* Sistem: nozzle + boru hattı → H(Q) fonksiyonu */
+function makeSystem(noz, nN){
+  const fl = fluid(S.T); const rhoG = fl.rho*G;
+  const segs = S.segs.map(s=>({...s, D:(+s.id||1)/1000, K:segK(s), eps:(+s.eps||0)/1000, L:+s.L||0, par:Math.max(1,+s.par||1)}));
+  const hExtra = (+S.extraBar||0)*1e5/rhoG, dz=+S.dz||0;
+  function detail(Q){ // Q m3/h
+    const qs=Q/3600; const parts=[]; let hf=0,hk=0,vmax=0;
+    for(const s of segs){
+      const A=Math.PI*s.D*s.D/4, v=(qs/s.par)/A, Re=v*s.D/fl.nu, f=friction(Re, s.eps/s.D), dyn=v*v/(2*G);
+      const hL=f*s.L/s.D*dyn, hK=s.K*dyn; hf+=hL; hk+=hK; vmax=Math.max(vmax,v);
+      parts.push({name:s.name, v, Re, f, hL, hK, D:s.D, L:s.L, K:s.K, par:s.par});
+    }
+    const qn = Q*1000/60/nN; const pN = nozP(noz, qn); const hN = pN*1e5/rhoG;
+    return {Q, parts, hf, hk, hN, pN, qn, dz, hExtra, H: dz+hExtra+hf+hk+hN, vmax, rhoG};
+  }
+  function H(Q){ // hızlı yol
+    const qs=Q/3600; let h=dz+hExtra;
+    for(const s of segs){ const A=Math.PI*s.D*s.D/4, v=(qs/s.par)/A, Re=v*s.D/fl.nu, dyn=v*v/(2*G); h += (friction(Re,s.eps/s.D)*s.L/s.D + s.K)*dyn; }
+    return h + nozP(noz, Q*1000/60/nN)*1e5/rhoG;
+  }
+  return {H, detail, rhoG, noz, nN, dz, hExtra};
+}
+/* Çalışma noktası */
+function solveOp(pump, sys){
+  const g = Q => pump.f(Q) - sys.H(Q);
+  if(g(0) <= 0) return {ok:false, reason:'Pompanın kapalı vana yüksekliği sistemin statik yükünü karşılamıyor.'};
+  let lo=0, hi=pump.qmax*1.15, beyond=false;
+  if(g(hi) > 0){ hi = pump.qmax*2.5; beyond=true; if(g(hi)>0) return {ok:false, reason:'Debi katalog eğrisinin çok dışında (sistem direnci çok düşük).', far:true}; }
+  for(let i=0;i<60;i++){ const m=(lo+hi)/2; if(g(m)>0) lo=m; else hi=m; }
+  const Q=(lo+hi)/2; const d=sys.detail(Q); const Hp=pump.f(Q);
+  const pos = Q/pump.qmax;
+  return {ok:true, Q, Hp, d, pos, beyond: Q>pump.qmax*1.0001, below: Q<pump.qmin-1e-9, pHyd: sys.rhoG*(Q/3600)*Hp/1000};
+}
+function regionPen(op){ if(op.beyond) return 1 + (op.pos-1)*4; if(op.pos<0.15) return (0.15-op.pos)*4 + 0.3; if(op.pos<0.3) return (0.3-op.pos)*1.5; if(op.pos>0.92) return (op.pos-0.92)*3; return 0; }
+/* Santrifüj = yüzey tipi tek/çok kademeli santrifüjler; dalgıç, drenaj, foseptik, jet, periferik, havuz vb. hariç */
+/* Dik milli: "DİK MİLLİ…" kategorileri + karışık kategoride "(dik milli)" işaretli DİK ve MKV modelleri */
+const isVertical = p => /^DİK MİLLİ/i.test(p.category||'') || /dik milli\)/i.test(p.desc||'') || /^MKV/i.test(p.model||'');
+const isCentri = p => !p.custom ? /SANTR|e-SH|KADEMEL/i.test(p.category||'') && !/DALGI|JET|DRENAJ|FOSEPT|KESON|PİS SU|ÇAMUR|HAVUZ|PERİFER/i.test(p.category||'') && !isVertical(p) : true;
+function pumpFilterOK(p, ignoreBrand){
+  const f=S.pf;
+  if(f.kind==='centri' && !isCentri(p)) return false;
+  if(!ignoreBrand && f.brand!=='all' && p.brand!==f.brand) return false;
+  if(f.cat!=='all' && p.category!==f.cat) return false;
+  if(f.rpm!=='all' && String(p.rpm||'')!==f.rpm) return false;
+  if(f.maxKw!=='' && p.kwN!=null && p.kwN > +f.maxKw) return false;
+  if(f.volt==='1' && !/220|230|1~/.test(p.volt||'')) return false;
+  if(f.volt==='3' && !/380|400|3~|440/.test(p.volt||'')) return false;
+  return true;
+}
+function scoreOp(op, Pt, tol, p){
+  const dev=(op.d.pN-Pt)/Pt; const t=tol/100;
+  let s = Math.abs(dev)/t + 1.2*regionPen(op);
+  if(dev < -t) s += 1;  // hedefin altında kalmak daha kötü
+  if(p.kwN) s += 0.15*Math.log2(1 + p.kwN/Math.max(0.05, op.pHyd));
+  return {score:s, dev};
+}
+
+/* ================= SVG GRAFİK ================= */
+function niceTicks(max, count=6){ if(!(max>0)) max=1; const raw=max/count, p=Math.pow(10,Math.floor(Math.log10(raw))); const r=raw/p; const step=(r<=1?1:r<=2?2:r<=2.5?2.5:r<=5?5:10)*p; const out=[]; for(let v=0; v<=max+step*0.001; v+=step) out.push(+v.toFixed(10)); if(out.at(-1)<max) out.push(out.at(-1)+step); return out; }
+function cssv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function drawChart(box, cfg){
+  const W=760, H=cfg.h||360, m={l:54,r:20,t:16,b:44};
+  const xt=niceTicks(cfg.xMax), yt=niceTicks(cfg.yMax);
+  const X0=xt.at(-1), Y0=yt.at(-1);
+  const sx=x=>m.l+(x/X0)*(W-m.l-m.r), sy=y=>H-m.b-(y/Y0)*(H-m.t-m.b);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(cfg.aria||'grafik')}">`;
+  s+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="none"/>`;
+  for(const v of yt){ s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${sy(v)}" y2="${sy(v)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${sy(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${fmtA(v)}</text>`; }
+  for(const v of xt){ s+=`<line y1="${m.t}" y2="${H-m.b}" x1="${sx(v)}" x2="${sx(v)}" stroke="var(--grid)"/><text x="${sx(v)}" y="${H-m.b+17}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="var(--f-mono)">${fmtA(v)}</text>`; }
+  s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${H-m.b}" y2="${H-m.b}" stroke="var(--faint)"/><line x1="${m.l}" x2="${m.l}" y1="${m.t}" y2="${H-m.b}" stroke="var(--faint)"/>`;
+  s+=`<text x="${(W+m.l-m.r)/2}" y="${H-6}" text-anchor="middle" font-size="12" fill="var(--muted)">${esc(cfg.xLabel)}</text>`;
+  s+=`<text transform="translate(14 ${(H-m.b+m.t)/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="var(--muted)">${esc(cfg.yLabel)}</text>`;
+  s+=`<clipPath id="clp${cfg.uid||0}"><rect x="${m.l}" y="${m.t-2}" width="${W-m.l-m.r}" height="${H-m.t-m.b+2}"/></clipPath><g clip-path="url(#clp${cfg.uid||0})">`;
+  for(const se of cfg.series){
+    if(!se.pts.length) continue;
+    const d=se.pts.map((p,i)=>(i?'L':'M')+sx(p[0]).toFixed(1)+' '+sy(p[1]).toFixed(1)).join(' ');
+    if(se.area){ s+=`<path d="${d} L${sx(se.pts.at(-1)[0])} ${sy(0)} L${sx(se.pts[0][0])} ${sy(0)}Z" fill="${se.color}" opacity=".07"/>`; }
+    s+=`<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.w||2.2}" ${se.dash?`stroke-dasharray="${se.dash}"`:''} stroke-linejoin="round" stroke-linecap="round" opacity="${se.op||1}"/>`;
+    if(se.dots) for(const p of se.dots) s+=`<circle cx="${sx(p[0])}" cy="${sy(p[1])}" r="2.6" fill="var(--surface)" stroke="${se.color}" stroke-width="1.5"/>`;
+  }
+  for(const hl of (cfg.hlines||[])){ s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${sy(hl.y)}" y2="${sy(hl.y)}" stroke="${hl.color}" stroke-dasharray="5 4" stroke-width="1.3"/><text x="${W-m.r-4}" y="${sy(hl.y)-5}" text-anchor="end" font-size="11" fill="${hl.color}" font-family="var(--f-mono)">${esc(hl.label)}</text>`; }
+  s+='</g>';
+  for(const mk of (cfg.marks||[])){
+    s+=`<line x1="${sx(mk.x)}" x2="${sx(mk.x)}" y1="${sy(mk.y)}" y2="${H-m.b}" stroke="${mk.color}" stroke-dasharray="3 3" opacity=".6"/>`;
+    s+=`<circle cx="${sx(mk.x)}" cy="${sy(mk.y)}" r="${mk.r||6.5}" fill="${mk.hollow?'var(--surface)':mk.color}" stroke="${mk.color}" stroke-width="2.5"/>`;
+    if(mk.label){ const right = sx(mk.x) < W*0.7; s+=`<text x="${sx(mk.x)+(right?11:-11)}" y="${sy(mk.y)-10}" text-anchor="${right?'start':'end'}" font-size="12" font-weight="600" fill="${mk.color}" font-family="var(--f-mono)">${esc(mk.label)}</text>`; }
+  }
+  s+=`<line class="cx" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="var(--faint)" stroke-width="1" visibility="hidden"/>`;
+  s+='</svg><div class="read" hidden></div>';
+  box.innerHTML=s;
+  const svg=box.querySelector('svg'), rd=box.querySelector('.read'), cx=svg.querySelector('.cx');
+  svg.addEventListener('mousemove',ev=>{
+    const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W;
+    if(px<m.l||px>W-m.r){ rd.hidden=true; cx.setAttribute('visibility','hidden'); return; }
+    const x=(px-m.l)/(W-m.l-m.r)*X0;
+    cx.setAttribute('x1',px); cx.setAttribute('x2',px); cx.setAttribute('visibility','visible');
+    let html=`<div style="color:var(--muted)">${esc(cfg.xName||'Q')} = ${fmtA(x)} ${esc(cfg.xUnit||'')}</div>`;
+    for(const se of cfg.series){ if(se.noread||!se.pts.length) continue; if(x<se.pts[0][0]||x>se.pts.at(-1)[0]) continue;
+      let i=0; while(i<se.pts.length-2 && se.pts[i+1][0]<x) i++; const a=se.pts[i], b=se.pts[i+1]||a; const y = b[0]===a[0]?a[1]:a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);
+      html+=`<div><span style="color:${se.color}">●</span> ${esc(se.name)}: <b>${fmtA(y)}</b> ${esc(cfg.yUnit||'')}</div>`; }
+    rd.innerHTML=html; rd.hidden=false;
+    const bx=box.getBoundingClientRect(); let lx=ev.clientX-bx.left+14; if(lx>bx.width-rd.offsetWidth-6) lx=ev.clientX-bx.left-rd.offsetWidth-14;
+    rd.style.left=lx+'px'; rd.style.top=(ev.clientY-bx.top+12)+'px';
+  });
+  svg.addEventListener('mouseleave',()=>{ rd.hidden=true; cx.setAttribute('visibility','hidden'); });
+}
+function sampleCurve(fn, x0, x1, n=80){ const out=[]; for(let i=0;i<=n;i++){ const x=x0+(x1-x0)*i/n; const y=fn(x); if(isFinite(y)) out.push([x,y]); } return out; }
+function pumpPts(p, ext=1){ return sampleCurve(p.f, Math.min(0,p.qmin), p.qmax, 70).filter(a=>a[1]>=0); }
+function sparkSVG(p){
+  const W=200,H=46, xm=p.qmax, ym=p.hmax*1.05; const pts=pumpPts(p);
+  const d=pts.map((a,i)=>(i?'L':'M')+(a[0]/xm*W).toFixed(1)+' '+(H-a[1]/ym*H).toFixed(1)).join(' ');
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none"><path d="${d} L${W} ${H} L0 ${H}Z" fill="var(--water)" opacity=".08"/><path d="${d}" fill="none" stroke="var(--water)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
+}
+
+/* ================= ORTAK GİRDİ PANELLERİ ================= */
+function stepper(id, val, attrs=''){ return `<div class="step"><button type="button" data-step="-1" data-for="${id}" aria-label="azalt">−</button><input type="number" id="${id}" value="${val}" min="0" step="1" ${attrs}><button type="button" data-step="1" data-for="${id}" aria-label="artır">+</button></div>`; }
+function pipePanel(){
+  const segs = S.segs.map((s,i)=>{
+    const mat=MATERIALS[s.mat]||MATERIALS.custom;
+    const sizeOpts = mat.sizes.map(([n,d])=>`<option value="${esc(n)}" ${s.size===n?'selected':''}>${esc(n)} — iç Ø ${d} mm</option>`).join('') + `<option value="__c" ${s.size==='__c'?'selected':''}>Özel iç çap…</option>`;
+    const fits = FITTINGS.map(([k,l,kv])=>`<div class="fit"><span title="Kayıp katsayısı K = ${kv}">${l}</span>${stepper(`sg${i}_${k}`, s[k]||0, `data-seg="${i}" data-k="${k}"`)}</div>`).join('');
+    return `<div class="seg" style="border-left:3px solid ${SEG_COLORS[i%SEG_COLORS.length]}">
+      <div class="top"><input type="text" id="sg${i}_name" value="${esc(s.name)}" data-seg="${i}" data-k="name" aria-label="Bölüm adı">${S.segs.length>1?`<button class="btn ghost sm" data-delseg="${i}" title="Bölümü sil">Sil</button>`:''}</div>
+      <div class="row">
+        <div class="f"><label for="sg${i}_mat">Malzeme</label><select id="sg${i}_mat" data-seg="${i}" data-k="mat">${Object.entries(MATERIALS).map(([k,m])=>`<option value="${k}" ${s.mat===k?'selected':''}>${esc(m.name)}</option>`).join('')}</select></div>
+        <div class="f"><label for="sg${i}_size">Çap</label><select id="sg${i}_size" data-seg="${i}" data-k="size">${sizeOpts}</select></div>
+      </div>
+      <div class="row3">
+        <div class="f"><label for="sg${i}_L">Uzunluk</label><div class="unit"><input type="number" id="sg${i}_L" value="${s.L}" min="0" step="0.5" data-seg="${i}" data-k="L"><span>m</span></div></div>
+        <div class="f"><label for="sg${i}_id">İç çap</label><div class="unit"><input type="number" id="sg${i}_id" value="${s.id}" min="1" step="0.1" data-seg="${i}" data-k="id" ${s.size!=='__c'?'readonly':''}><span>mm</span></div></div>
+        <div class="f"><label for="sg${i}_par" title="Aynı bölümden paralel kaç hat/kol var? Debi bunlara eşit bölünür.">Paralel hat</label><div class="unit"><input type="number" id="sg${i}_par" value="${s.par}" min="1" step="1" data-seg="${i}" data-k="par"><span>adet</span></div></div>
+      </div>
+      <div class="fits">${fits}</div>
+      <details class="adv"><summary>Pürüzlülük ve ek kayıp katsayısı</summary>
+        <div class="row"><div class="f"><label for="sg${i}_eps">Pürüzlülük ε</label><div class="unit"><input type="number" id="sg${i}_eps" value="${s.eps}" min="0" step="0.001" data-seg="${i}" data-k="eps"><span>mm</span></div></div>
+        <div class="f"><label for="sg${i}_kx">Ek ΣK</label><input type="number" id="sg${i}_kx" value="${s.kx||0}" min="0" step="0.1" data-seg="${i}" data-k="kx"></div></div>
+      </details>
+    </div>`;
+  }).join('');
+  return `<section class="panel"><header><h3>Boru hattı</h3><span class="sub">${S.segs.length} bölüm · ${fmt(S.segs.reduce((a,s)=>a+(+s.L||0),0),1)} m</span></header><div class="body">
+    <div class="row3">
+      <div class="f"><label for="in_dz" title="Nozzle'ların, pompanın emdiği su seviyesine göre yüksekliği">Yükseklik farkı</label><div class="unit"><input type="number" id="in_dz" value="${S.dz}" step="0.5"><span>m</span></div></div>
+      <div class="f"><label for="in_extra" title="Eşanjör, ısıtıcı vb. sabit kayıplar">Ek sabit kayıp</label><div class="unit"><input type="number" id="in_extra" value="${S.extraBar}" step="0.1" min="0"><span>bar</span></div></div>
+      <div class="f"><label for="in_T">Su sıcaklığı</label><div class="unit"><input type="number" id="in_T" value="${S.T}" step="5" min="0" max="90"><span>°C</span></div></div>
+    </div>
+    ${segs}
+    <button class="btn sm" id="addSeg" type="button">+ Boru bölümü ekle</button>
+  </div></section>`;
+}
+function nozzleLine(n){ if(!n) return 'Seçilmedi'; return `${n.brand} ${n.code}`; }
+function nozzleSub(n){ if(!n) return ''; return `${n.kind} · ${n.angle}° · ${fmtA(n.q2)} l/dk @2 bar`; }
+function nozzlePanel(){
+  const n=nozById(S.nozzleId);
+  return `<section class="panel"><header><h3>Nozzle</h3><span class="sub">${n?`${fmt(nozQ(n,S.targetP||3),2)} l/dk @ ${fmt(+S.targetP||3,1)} bar`:''}</span></header><div class="body">
+    <button class="pick" type="button" data-open="nozzle"><span class="ph">${imgTag(n&&n.image)}</span><span class="t"><b>${esc(nozzleLine(n))}</b><small>${esc(nozzleSub(n))}</small></span><span class="chg">Değiştir</span></button>
+    <div class="f"><label for="in_nN">Nozzle adedi (hepsi aynı basınçta)</label><div class="unit"><input type="number" id="in_nN" value="${S.nN}" min="1" step="1"><span>adet</span></div></div>
+  </div></section>`;
+}
+function pumpPanel(){
+  const p=pumpById(S.pumpId);
+  return `<section class="panel"><header><h3>Pompa</h3><span class="sub">${p?esc(p.brand):''}</span></header><div class="body">
+    <button class="pick" type="button" data-open="pump"><span class="ph">${imgTag(p&&p.image)}</span><span class="t"><b>${esc(p?p.model:'Seçilmedi')}</b><small>${p?esc(`${p.kwN?fmt(p.kwN,2)+' kW':''} · Hmax ${fmtA(p.hmax)} m · Qmax ${fmtA(p.qmax)} m³/h`):''}</small></span><span class="chg">Değiştir</span></button>
+  </div></section>`;
+}
+function targetPanel(){
+  return `<section class="panel"><header><h3>Hedef</h3></header><div class="body">
+    <div class="row">
+      <div class="f"><label for="in_tp">Nozzle basıncı</label><div class="unit"><input type="number" id="in_tp" value="${S.targetP}" min="0.1" step="0.1"><span>bar</span></div></div>
+      <div class="f"><label for="in_tol">Tolerans</label><div class="unit"><input type="number" id="in_tol" value="${S.tol}" min="1" step="1"><span>±%</span></div></div>
+    </div>
+  </div></section>`;
+}
+function pumpFilterPanel(){
+  const brands=[...new Set(PUMPS.map(p=>p.brand))];
+  const cats=[...new Set(PUMPS.filter(p=>(S.pf.brand==='all'||p.brand===S.pf.brand)&&(S.pf.kind!=='centri'||isCentri(p))).map(p=>p.category))];
+  const nC=PUMPS.filter(isCentri).length;
+  return `<section class="panel"><header><h3>Pompa filtresi</h3></header><div class="body">
+    <div class="row">
+      <div class="f"><label for="pf_brand">Marka</label><select id="pf_brand"><option value="all">Tümü</option>${brands.map(b=>`<option ${S.pf.brand===b?'selected':''}>${esc(b)}</option>`).join('')}</select></div>
+      <div class="f"><label for="pf_maxKw">En fazla motor gücü</label><div class="unit"><input type="number" id="pf_maxKw" value="${S.pf.maxKw}" min="0" step="0.5" placeholder="sınırsız"><span>kW</span></div></div>
+    </div>
+    <div class="f"><label>Pompa türü</label><div class="seg-tabs kindtabs"><button type="button" data-kind="centri" class="${S.pf.kind==='centri'?'on':''}">Santrifüj · ${nC}</button><button type="button" data-kind="all" class="${S.pf.kind!=='centri'?'on':''}">Tümü · ${PUMPS.length}</button></div><span class="hint">${S.pf.kind==='centri'?'Yalnızca yatay santrifüjler. Dik milli, dalgıç, drenaj, foseptik, jet, periferik ve havuz pompaları öneriye alınmaz.':'Katalogdaki tüm pompa türleri öneriye dahil.'}</span></div>
+    <div class="f"><label for="pf_cat">Pompa tipi</label><select id="pf_cat"><option value="all">Tümü</option>${cats.map(c=>`<option ${S.pf.cat===c?'selected':''}>${esc(c)}</option>`).join('')}</select></div>
+    <div class="row">
+      <div class="f"><label for="pf_volt">Besleme</label><select id="pf_volt"><option value="all">Tümü</option><option value="1" ${S.pf.volt==='1'?'selected':''}>Monofaze 220 V</option><option value="3" ${S.pf.volt==='3'?'selected':''}>Trifaze 380 V</option></select></div>
+      <div class="f"><label for="pf_rpm">Devir (Lowara)</label><select id="pf_rpm"><option value="all">Tümü</option><option value="2900" ${S.pf.rpm==='2900'?'selected':''}>2900 d/d</option><option value="1450" ${S.pf.rpm==='1450'?'selected':''}>1450 d/d</option></select></div>
+    </div>
+  </div></section>`;
+}
+function nozzleFilterPanel(){
+  const series=[...new Set(NOZZLES.map(n=>n.brand+' '+n.series))];
+  const angles=[...new Set(NOZZLES.map(n=>n.angle))].sort((a,b)=>a-b);
+  return `<section class="panel"><header><h3>Nozzle aralığı</h3></header><div class="body">
+    <div class="row">
+      <div class="f"><label for="nf_series">Seri</label><select id="nf_series"><option value="all">Tümü</option>${series.map(s=>`<option ${S.nf.series===s?'selected':''}>${esc(s)}</option>`).join('')}</select></div>
+      <div class="f"><label for="nf_angle">Püskürtme açısı</label><select id="nf_angle"><option value="all">Tümü</option>${angles.map(a=>`<option value="${a}" ${String(S.nf.angle)===String(a)?'selected':''}>${a}°</option>`).join('')}</select></div>
+    </div>
+    <div class="f"><label for="in_nN">Nozzle adedi</label><div class="unit"><input type="number" id="in_nN" value="${S.nN}" min="1" step="1"><span>adet</span></div></div>
+    <div class="row">
+      <div class="f"><label for="nf_qTot">Hedef toplam debi</label><div class="unit"><input type="number" id="nf_qTot" value="${S.nf.qTot}" min="0" step="1" placeholder="serbest"><span>l/dk</span></div></div>
+      <div class="f"><label for="nf_qTol">Debi toleransı</label><div class="unit"><input type="number" id="nf_qTol" value="${S.nf.qTol}" min="1" step="1"><span>±%</span></div></div>
+    </div>
+    <label style="display:flex;gap:8px;align-items:center;font-size:13px"><input type="checkbox" id="nf_perPump" ${S.nf.perPump?'checked':''}> Her pompa için yalnızca en iyi nozzle'ı göster</label>
+  </div></section>`;
+}
+
+/* ================= MODLAR ================= */
+const MODES = {
+  analiz:{t:'Sistem Analizi', d:'Seçtiğiniz pompa, nozzle ve boru hattı ile sistemin gerçekte hangi debi ve basınçta çalışacağını hesaplar. Pompa eğrisi ile sistem eğrisinin kesiştiği nokta çalışma noktasıdır.'},
+  pompa:{t:'Pompa Seçimi', d:'Nozzle ve boru hattı sabit. İstediğiniz nozzle basıncına en yakın çalışan pompaları, eğrinin verimli bölgesini ve motor büyüklüğünü de hesaba katarak sıralar.'},
+  kombi:{t:'Pompa + Nozzle Seçimi', d:'Hedef basınç ve boru hattına göre katalogdaki tüm pompa ve nozzle eşleşmelerini dener, en uygun kombinasyonları sıralar.'},
+  katalog:{t:'Katalog', d:'Okunan kataloglardaki tüm pompa ve nozzle\'lar. Bir karta tıklayarak eğriyi ve teknik verileri görün.'},
+  yontem:{t:'Hesap Yöntemi', d:'Uygulamanın kullandığı formüller, kabuller ve veri kaynakları.'},
+  kilavuz:{t:'Nasıl Kullanılır', d:'Programın kullanım kılavuzu.'}
+};
+function render(){
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('on', b.dataset.mode===S.mode));
+  const M=MODES[S.mode];
+  let left='', right='<div id="out" class="col"></div>';
+  if(S.mode==='analiz') left = pumpPanel()+nozzlePanel()+pipePanel();
+  if(S.mode==='pompa') left = targetPanel()+nozzlePanel()+pipePanel()+pumpFilterPanel();
+  if(S.mode==='kombi') left = targetPanel()+nozzleFilterPanel()+pipePanel()+pumpFilterPanel();
+  let html = (S.mode==='yontem'||S.mode==='kilavuz') ? '' : `<div class="head"><div><h1>${M.t}</h1><p>${M.d}</p></div></div>`;
+  if(S.mode==='katalog') html += '<div id="out"></div>';
+  else if(S.mode==='yontem') html += helpHTML()+'<div id="out" hidden></div>';
+  else if(S.mode==='kilavuz') html += guideHTML();
+  else html += `<div class="work"><div class="col" id="left">${left}</div>${right}</div>`;
+  $('#main').innerHTML = html;
+  compute();
+}
+let compT=null;
+function compute(){ clearTimeout(compT); compT=setTimeout(()=>{ const o=$('#out'); if(!o) return;
+  if(S.mode==='analiz') outAnaliz(o);
+  else if(S.mode==='pompa') outPompa(o);
+  else if(S.mode==='kombi') outKombi(o);
+  else if(S.mode==='katalog') outKatalog(o);
+  else if(S.mode==='yontem') updateLab();
+}, 30); }
+
+/* ---------- 1. ANALİZ ---------- */
+function opKpis(op, p, n, sys){
+  const d=op.d;
+  return `<div class="kpis">
+    <div class="kpi hl"><div class="l">Nozzle basıncı</div><div class="v">${fmt(d.pN,2)}<small>bar</small></div><div class="s">${fmt(d.hN,1)} mSS</div></div>
+    <div class="kpi"><div class="l">Toplam debi</div><div class="v">${fmt(op.Q*1000/60,1)}<small>l/dk</small></div><div class="s">${fmt(op.Q,2)} m³/h</div></div>
+    <div class="kpi"><div class="l">Nozzle başına</div><div class="v">${fmt(d.qn,2)}<small>l/dk</small></div><div class="s">${sys.nN} adet · ${n.angle}°</div></div>
+    <div class="kpi"><div class="l">Pompa basma yük.</div><div class="v">${fmt(op.Hp,1)}<small>m</small></div><div class="s">≈ ${fmt(op.Hp*sys.rhoG/1e5,2)} bar çıkış</div></div>
+    <div class="kpi"><div class="l">En yüksek hız</div><div class="v" style="color:${d.vmax>3?'var(--bad)':d.vmax>2.2?'var(--warn)':'inherit'}">${fmt(d.vmax,2)}<small>m/s</small></div><div class="s">öneri 1–2,5 m/s</div></div>
+    <div class="kpi"><div class="l">Hidrolik güç</div><div class="v">${fmt(op.pHyd,2)}<small>kW</small></div><div class="s">${p.kwN?`motor ${fmt(p.kwN,2)} kW`:''}${p.eta?` · mil ≈ ${fmt(op.pHyd/(p.eta/100),2)} kW`:''}</div></div>
+  </div>`;
+}
+function opAlerts(op, p, n){
+  const a=[]; const d=op.d;
+  if(op.beyond) a.push(['bad',`Çalışma noktası pompanın katalog eğrisinin sağında (${fmt(op.Q,1)} > ${fmt(p.qmax,1)} m³/h). Değer eğri uzatılarak tahmin edildi; motor aşırı yüklenebilir ve kavitasyon riski var.`]);
+  else if(op.pos<0.15) a.push(['warn',`Pompa eğrinin başında, kapalı vanaya yakın çalışıyor (katalog debisinin %${Math.round(op.pos*100)}'i). Isınma ve düşük verim riski.`]);
+  else if(op.pos>0.92) a.push(['warn','Pompa eğrinin sonuna yakın çalışıyor. Debi biraz artarsa katalog dışına çıkar.']);
+  else a.push(['ok',`Pompa katalog eğrisinin içinde çalışıyor (eğri konumu %${Math.round(op.pos*100)}).`]);
+  if(d.pN<n.p_range[0]*0.9 || d.pN>n.p_range[1]*1.1) a.push(['warn',`Nozzle basıncı, katalogdaki ${fmtA(n.p_range[0])}–${fmtA(n.p_range[1])} bar aralığının dışında. Püskürtme açısı ve dağılım katalogdakinden farklı olabilir.`]);
+  if(d.vmax>3) a.push(['bad',`Borudaki hız ${fmt(d.vmax,2)} m/s. Basma hatlarında 3 m/s üstü gürültü, aşınma ve koç darbesi riski taşır; bir üst çapa geçin.`]);
+  else if(d.vmax>2.2) a.push(['warn',`Borudaki hız ${fmt(d.vmax,2)} m/s; sürtünme kaybı yüksek. Bir üst çap değerlendirilebilir.`]);
+  const loss=(d.hf+d.hk)/op.Hp; if(loss>0.35) a.push(['warn',`Pompa basıncının %${Math.round(loss*100)}'i boru ve armatürlerde kayboluyor.`]);
+  return `<div class="alerts">${a.map(([k,t])=>`<div class="alert ${k}">${t}</div>`).join('')}</div>`;
+}
+function breakdown(d){
+  const items=[['Yükseklik farkı',d.dz,'#94a3b8'],['Ek sabit kayıp',d.hExtra,'#a8a29e']];
+  d.parts.forEach((p,i)=>{ items.push([`${p.name} · boru`, p.hL, SEG_COLORS[i%SEG_COLORS.length]]); items.push([`${p.name} · armatür`, p.hK, SEG_COLORS[i%SEG_COLORS.length]+'99']); });
+  items.push(['Nozzle basıncı', d.hN, 'var(--signal)']);
+  const vis=items.filter(x=>x[1]>0.005); const tot=vis.reduce((a,x)=>a+x[1],0);
+  return `<section class="panel"><header><h3>Basma yüksekliği dağılımı</h3><span class="sub">Toplam ${fmt(tot,1)} m</span></header><div class="body">
+    <div class="stack">${vis.map(x=>`<div style="flex:${x[1]};background:${x[2]}" title="${esc(x[0])}: ${fmt(x[1],2)} m"></div>`).join('')}</div>
+    <div class="stackleg">${vis.map(x=>`<div><i style="background:${x[2]}"></i><span>${esc(x[0])}</span><b>${fmt(x[1],2)} m</b></div>`).join('')}</div>
+  </div></section>`;
+}
+function segTable(d){
+  return `<section class="panel"><header><h3>Boru bölümleri</h3></header><div class="tbl"><table><thead><tr><th>Bölüm</th><th class="n">İç Ø mm</th><th class="n">L m</th><th class="n">Hız m/s</th><th class="n">Re</th><th class="n">f</th><th class="n">ΣK</th><th class="n">Boru kaybı m</th><th class="n">Armatür m</th></tr></thead><tbody>
+    ${d.parts.map(p=>`<tr><td>${esc(p.name)}${p.par>1?` <span class="pill info">${p.par} paralel</span>`:''}</td><td class="n">${fmt(p.D*1000,1)}</td><td class="n">${fmt(p.L,1)}</td><td class="n">${fmt(p.v,2)}</td><td class="n">${Math.round(p.Re).toLocaleString('tr-TR')}</td><td class="n">${fmt(p.f,4)}</td><td class="n">${fmt(p.K,2)}</td><td class="n">${fmt(p.hL,2)}</td><td class="n">${fmt(p.hK,2)}</td></tr>`).join('')}
+  </tbody></table></div></section>`;
+}
+function outAnaliz(o){
+  const p=pumpById(S.pumpId), n=nozById(S.nozzleId);
+  if(!p||!n){ o.innerHTML='<div class="panel empty">Pompa ve nozzle seçin.</div>'; return; }
+  const sys=makeSystem(n, Math.max(1,+S.nN||1));
+  const op=solveOp(p, sys);
+  const xMax = Math.max(p.qmax*1.15, op.ok?op.Q*1.1:0);
+  const sysPts = sampleCurve(sys.H, 0, xMax, 90);
+  const pPts = pumpPts(p);
+  const yMax = Math.max(p.hmax, op.ok?op.Hp:0)*1.12;
+  let html='';
+  if(!op.ok){ html += `<div class="alerts"><div class="alert bad">${op.reason} Daha yüksek basma yüksekliğine sahip bir pompa seçin ya da nozzle sayısını/çapını artırın.</div></div>`; }
+  else html += opKpis(op,p,n,sys) + opAlerts(op,p,n);
+  html += `<section class="panel"><header><h3>Pompa ve sistem eğrisi</h3><span class="sub">${esc(p.model)} · ${sys.nN}× ${esc(n.code)}</span></header><div class="chartbox" id="ch1"></div>
+    <div class="legend"><span><i style="background:var(--pump)"></i>Pompa eğrisi (katalog)</span><span><i style="background:var(--water)"></i>Sistem eğrisi</span>${op.ok?'<span><i style="background:var(--signal)"></i>Çalışma noktası</span>':''}</div></section>`;
+  if(op.ok){ html += breakdown(op.d) + segTable(op.d); }
+  html += `<section class="panel"><header><h3>Nozzle sayısına göre</h3><span class="sub">aynı pompa ve boru hattı</span></header><div class="tbl" id="nTable"></div></section>`;
+  o.innerHTML=html;
+  const ext = p.qmax < xMax ? sampleCurve(p.f, p.qmax, xMax, 20).filter(a=>a[1]>=0) : [];
+  drawChart($('#ch1'),{uid:1,xMax, yMax, xLabel:'Debi Q (m³/h)', yLabel:'Basma yüksekliği H (m)', xUnit:'m³/h', yUnit:'m',
+    series:[{name:'Pompa',color:'var(--pump)',pts:pPts,area:true,dots:p.qs.map((q,i)=>[q,p.hs[i]])},{name:'Pompa (uzatma)',color:'var(--pump)',pts:ext,dash:'4 4',w:1.5,noread:true},{name:'Sistem',color:'var(--water)',pts:sysPts}],
+    marks: op.ok?[{x:op.Q,y:op.Hp,color:'var(--signal)',label:`${fmt(op.Q*1000/60,0)} l/dk · ${fmt(op.d.pN,2)} bar`}]:[]});
+  // nozzle sayısı tablosu
+  const base=Math.max(1,+S.nN||1); const counts=[...new Set([1,2,3,4,6,8,10,12,16,20,24,30,40,base].filter(c=>c>0))].sort((a,b)=>a-b);
+  const rows=counts.map(c=>{ const s2=makeSystem(n,c); const r=solveOp(p,s2); return {c,r}; });
+  $('#nTable').innerHTML=`<table><thead><tr><th class="n">Nozzle</th><th class="n">Basınç bar</th><th class="n">Toplam l/dk</th><th class="n">Nozzle başı l/dk</th><th class="n">Pompa H m</th><th>Durum</th></tr></thead><tbody>${rows.map(({c,r})=>`<tr class="${c===base?'sel':''}"><td class="n">${c}</td>${r.ok?`<td class="n">${fmt(r.d.pN,2)}</td><td class="n">${fmt(r.Q*1000/60,1)}</td><td class="n">${fmt(r.d.qn,2)}</td><td class="n">${fmt(r.Hp,1)}</td><td>${r.beyond?'<span class="pill bad">eğri dışı</span>':r.pos<0.15?'<span class="pill warn">eğri başı</span>':'<span class="pill ok">uygun</span>'}</td>`:`<td colspan="4" class="n">–</td><td><span class="pill bad">çalışmaz</span></td>`}</tr>`).join('')}</tbody></table>`;
+}
+
+/* ---------- 2. POMPA SEÇİMİ ---------- */
+let lastRank=[], selRank=0;
+function reqCard(n, sys, Pt){
+  const qn=nozQ(n,Pt), Q=qn*sys.nN*60/1000, d=sys.detail(Q);
+  return {Q, d, html:`<div class="kpis">
+    <div class="kpi hl"><div class="l">Hedef nozzle basıncı</div><div class="v">${fmt(Pt,2)}<small>bar</small></div><div class="s">±%${S.tol} tolerans</div></div>
+    <div class="kpi"><div class="l">Gereken toplam debi</div><div class="v">${fmt(Q*1000/60,1)}<small>l/dk</small></div><div class="s">${fmt(Q,2)} m³/h · ${fmt(qn,2)} l/dk/nozzle</div></div>
+    <div class="kpi"><div class="l">Gereken basma yük.</div><div class="v">${fmt(d.H,1)}<small>m</small></div><div class="s">≈ ${fmt(d.H*sys.rhoG/1e5,2)} bar pompa çıkışı</div></div>
+    <div class="kpi"><div class="l">Boru + armatür kaybı</div><div class="v">${fmt(d.hf+d.hk,1)}<small>m</small></div><div class="s">hız ${fmt(d.vmax,2)} m/s</div></div>
+  </div>`};
+}
+const SORTS = {
+  perf:['Performans','Basınca yakınlık, pompa eğrisindeki çalışma bölgesi ve motor büyüklüğüne göre. Fiyat dikkate alınmaz.'],
+  price:['Fiyat','Hedef basıncı ±tolerans içinde karşılayan pompalar, en ucuzdan pahalıya. Fiyatı bilinmeyen ve tolerans dışı pompalar altta.'],
+  fp:['Fiyat / Performans','Uygun pompalarda performans skoruna fiyat cezası eklenir: fiyat, en ucuz uygun pompanın iki katına çıktıkça +1 (tolerans sınırındaki bir sapmaya eşdeğer).']
+};
+function priceUSD(p){ if(p.priceV==null) return null; return p.priceCur==='EUR' ? p.priceV*(+S.eurUsd||1.1) : p.priceV; }
+const perfPts = sc => Math.round(100*Math.exp(-0.5*sc));
+/* 3 sıralama: grp 0 = uygun ve fiyatlı, 1 = uygun ama fiyatsız, 2 = tolerans dışı */
+function rankList(arr){
+  const t=S.tol/100, k=SORTS[S.sort]?S.sort:'perf';
+  for(const r of arr){ r.ok=Math.abs(r.dev)<=t && !r.op.beyond; r.usd=priceUSD(r.p); r.perf=perfPts(r.score); r.grp = k==='perf'?0 : !r.ok?2 : r.usd==null?1 : 0; }
+  if(k==='fp'){ const ps=arr.filter(r=>r.grp===0).map(r=>r.usd); const mn=Math.max(1,Math.min(...ps)); for(const r of arr) r.fp = r.grp===0 ? r.score + Math.log2(r.usd/mn) : null; }
+  return arr.sort((a,b)=> a.grp-b.grp || (a.grp===0 && k==='price' ? a.usd-b.usd : a.grp===0 && k==='fp' ? a.fp-b.fp : a.score-b.score) || a.score-b.score);
+}
+function sortRank(arr){ return rankList(arr); }
+function devPill(dev){ const t=S.tol/100; const c=Math.abs(dev)<=t?'ok':Math.abs(dev)<=2*t?'warn':'bad'; return `<span class="pill ${c}">${dev>=0?'+':''}${fmt(dev*100,1)}%</span>`; }
+function rankItem(r,i,showNoz){
+  const p=r.p, op=r.op, n=r.n;
+  return `<div class="ri ${i===selRank?'sel':''}" data-ri="${i}">
+    <div class="no">${i+1}</div>
+    ${showNoz?`<div class="dual"><button type="button" class="th thbtn" data-quick="${i}" title="Özellikleri göster" aria-label="${esc(p.model)} özelliklerini göster">${imgTag(p.image)}</button></div>`:`<button type="button" class="th thbtn" data-quick="${i}" title="Özellikleri göster" aria-label="${esc(p.model)} özelliklerini göster">${imgTag(p.image)}</button>`}
+    <div class="mid"><b>${esc(p.model)}${showNoz?` <span style="color:var(--muted);font-weight:500">+ ${S.nN}× ${esc(n.code)}</span>`:''}</b>
+      <small>${esc(p.brand)} · ${esc(p.category||'')}${showNoz?` · ${esc(n.kind)} ${n.angle}°, ${fmtA(n.q2)} l/dk@2bar`:''}</small>
+      <div class="meta"><span>Q <b>${fmt(op.Q*1000/60,1)}</b> l/dk</span><span>H <b>${fmt(op.Hp,1)}</b> m</span>${p.kwN?`<span><b>${fmt(p.kwN,2)}</b> kW</span>`:''}<span>eğri %<b>${Math.round(op.pos*100)}</b></span>${p.priceV?`<span><b>${esc(p.price)}</b>${p.priceCur==='EUR'?` ≈${fmt(priceUSD(p),0)} $`:''}${/TEK POMPA/i.test(p.category||'')?' <i class="pill warn" title="Katalogda yalnızca pompa gövdesinin fiyatı; dalgıç motor ayrıca alınır">motor hariç</i>':''}</span>`:''}<span class="pp">puan <b>${r.perf??perfPts(r.score)}</b></span></div>
+    </div>
+    <div class="right"><div class="big">${fmt(op.d.pN,2)}<small> bar</small></div>${devPill(r.dev)}${op.beyond?'<span class="pill bad">eğri dışı</span>':op.pos<0.15?'<span class="pill warn">eğri başı</span>':''}</div>
+  </div>`;
+}
+function sortBar(){ const k=SORTS[S.sort]?S.sort:'perf'; return `<div class="sortseg" role="group" aria-label="Sıralama">${Object.entries(SORTS).map(([v,[l]])=>`<button type="button" data-sort="${v}" class="${k===v?'on':''}" aria-pressed="${k===v}">${l}</button>`).join('')}</div>`; }
+function sortInfo(){ const k=SORTS[S.sort]?S.sort:'perf'; return `<div class="sortinfo"><b class="sl">Sırala</b>${sortBar()}<span>${SORTS[k][1]}</span>${k!=='perf'?`<span class="eur"><label for="in_eur">1 € =</label><span class="unit" style="width:92px;display:block"><input type="number" id="in_eur" value="${S.eurUsd}" step="0.01" min="0.5"><span>$</span></span></span>`:''}</div>`; }
+function rankHTML(showNoz, empty){
+  if(!lastRank.length) return `<div class="empty">${empty}</div>`;
+  const heads={1:'Toleransta ama fiyatı bilinmeyen pompalar',2:'Hedef basınç toleransının dışında kalanlar'};
+  let out='', g=0;
+  lastRank.forEach((r,i)=>{ if(r.grp!==g && r.grp>0){ out+=`<div class="rdiv">${heads[r.grp]}</div>`; g=r.grp; } out+=rankItem(r,i,showNoz); });
+  return out;
+}
+function outPompa(o){
+  const n=nozById(S.nozzleId); const Pt=+S.targetP;
+  if(!n||!(Pt>0)){ o.innerHTML='<div class="panel empty">Nozzle ve hedef basınç girin.</div>'; return; }
+  const sys=makeSystem(n, Math.max(1,+S.nN||1));
+  const req=reqCard(n,sys,Pt);
+  const all=[];
+  for(const p of PUMPS){ if(!pumpFilterOK(p,true)) continue; const op=solveOp(p,sys); if(!op.ok) continue; const sc=scoreOp(op,Pt,S.tol,p); all.push({p,op,n,...sc}); }
+  const res=byBrand(all);
+  rankList(res);
+  const inTol=res.filter(r=>r.ok);
+  lastRank = res.slice(0,40);
+  selRank=0;
+  o.innerHTML = req.html + `<section class="panel"><header><h3>Eğri karşılaştırması</h3><span class="sub">ilk 5 pompa</span></header><div class="chartbox" id="ch2"></div><div class="legend" id="lg2"></div></section>
+   <section class="panel"><header><h3>Uygun pompalar</h3><span class="sub">${inTol.length} pompa ±%${S.tol} içinde · ${res.length} pompa çalışabilir</span></header>
+   ${brandChips(all,'pompa')}${sortInfo()}<div class="rank" id="rank">${rankHTML(false,'Bu nozzle ve boru hattıyla çalışabilen pompa bulunamadı. Filtreleri genişletin veya nozzle sayısını değiştirin.')}</div></section>`;
+  drawCompare(sys, req, Pt);
+}
+const CMP_COLORS=['#e8590c','#2f5d8a','#7c3aed','#0f766e','#be185d'];
+function drawCompare(sys, req, Pt){
+  const top=lastRank.slice(0,5); if(!top.length){ $('#ch2').innerHTML=''; return; }
+  const xMax=Math.max(req.Q*1.5, ...top.map(r=>Math.min(r.p.qmax, req.Q*3)));
+  const yMax=Math.max(req.d.H*1.6, ...top.map(r=>r.op.Hp*1.2));
+  const series=top.map((r,i)=>({name:r.p.model,color:CMP_COLORS[i],pts:pumpPts(r.p).filter(a=>a[0]<=xMax),w:i===selRank?3:1.8,op:i===selRank?1:.75}));
+  series.push({name:'Sistem',color:'var(--water)',pts:sampleCurve(sys.H,0,xMax,80),w:2.6});
+  drawChart($('#ch2'),{uid:2,xMax,yMax,xLabel:'Debi Q (m³/h)',yLabel:'Basma yüksekliği H (m)',xUnit:'m³/h',yUnit:'m',series,
+    marks:[{x:req.Q,y:req.d.H,color:'var(--water)',hollow:true,r:7,label:`Hedef ${fmt(Pt,1)} bar`}, ...top.slice(0,5).map((r,i)=>({x:r.op.Q,y:r.op.Hp,color:CMP_COLORS[i],r:i===selRank?6:4}))]});
+  $('#lg2').innerHTML = top.map((r,i)=>`<span><i style="background:${CMP_COLORS[i]}"></i>${i+1}. ${esc(r.p.model)}</span>`).join('')+'<span><i style="background:var(--water)"></i>Sistem eğrisi</span>';
+}
+
+function byBrand(arr){ return S.pf.brand==='all' ? arr.slice() : arr.filter(r=>r.p.brand===S.pf.brand); }
+function brandChips(all, unit){
+  const t=S.tol/100; const brands=[...new Set(PUMPS.map(p=>p.brand))];
+  const cnt=b=>{ const a=b==='all'?all:all.filter(r=>r.p.brand===b); return [a.length, a.filter(r=>Math.abs(r.dev)<=t&&!r.op.beyond).length]; };
+  return `<div class="chips" role="group" aria-label="Marka filtresi">${['all',...brands].map(b=>{ const [n,ok]=cnt(b); return `<button type="button" class="chip ${S.pf.brand===b?'on':''}" data-brandchip="${esc(b)}" aria-pressed="${S.pf.brand===b}">${b==='all'?'Tüm markalar':esc(b)}<span>${ok}<i>/${n}</i></span></button>`; }).join('')}<span class="chiphint">toleransta / çalışan ${unit}</span></div>`;
+}
+
+/* ---------- 3. KOMBİ ---------- */
+function nozFilterOK(n){ const f=S.nf; if(f.series!=='all' && (n.brand+' '+n.series)!==f.series) return false; if(f.angle!=='all' && String(n.angle)!==String(f.angle)) return false; return true; }
+function outKombi(o){
+  const Pt=+S.targetP; const nN=Math.max(1,+S.nN||1);
+  if(!(Pt>0)){ o.innerHTML='<div class="panel empty">Hedef basınç girin.</div>'; return; }
+  const qT=+S.nf.qTot||0, qTol=(+S.nf.qTol||20)/100;
+  let noz=NOZZLES.filter(nozFilterOK);
+  // nozzle ön elemesi: hedef basınçta toplam debi hedef aralığında mı, basınç nozzle aralığında mı
+  noz=noz.filter(n=>{ const Q=nozQ(n,Pt)*nN; if(qT>0 && Math.abs(Q-qT)/qT>qTol*1.5) return false; return Pt>=n.p_range[0]*0.7 && Pt<=n.p_range[1]*1.3; });
+  const pumps=PUMPS.filter(p=>pumpFilterOK(p,true));
+  const t0=performance.now(); const res=[];
+  for(const n of noz){
+    const sys=makeSystem(n,nN); const qReq=nozQ(n,Pt)*nN*60/1000; const hReq=sys.H(qReq);
+    for(const p of pumps){
+      if(qReq>p.qmax*1.3) continue; const hp=p.f(qReq); if(hp<hReq*0.6||hp>hReq*1.8) continue;
+      const op=solveOp(p,sys); if(!op.ok) continue;
+      const sc=scoreOp(op,Pt,S.tol,p); let score=sc.score;
+      if(qT>0){ score += Math.abs(op.Q*1000/60-qT)/qT/qTol; }
+      res.push({p,n,op,dev:sc.dev,score});
+    }
+  }
+  const allRes=res.slice(); const resB=byBrand(res);
+  rankList(resB);
+  let list=resB;
+  if(S.nf.perPump){ const seen=new Set(); list=resB.filter(r=>{ if(seen.has(r.p.id)) return false; seen.add(r.p.id); return true; }); }
+  lastRank=list.slice(0,40); selRank=0;
+  const ms=Math.round(performance.now()-t0);
+  o.innerHTML = `<div class="kpis">
+     <div class="kpi hl"><div class="l">Hedef nozzle basıncı</div><div class="v">${fmt(Pt,2)}<small>bar</small></div><div class="s">±%${S.tol}</div></div>
+     <div class="kpi"><div class="l">Denenen nozzle</div><div class="v">${noz.length}</div><div class="s">${nN} adet / sistem</div></div>
+     <div class="kpi"><div class="l">Denenen pompa</div><div class="v">${pumps.length}</div><div class="s">${res.length} çalışan eşleşme · ${ms} ms</div></div>
+     <div class="kpi"><div class="l">Toleransta</div><div class="v">${res.filter(r=>Math.abs(r.dev)<=S.tol/100&&!r.op.beyond).length}</div><div class="s">kombinasyon</div></div>
+   </div>
+   <section class="panel"><header><h3>Seçili kombinasyon</h3><span class="sub" id="selName"></span></header><div class="chartbox" id="ch3"></div><div class="legend"><span><i style="background:var(--pump)"></i>Pompa eğrisi</span><span><i style="background:var(--water)"></i>Sistem eğrisi</span><span><i style="background:var(--signal)"></i>Çalışma noktası</span></div><div class="body" id="selInfo" style="padding-top:0"></div></section>
+   <section class="panel"><header><h3>En uygun kombinasyonlar</h3><span class="sub">ilk ${lastRank.length}</span></header>
+   ${brandChips(allRes,'kombinasyon')}${sortInfo()}<div class="rank" id="rank">${rankHTML(true,'Uygun kombinasyon yok. Nozzle serisini/açısını "Tümü" yapın, debi hedefini boşaltın veya pompa filtresini genişletin.')}</div></section>`;
+  drawCombo();
+}
+function drawCombo(){
+  const r=lastRank[selRank]; const box=$('#ch3'); if(!box) return; if(!r){ box.innerHTML=''; return; }
+  const sys=makeSystem(r.n, Math.max(1,+S.nN||1));
+  const xMax=Math.max(r.p.qmax*1.1, r.op.Q*1.1), yMax=Math.max(r.p.hmax, r.op.Hp)*1.12;
+  drawChart(box,{uid:3,xMax,yMax,xLabel:'Debi Q (m³/h)',yLabel:'Basma yüksekliği H (m)',xUnit:'m³/h',yUnit:'m',
+    series:[{name:r.p.model,color:'var(--pump)',pts:pumpPts(r.p),area:true,dots:r.p.qs.map((q,i)=>[q,r.p.hs[i]])},{name:'Sistem',color:'var(--water)',pts:sampleCurve(sys.H,0,xMax,80)}],
+    marks:[{x:r.op.Q,y:r.op.Hp,color:'var(--signal)',label:`${fmt(r.op.d.pN,2)} bar · ${fmt(r.op.Q*1000/60,0)} l/dk`}]});
+  $('#selName').textContent=`${r.p.model} + ${S.nN}× ${r.n.brand} ${r.n.code}`;
+  $('#selInfo').innerHTML = opAlerts(r.op,r.p,r.n) + `<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri sm" data-goanaliz="1">Sistem analizinde aç</button><button class="btn sm" data-detail-pump="${esc(r.p.id)}">Pompa detayı</button><button class="btn sm" data-detail-noz="${esc(r.n.id)}">Nozzle detayı</button></div>`;
+}
+
+/* ---------- 4. KATALOG ---------- */
+function outKatalog(o){
+  const c=S.cat; const isP=c.tab==='pump';
+  const all=isP?PUMPS:NOZZLES;
+  const brands=[...new Set(all.map(x=>isP?x.brand:x.brand+' '+x.series))];
+  const groups=isP?[...new Set(all.filter(x=>c.brand==='all'||x.brand===c.brand).map(x=>x.category))]:[...new Set(all.map(x=>x.angle))].sort((a,b)=>a-b);
+  const q=c.q.trim().toLocaleLowerCase('tr');
+  const list=all.filter(x=>{
+    if(c.brand!=='all' && (isP?x.brand:x.brand+' '+x.series)!==c.brand) return false;
+    if(c.group!=='all' && String(isP?x.category:x.angle)!==String(c.group)) return false;
+    if(q){ const hay=(isP?`${x.brand} ${x.model} ${x.category} ${x.desc}`:`${x.brand} ${x.series} ${x.code} ${x.kind}`).toLocaleLowerCase('tr'); if(!hay.includes(q)) return false; }
+    return true;
+  });
+  const shown=list.slice(0,c.limit);
+  o.innerHTML=`<div class="toolbar">
+     <div class="seg-tabs"><button class="${isP?'on':''}" data-cattab="pump">Pompalar · ${PUMPS.length}</button><button class="${!isP?'on':''}" data-cattab="noz">Nozzle'lar · ${NOZZLES.length}</button></div>
+     <input type="text" id="cat_q" placeholder="Ara: model, seri, kod…" value="${esc(c.q)}">
+     <select id="cat_brand"><option value="all">${isP?'Tüm markalar':'Tüm seriler'}</option>${brands.map(b=>`<option ${c.brand===b?'selected':''}>${esc(b)}</option>`).join('')}</select>
+     <select id="cat_group"><option value="all">${isP?'Tüm tipler':'Tüm açılar'}</option>${groups.map(g=>`<option value="${esc(g)}" ${String(c.group)===String(g)?'selected':''}>${esc(g)}${isP?'':'°'}</option>`).join('')}</select>
+     <span class="tag">${list.length} sonuç</span>
+     <button class="btn sm" data-addcustom="${isP?'pump':'noz'}" style="margin-left:auto">+ Özel ${isP?'pompa':'nozzle'} ekle</button>
+   </div>
+   <div class="cards">${shown.map(x=>isP?`<div class="card" data-detail-pump="${esc(x.id)}"><div class="img">${imgTag(x.image,x.model)}</div><div class="c"><small>${esc(x.brand)} · ${esc(x.category||'')}</small><b>${esc(x.model)}</b><div class="specs">${x.kwN?`<span class="pill info">${fmt(x.kwN,2)} kW</span>`:''}<span class="pill info">Hmax ${fmtA(x.hmax)} m</span><span class="pill info">Qmax ${fmtA(x.qmax)} m³/h</span>${x.priceV?`<span class="pill ok">${esc(x.price)}</span>`:''}</div><div class="spark">${sparkSVG(x)}</div></div></div>`
+     :`<div class="card" data-detail-noz="${esc(x.id)}"><div class="img">${imgTag(x.image,x.code)}<span class="ang">${x.angle}°</span></div><div class="c"><span class="code">${esc(x.code)}</span><small>${esc(x.brand)} ${esc(x.series)} · ${esc(x.kind)}</small><div class="specs"><span class="pill info">${fmtA(x.q2)} l/dk @2bar</span>${x.orifice_mm?`<span class="pill info">Ø${fmtA(x.orifice_mm)} mm</span>`:''}</div></div></div>`).join('')}</div>
+   ${list.length>shown.length?`<div class="more"><button class="btn" id="catMore">Daha fazla göster (${list.length-shown.length})</button></div>`:''}`;
+}
+
+/* ---------- MODALLAR ---------- */
+function openModal(title, body, wide){
+  $('#modalRoot').innerHTML=`<div class="modal" id="mdl"><div class="dlg" role="dialog" aria-modal="true" style="${wide?'':'width:min(640px,100%)'}"><header><h3>${title}</h3><button class="btn sm" data-close="1">Kapat</button></header><div class="content">${body}</div></div></div>`;
+  const inp=$('#mdl input[type=text]'); if(inp) inp.focus();
+}
+function closeModal(){ $('#modalRoot').innerHTML=''; }
+function pickerList(kind, q){
+  q=(q||'').toLocaleLowerCase('tr');
+  if(kind==='pump'){
+    const list=PUMPS.filter(p=>!q||`${p.brand} ${p.model} ${p.category}`.toLocaleLowerCase('tr').includes(q)).slice(0,150);
+    return list.map(p=>`<div class="pli" data-pickpump="${esc(p.id)}"><div class="th">${imgTag(p.image)}</div><div><b>${esc(p.model)}</b><small>${esc(p.brand)} · ${esc(p.category||'')}</small></div><div class="r">${p.kwN?fmt(p.kwN,2)+' kW<br>':''}${fmtA(p.hmax)} m · ${fmtA(p.qmax)} m³/h</div></div>`).join('')||'<div class="empty">Sonuç yok</div>';
+  }
+  const list=NOZZLES.filter(n=>!q||`${n.brand} ${n.series} ${n.code} ${n.kind} ${n.angle}`.toLocaleLowerCase('tr').includes(q)).slice(0,200);
+  return list.map(n=>`<div class="pli" data-picknoz="${esc(n.id)}"><div class="th">${imgTag(n.image)}</div><div><b>${esc(n.brand)} ${esc(n.code)}</b><small>${esc(n.kind)} · ${n.angle}° · ${esc(n.connections||'')}</small></div><div class="r">${fmtA(n.q2)} l/dk<br>@ 2 bar</div></div>`).join('')||'<div class="empty">Sonuç yok</div>';
+}
+function openPicker(kind){
+  openModal(kind==='pump'?'Pompa seç':'Nozzle seç', `<div class="toolbar"><input type="text" id="pk_q" placeholder="${kind==='pump'?'Model, marka veya tip ara…':'Kod, seri, açı ara… (ör. 490, 60, flat)'}" data-pk="${kind}" style="max-width:none;flex:1"><button class="btn sm" data-addcustom="${kind==='pump'?'pump':'noz'}">+ Özel ekle</button></div><div class="plist" id="pk_list">${pickerList(kind,'')}</div>`, true);
+}
+function pumpQuick(i){
+  const r=lastRank[i]; if(!r) return; const p=r.p, op=r.op, d=op.d;
+  const sys=makeSystem(r.n, Math.max(1,+S.nN||1));
+  const chips=[p.kwN?`${fmt(p.kwN,2)} kW${p.hp?` · ${fmtA(+p.hp)} HP`:''}`:'', p.volt?`${p.volt} V`.replace(/V V$/,'V'):'', (p.inlet&&p.outlet)?`giriş ${p.inlet} · çıkış ${p.outlet}`:p.outlet?`çıkış ${p.outlet}`:p.inlet?`giriş ${p.inlet}`:'', p.max_temp?`maks. ${p.max_temp}`:'', p.eta?`η %${fmt(p.eta,1)}`:'', p.rpm?`${p.rpm} d/d`:''].filter(Boolean);
+  const pos=Math.round(op.pos*100);
+  openModal(`<span class="qrank">${i+1}</span>${esc(p.model)}`, `<div class="quick">
+    <div class="qtop">
+      <div class="qimg">${imgTag(p.image,p.model)}</div>
+      <div class="qinfo">
+        <small>${esc(p.brand)} · ${esc(p.category||'')}</small>
+        ${p.desc?`<p>${esc(p.desc)}</p>`:''}
+        <div class="qchips">${chips.map(c=>`<span>${esc(c)}</span>`).join('')}</div>
+        ${p.price?`<div class="qprice">${esc(p.price)}<small>liste fiyatı</small></div>`:''}
+      </div>
+    </div>
+    <div class="qsys">
+      <div class="hl"><span>Nozzle basıncı</span><b>${fmt(d.pN,2)}<small>bar</small></b>${devPill(r.dev)}</div>
+      <div><span>Toplam debi</span><b>${fmt(op.Q*1000/60,1)}<small>l/dk</small></b><em>${fmt(op.Q,2)} m³/h</em></div>
+      <div><span>Basma yüksekliği</span><b>${fmt(op.Hp,1)}<small>m</small></b><em>≈ ${fmt(op.Hp*sys.rhoG/1e5,2)} bar</em></div>
+      <div><span>Eğri konumu</span><b>%${pos}</b><em>${op.beyond?'eğri dışı':pos<15?'eğri başı':pos>92?'eğri sonu':'uygun bölge'}</em></div>
+    </div>
+    <div class="chartbox" id="chQ" style="padding:0"></div>
+    <div class="qfoot"><span>Kaynak: ${esc(p.source||'')}${p.page?` · s.${p.page}`:''}</span><button class="btn sm" data-detail-pump="${esc(p.id)}">Eğri tablosu ve tüm veriler</button></div>
+  </div>`);
+  const xMax=Math.max(p.qmax*1.08, op.Q*1.1), yMax=Math.max(p.hmax, op.Hp)*1.12;
+  drawChart($('#chQ'),{uid:11,h:250,xMax,yMax,xLabel:'Debi Q (m³/h)',yLabel:'H (m)',xUnit:'m³/h',yUnit:'m',
+    series:[{name:p.model,color:'var(--pump)',pts:pumpPts(p),area:true,dots:p.qs.map((q,k)=>[q,p.hs[k]])},{name:'Sistem',color:'var(--water)',pts:sampleCurve(sys.H,0,xMax,60)}],
+    marks:[{x:op.Q,y:op.Hp,color:'var(--signal)',label:`${fmt(d.pN,2)} bar`}]});
+}
+function pumpDetail(id){
+  const p=pumpById(id); if(!p) return;
+  openModal(esc(p.model), `<div class="detail"><div><div class="bigimg">${imgTag(p.image,p.model)}</div>
+    <dl class="specs"><dt>Marka</dt><dd>${esc(p.brand)}</dd><dt>Tip</dt><dd>${esc(p.category||'–')}</dd>${p.desc?`<dt>Not</dt><dd>${esc(p.desc)}</dd>`:''}<dt>Motor</dt><dd>${p.kwN?fmt(p.kwN,2)+' kW':''}${p.hp?` (${fmtA(+p.hp)} HP)`:''}</dd><dt>Gerilim</dt><dd>${esc(p.volt||'–')}</dd>${p.inlet||p.outlet?`<dt>Giriş/Çıkış</dt><dd>${esc(p.inlet||'–')} / ${esc(p.outlet||'–')}</dd>`:''}${p.eta?`<dt>Maks. verim</dt><dd>%${fmt(p.eta,1)}</dd>`:''}${p.max_temp?`<dt>Maks. su sıc.</dt><dd>${esc(p.max_temp)}</dd>`:''}${p.price?`<dt>Fiyat</dt><dd>${esc(p.price)}</dd>`:''}<dt>Kaynak</dt><dd>${esc(p.source||'')} s.${p.page||'–'}</dd></dl>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn pri sm" data-usepump="${esc(p.id)}">Analizde kullan</button>${p.custom?`<button class="btn ghost sm" data-delcustom="pump:${esc(p.id)}">Sil</button>`:''}</div></div>
+    <div style="min-width:0"><div class="chartbox" id="chD" style="padding:0"></div>
+    <div class="tbl"><table><thead><tr><th class="n">Q m³/h</th><th class="n">Q l/dk</th><th class="n">H m</th><th class="n">≈ bar</th></tr></thead><tbody>${p.qs.map((q,i)=>`<tr><td class="n">${fmtA(q)}</td><td class="n">${fmt(q*1000/60,0)}</td><td class="n">${fmtA(p.hs[i])}</td><td class="n">${fmt(p.hs[i]*0.0979,2)}</td></tr>`).join('')}</tbody></table></div></div></div>`, true);
+  drawChart($('#chD'),{uid:9,h:300,xMax:p.qmax*1.05,yMax:p.hmax*1.1,xLabel:'Debi Q (m³/h)',yLabel:'H (m)',xUnit:'m³/h',yUnit:'m',series:[{name:p.model,color:'var(--pump)',pts:pumpPts(p),area:true,dots:p.qs.map((q,i)=>[q,p.hs[i]])}]});
+}
+function nozDetail(id){
+  const n=nozById(id); if(!n) return;
+  const ps=[0.5,1,1.5,2,3,4,5,7,10,15,20].filter(p=>p>=n.p_range[0]*0.5&&p<=n.p_range[1]*1.01); if(n.p_range[1]>30) ps.push(50,100,150,200,250);
+  openModal(`${esc(n.brand)} ${esc(n.code)}`, `<div class="detail"><div><div class="bigimg">${imgTag(n.image,n.code)}</div>
+    <dl class="specs"><dt>Seri</dt><dd>${esc(n.series)}</dd><dt>Tip</dt><dd>${esc(n.kind)}</dd><dt>Açı</dt><dd>${n.angle}°</dd>${n.orifice_mm?`<dt>Eşdeğer delik</dt><dd>Ø ${fmtA(n.orifice_mm)} mm</dd>`:''}${n.free_passage_mm?`<dt>Serbest geçiş</dt><dd>${fmtA(n.free_passage_mm)} mm</dd>`:''}<dt>Debi @2 bar</dt><dd>${fmtA(n.q2)} l/dk</dd><dt>Üs (Q∝pⁿ)</dt><dd>${fmt(n.e,3)}</dd><dt>K-faktörü</dt><dd>${fmt(n.q2/Math.pow(2,n.e),3)} l/dk/barⁿ</dd>${n.connections?`<dt>Bağlantı</dt><dd>${esc(n.connections)}</dd>`:''}${n.coverage?`<dt>Kapsama</dt><dd>${esc(n.coverage)}</dd>`:''}<dt>Kaynak</dt><dd>${esc(n.source||'')}${n.page?' s.'+n.page:''}</dd></dl>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn pri sm" data-usenoz="${esc(n.id)}">Analizde kullan</button>${n.custom?`<button class="btn ghost sm" data-delcustom="noz:${esc(n.id)}">Sil</button>`:''}</div></div>
+    <div style="min-width:0"><div class="chartbox" id="chN" style="padding:0"></div>
+    <div class="tbl"><table><thead><tr><th class="n">Basınç bar</th><th class="n">Debi l/dk</th><th class="n">m³/h</th></tr></thead><tbody>${ps.map(p=>`<tr><td class="n">${fmtA(p)}</td><td class="n">${fmtA(nozQ(n,p))}</td><td class="n">${fmt(nozQ(n,p)*0.06,3)}</td></tr>`).join('')}</tbody></table></div></div></div>`, true);
+  const pm=n.p_range[1]*1.05; const pts=sampleCurve(p=>nozQ(n,p),0,pm,60);
+  drawChart($('#chN'),{uid:8,h:280,xMax:pm,yMax:nozQ(n,pm)*1.1,xLabel:'Basınç (bar)',yLabel:'Debi (l/dk)',xName:'P',xUnit:'bar',yUnit:'l/dk',series:[{name:'Debi',color:'var(--water)',pts,area:true,dots:(n.points||[]).map(a=>[a[0],a[1]])}]});
+}
+function customForm(kind){
+  if(kind==='pump') openModal('Özel pompa ekle', `<form id="cform" class="col"><div class="f"><label for="c_model">Model adı</label><input type="text" id="c_model" required placeholder="ör. Depodaki pompa"></div>
+    <div class="row"><div class="f"><label for="c_brand">Marka</label><input type="text" id="c_brand" value="Özel"></div><div class="f"><label for="c_kw">Motor gücü</label><div class="unit"><input type="number" id="c_kw" step="0.01" min="0"><span>kW</span></div></div></div>
+    <div class="f"><label for="c_pts">Eğri noktaları (Q m³/h ; H m) — her satıra bir nokta</label><textarea id="c_pts" rows="7" placeholder="0;32&#10;2;30&#10;4;27&#10;6;22&#10;8;15"></textarea><span class="hint">En az 3 nokta. Ondalık için virgül veya nokta kullanabilirsiniz.</span></div>
+    <div id="c_err" class="alert bad" hidden></div><button class="btn pri" type="submit">Kaydet</button></form>`);
+  else openModal('Özel nozzle ekle', `<form id="cform" class="col"><div class="row"><div class="f"><label for="c_brand">Marka</label><input type="text" id="c_brand" value="Özel"></div><div class="f"><label for="c_code">Kod / ad</label><input type="text" id="c_code" required></div></div>
+    <div class="row3"><div class="f"><label for="c_q">Debi</label><div class="unit"><input type="number" id="c_q" step="0.01" min="0" required><span>l/dk</span></div></div><div class="f"><label for="c_p">@ basınç</label><div class="unit"><input type="number" id="c_p" step="0.1" min="0.1" value="2" required><span>bar</span></div></div><div class="f"><label for="c_ang">Açı</label><div class="unit"><input type="number" id="c_ang" value="60"><span>°</span></div></div></div>
+    <div class="row"><div class="f"><label for="c_e">Üs n (Q∝pⁿ)</label><input type="number" id="c_e" value="0.5" step="0.01" min="0.3" max="0.7"></div><div class="f"><label for="c_kind">Tip</label><input type="text" id="c_kind" value="Özel"></div></div>
+    <div id="c_err" class="alert bad" hidden></div><button class="btn pri" type="submit">Kaydet</button></form>`);
+  $('#cform').addEventListener('submit',ev=>{ ev.preventDefault(); const err=$('#c_err');
+    if(kind==='pump'){
+      const pts=$('#c_pts').value.split(/\n+/).map(l=>l.trim()).filter(Boolean).map(l=>l.replace(/,/g,'.').split(/[;\s\t]+/).map(Number)).filter(a=>a.length>=2&&isFinite(a[0])&&isFinite(a[1]));
+      if(pts.length<3){ err.textContent='En az 3 geçerli "Q;H" satırı girin.'; err.hidden=false; return; }
+      pts.sort((a,b)=>a[0]-b[0]);
+      S.custom.pumps.push({id:'CP'+Date.now(),custom:true,brand:$('#c_brand').value||'Özel',model:$('#c_model').value,category:'Özel pompa',desc:'Kullanıcı tanımlı',kw:+$('#c_kw').value||null,q_unit:'m3/h',q:pts.map(a=>a[0]),h:pts.map(a=>a[1]),source:'kullanıcı'});
+    } else {
+      const q=+$('#c_q').value, p=+$('#c_p').value, e=+$('#c_e').value||0.5; if(!(q>0&&p>0)){ err.textContent='Debi ve basınç pozitif olmalı.'; err.hidden=false; return; }
+      S.custom.nozzles.push({id:'CN'+Date.now(),custom:true,brand:$('#c_brand').value||'Özel',series:'Özel',kind:$('#c_kind').value||'Özel',code:$('#c_code').value,angle:+$('#c_ang').value||0,q2bar_lpm:q*Math.pow(2/p,e),exp:e,p_range:[0.5,Math.max(10,p*2)],source:'kullanıcı'});
+    }
+    save(); rebuildDB(); closeModal(); render();
+  });
+}
+
+/* ---------- YÖNTEM ---------- */
+const LAB_DEF = {P:3, n:10, q2:10, e:0.5, D:41.8, L:34, eps:0.15, K:5, dz:3, T:20, sens:'D'};
+const LAB_GROUPS = [
+  ['Nozzle','var(--signal)',[['P','Hedef nozzle basıncı','bar',0.3,10,0.1],['n','Nozzle adedi','adet',1,60,1],['q2','Nozzle debisi @ 2 bar','l/dk',0.2,60,0.1],['e','Debi üssü n','',0.3,0.7,0.01]]],
+  ['Boru hattı','var(--pump)',[['D','Boru iç çapı','mm',10,160,0.5],['L','Toplam uzunluk','m',1,300,1],['K','Armatür toplamı ΣK','',0,60,0.5],['eps','Pürüzlülük ε','mm',0.001,1,0.001]]],
+  ['Ortam','var(--water)',[['dz','Yükseklik farkı Δz','m',-10,60,0.5],['T','Su sıcaklığı','°C',0,90,1]]]
+];
+const LAB_FIELDS = LAB_GROUPS.flatMap(g=>g[2]);
+const SENS = {P:'Nozzle basıncı',n:'Nozzle adedi',q2:'Nozzle debisi @2 bar',D:'Boru iç çapı',L:'Boru uzunluğu',K:'Armatür ΣK',dz:'Yükseklik farkı'};
+function labVals(){ return Object.assign({}, LAB_DEF, S.lab||{}); }
+/* Örnek hesap: hedef nozzle basıncından gereken pompa noktasına */
+function labCalc(v){
+  const fl=fluid(v.T), rhoG=fl.rho*G;
+  const qn=v.q2*Math.pow(v.P/2, v.e);
+  const Qlpm=qn*v.n, Q=Qlpm/60000;
+  const D=v.D/1000, A=Math.PI*D*D/4, vel=Q/A, dyn=vel*vel/(2*G);
+  const Re=vel*D/fl.nu, rr=(v.eps/1000)/D, f=friction(Re, rr);
+  const hf=f*v.L/D*dyn, hk=v.K*dyn, hN=v.P*1e5/rhoG;
+  const H=v.dz+hf+hk+hN, Pout=H*rhoG/1e5, Phyd=rhoG*Q*H/1000;
+  return {fl,rhoG,qn,Qlpm,Q,D,A,vel,dyn,Re,rr,f,hf,hk,hN,H,Pout,Phyd,lam:Re<2300};
+}
+const fr=(a,b)=>`<span class="frac"><span>${a}</span><span>${b}</span></span>`;
+function sym(rows){ return `<dl class="syms">${rows.map(([s,t,u])=>`<dt>${s}</dt><dd>${t}${u?`<em>${u}</em>`:''}</dd>`).join('')}</dl>`; }
+const STEPS = [
+  {t:'Nozzle debisi', d:'Nozzle basınç arttıkça daha çok su geçirir, ama doğrusal değil: n = 0,5 iken basıncı 4 katına çıkarmak debiyi yalnızca 2 katına çıkarır. Tüm nozzle\'lar aynı basınçta kabul edilir; toplam debi adetle çarpılır.',
+   m:`<i>Q</i><sub>noz</sub> = <i>Q</i><sub>2</sub> · <span class="bp">(</span>${fr('<i>P</i>','2 bar')}<span class="bp">)</span><sup><i>n</i></sup>&nbsp;&nbsp;&nbsp;<i>Q</i> = <i>N</i> · <i>Q</i><sub>noz</sub>`,
+   s:[['<i>Q</i><sub>2</sub>','Katalogdaki 2 bar debisi','l/dk'],['<i>P</i>','Nozzle girişindeki basınç','bar'],['<i>n</i>','Debi üssü: düz fan 0,5, tam konide katalog noktalarından','–'],['<i>N</i>','Nozzle adedi','adet']],
+   ex:r=>`<span>Q<sub>noz</sub> = <b>${fmt(r.qn,2)}</b> l/dk</span><span>Q = <b>${fmt(r.Qlpm,1)}</b> l/dk</span>`},
+  {t:'Akış hızı', d:'Aynı debi dar boruda daha hızlı akar. Kayıplar hızın karesiyle büyüdüğü için çap seçimindeki en kritik büyüklük budur. Basma hattında 1–2,5 m/s önerilir.',
+   m:`<i>v</i> = ${fr('<i>Q</i>','<i>A</i>')}&nbsp;&nbsp;&nbsp;<i>A</i> = ${fr('π · <i>D</i><sup>2</sup>','4')}`,
+   s:[['<i>v</i>','Ortalama akış hızı','m/s'],['<i>Q</i>','Hacimsel debi','m³/s'],['<i>A</i>','Boru iç kesit alanı','m²'],['<i>D</i>','Boru iç çapı','m']],
+   ex:r=>`<span>A = <b>${fmt(r.A*1e4,2)}</b> cm²</span><span>v = <b>${fmt(r.vel,2)}</b> m/s</span>`},
+  {t:'Reynolds sayısı', d:'Akışın düzenli (laminer) mi çalkantılı (türbülanslı) mı olduğunu söyler. Su tesisatlarında akış neredeyse her zaman türbülanslıdır (Re > 4000).',
+   m:`<i>Re</i> = ${fr('<i>v</i> · <i>D</i>','<i>ν</i>')}`,
+   s:[['<i>ν</i>','Suyun kinematik viskozitesi; sıcaklık arttıkça azalır (20 °C\'de 1,0·10⁻⁶)','m²/s']],
+   ex:r=>`<span>Re = <b>${Math.round(r.Re).toLocaleString('tr-TR')}</b></span><span>${r.lam?'laminer':r.Re<4000?'geçiş bölgesi':'türbülanslı'}</span>`},
+  {t:'Sürtünme katsayısı', sm:true, d:'Boru cidarının pürüzlülüğüne ve Reynolds sayısına bağlıdır. Türbülanslı akışta Colebrook denkleminin kapalı çözümü olan Swamee–Jain formülü kullanılır.',
+   m:`<i>f</i> = ${fr('0,25','<span class="bp">[</span>log<sub>10</sub><span class="bp">(</span>'+fr('<i>ε</i>','3,7 <i>D</i>')+' + '+fr('5,74','<i>Re</i><sup>0,9</sup>')+'<span class="bp">)</span><span class="bp">]</span><sup>2</sup>')}<span class="aside">Laminer akışta (Re &lt; 2300): <i>f</i> = 64 / <i>Re</i></span>`,
+   s:[['<i>f</i>','Darcy sürtünme katsayısı','–'],['<i>ε</i>','Mutlak pürüzlülük: PVC 0,0015 · PE 0,007 · paslanmaz 0,015 · galvaniz 0,15','mm']],
+   ex:r=>`<span>ε/D = <b>${fmt(r.rr,5)}</b></span><span>f = <b>${fmt(r.f,4)}</b></span>`},
+  {t:'Boru sürtünme kaybı', d:'Darcy–Weisbach denklemi. Kayıp boru boyuyla doğru, çapla ters orantılıdır ve hızın karesiyle büyür. Çapı bir boy büyütmek kaybı çoğu zaman yarıdan fazla düşürür.',
+   m:`<i>h</i><sub>f</sub> = <i>f</i> · ${fr('<i>L</i>','<i>D</i>')} · ${fr('<i>v</i><sup>2</sup>','2<i>g</i>')}`,
+   s:[['<i>h</i><sub>f</sub>','Sürtünmeyle kaybolan basma yüksekliği','m'],['<i>L</i>','Boru uzunluğu','m'],['<i>g</i>','Yerçekimi ivmesi, 9,81','m/s²'],['<i>v</i>²/2<i>g</i>','Dinamik yükseklik','m']],
+   ex:r=>`<span>v²/2g = <b>${fmt(r.dyn,3)}</b> m</span><span>h<sub>f</sub> = <b>${fmt(r.hf,2)}</b> m</span>`},
+  {t:'Armatür kayıpları', cols:true, d:'Dirsek, T, vana ve filtrelerde akış yön değiştirir ya da daralır. Her eleman bir K katsayısıyla temsil edilir ve hepsi toplanır.',
+   m:`<i>h</i><sub>K</sub> = Σ<i>K</i> · ${fr('<i>v</i><sup>2</sup>','2<i>g</i>')}`,
+   s:FITTINGS.map(([,l,k])=>[`<span class="mono" style="font-size:13px">${String(k).replace('.',',')}</span>`,l,'']),
+   ex:r=>`<span>h<sub>K</sub> = <b>${fmt(r.hk,2)}</b> m</span>`},
+  {t:'Basınçtan yüksekliğe', d:'Pompa eğrileri metre su sütunu (mSS) cinsindendir. Nozzle basıncını aynı birime çevirince kayıplarla toplanabilir. Kabaca 1 bar ≈ 10,2 m.',
+   m:`<i>h</i><sub>N</sub> = ${fr('<i>P</i> · 10<sup>5</sup>','<i>ρ</i> · <i>g</i>')}`,
+   s:[['<i>ρ</i>','Suyun yoğunluğu (20 °C\'de 998)','kg/m³']],
+   ex:r=>`<span>h<sub>N</sub> = <b>${fmt(r.hN,2)}</b> m</span>`},
+  {t:'Gereken pompa yüksekliği', d:'Bu toplam, sistem eğrisidir. Uygulama bunu her debi için hesaplar ve pompa eğrisiyle kesiştirir. Kesişim noktası çalışma noktasıdır.',
+   m:`<i>H</i><sub>sistem</sub> = Δ<i>z</i> + <i>h</i><sub>f</sub> + <i>h</i><sub>K</sub> + <i>h</i><sub>N</sub>`,
+   s:[['Δ<i>z</i>','Nozzle\'ların su seviyesine göre yüksekliği','m'],['<i>H</i><sub>p</sub>(<i>Q</i>)','Katalog eğrisi; çalışma noktasında <i>H</i><sub>p</sub> = <i>H</i><sub>sistem</sub>','m']],
+   ex:r=>`<span>H = <b>${fmt(r.H,2)}</b> m</span><span>≈ <b>${fmt(r.Pout,2)}</b> bar pompa çıkışı</span>`},
+  {t:'Hidrolik güç', d:'Suya aktarılan net güç. Motor mil gücü bunun pompa verimine bölünmüş halidir; motorun etiket gücü bunun üstünde olmalıdır.',
+   m:`<i>P</i><sub>hid</sub> = <i>ρ</i> · <i>g</i> · <i>Q</i> · <i>H</i>&nbsp;&nbsp;&nbsp;<i>P</i><sub>mil</sub> = ${fr('<i>P</i><sub>hid</sub>','<i>η</i>')}`,
+   s:[['<i>η</i>','Pompa verimi (Lowara tablolarında en iyi verim noktası verilir)','–']],
+   ex:r=>`<span>P<sub>hid</sub> = <b>${fmt(r.Phyd,3)}</b> kW</span><span>%60 verimle ≈ <b>${fmt(r.Phyd/0.6,2)}</b> kW</span>`}
+];
+function helpHTML(){
+  const v=labVals();
+  const slider=([k,l,u,mi,ma,st])=>`<div class="lrow">
+      <label for="lab_${k}">${l}</label>
+      <div class="unit"><input type="number" id="lab_${k}" min="${mi}" max="${ma}" step="${st}" value="${v[k]}"><span>${u}</span></div>
+      <input type="range" id="labr_${k}" min="${mi}" max="${ma}" step="${st}" value="${v[k]}" aria-label="${l}">
+    </div>`;
+  return `<div class="method">
+  <section class="m-hero">
+    <div>
+      <span class="eyebrow">Hesap yöntemi</span>
+      <h1>Nozzle basıncından <em>pompa noktasına</em></h1>
+      <p>Pompa, debi arttıkça daha az basma yüksekliği üretir. Sistem ise debi arttıkça daha fazlasını ister: nozzle basıncı, boru sürtünmesi, armatür kayıpları ve yükseklik farkı. İki eğrinin kesiştiği yer sistemin gerçek çalışma noktasıdır. Şemadaki değerler aşağıdaki örnek hesaptan canlı gelir.</p>
+      <div class="hstats">
+        <div><span>Gereken H</span><b id="hs_H">–</b></div>
+        <div><span>Toplam debi</span><b id="hs_Q">–</b></div>
+        <div><span>Boru hızı</span><b id="hs_v">–</b></div>
+      </div>
+    </div>
+    <div class="sch">${schematicSVG()}</div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="k">01 · Formüller</span><h2>Hesap zinciri</h2><p>Uygulama her debi için bu dokuz adımı sırayla yürütür. Her kartın altındaki turuncu satır, aşağıdaki örnek değerlerle elde edilen sonucu gösterir.</p></div>
+    <ol class="chain">
+      ${STEPS.map((st,i)=>`<li class="fstep">
+        <div class="fdot">${i+1}</div>
+        <div class="fcard2">
+          <div class="fl"><h3>${st.t}</h3><div class="math${st.sm?' sm':''}">${st.m.split('&nbsp;&nbsp;&nbsp;').map(x=>`<span class="eq">${x}</span>`).join('')}</div></div>
+          <div class="fr"><p>${st.d}</p>${st.cols?sym(st.s).replace('class="syms"','class="syms two"'):sym(st.s)}<div class="exv" id="ex_${i}"></div></div>
+        </div>
+      </li>`).join('')}
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="k">02 · Deneme</span><h2>Örnek hesap</h2><p>Değerleri değiştirin; her adım yeni sayılarla anında hesaplanır. Bir sonucu referans alıp sonraki değişikliklerin etkisini yüzde olarak görebilirsiniz.</p></div>
+    <div class="lab2">
+      <div class="lgroups">
+        ${LAB_GROUPS.map(([g,c,fs])=>`<div class="lgroup" style="--c:${c}"><h4><i></i>${g}</h4>${fs.map(slider).join('')}</div>`).join('')}
+      </div>
+      <div class="lactions">
+        <button class="btn sm" type="button" id="labFromSys">Mevcut sistemimden al</button>
+        <button class="btn sm" type="button" id="labReset">Varsayılana dön</button>
+        <button class="btn sm pri" type="button" id="labRef">Bu sonucu referans al</button>
+      </div>
+      <div class="compo" id="labCompo"></div>
+      <div class="lres">
+        <section class="panel"><header><h3>Adım adım</h3><span class="sub" id="labRegime"></span></header><div class="steps" id="labSteps"></div></section>
+        <section class="panel"><header><h3>Referansa göre</h3></header><div class="tbl" id="labCmp"></div></section>
+      </div>
+      <section class="panel"><header><h3>Değişimin etkisi</h3>
+        <select id="lab_sens" style="width:auto;margin-left:auto">${Object.entries(SENS).map(([k,l])=>`<option value="${k}" ${v.sens===k?'selected':''}>${l} değişirse</option>`).join('')}</select></header>
+        <div class="chartbox" id="labChart" style="padding:12px 18px 4px"></div>
+        <div class="legend"><span><i style="background:var(--signal)"></i>Gereken pompa yüksekliği</span><span><i style="background:var(--pump)"></i>Boru + armatür kaybı</span></div>
+      </section>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="k">03 · Seçim</span><h2>Optimal sıralama skoru</h2><p>Her aday için gerçek çalışma noktası hesaplanır, ardından aşağıdaki cezalar toplanır. Düşük skor daha iyidir.</p></div>
+    <div class="score">
+      <div><b>Basınç sapması</b><span>|P − P<sub>hedef</sub>| / tolerans. Hedefin altında kalınırsa +1 ek ceza.</span></div>
+      <div><b>Eğri bölgesi</b><span>Katalog debisinin %30'undan azı veya %92'sinden fazlası cezalandırılır. Katalog dışı çalışma ağır cezalıdır.</span></div>
+      <div><b>Motor büyüklüğü</b><span>0,15 · log₂(1 + P<sub>motor</sub> / P<sub>hid</sub>). Gereğinden büyük pompaları geriye iter.</span></div>
+      <div><b>Debi hedefi</b><span>Pompa + Nozzle ekranında hedef debi girildiyse |Q − Q<sub>hedef</sub>| / debi toleransı.</span></div>
+    </div>
+    <div class="score" style="margin-top:12px">
+      <div><b>Performans puanı</b><span>Listede görünen puan = 100 · e<sup>−skor/2</sup>. Kusursuz eşleşme 100, tolerans sınırındaki bir pompa 60 civarı puan alır.</span></div>
+      <div><b>Fiyat sıralaması</b><span>Yalnızca hedef basıncı tolerans içinde karşılayan pompalar en ucuzdan sıralanır; hedefi tutturamayan ucuz pompalar öne geçemez.</span></div>
+      <div><b>Fiyat / Performans</b><span>Skor + log₂(fiyat / en ucuz uygun fiyat). Fiyat iki katına çıkınca skora +1 eklenir.</span></div>
+      <div><b>Para birimi</b><span>Kresmak fiyatlarının bir kısmı euro, bir kısmı dolardır. Euro fiyatlar ekranda girilen kurla dolara çevrilir. Lowara kataloğunda fiyat yoktur.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="k">04 · Sınırlar</span><h2>Kabuller ve kaynaklar</h2><p>Sonuçları yorumlarken bilinmesi gerekenler.</p></div>
+    <div class="notes">
+      <div><b>Pompa eğrisi</b>Katalog noktaları, eğrinin şeklini bozmayan monoton kübik interpolasyonla birleştirilir. Aralık dışı noktalar son eğimle uzatılır ve "eğri dışı" olarak işaretlenir. Çalışma noktası H<sub>p</sub>(Q) = H<sub>sistem</sub>(Q) denkleminin ikiye bölme yöntemiyle çözümüdür.</div>
+      <div><b>Hidrolik kabuller</b>Tüm nozzle'lar aynı basınçta çalışır; kolektör kayıplarını ayrı bir "Nozzle kolu" bölümü olarak girin. "Paralel hat" debiyi kollara eşit böler. Temiz sac filtrenin kaybı (yaklaşık 0,01–0,02 bar) ihmal edilir; farklı bir filtre için "Y-filtre" veya "Ek ΣK" kullanılabilir. Emme hattı ve NPSH kontrolü yapılmaz; pompa emişinin su seviyesinin altında olduğu varsayılır.</div>
+      <div><b>Veri kaynakları</b>Lowara e-SH (eSH_50Hz_EN.pdf, s.29–33), Kresmak / Atlantis blu (Kresmak temmuz.pdf) ve Lechler tam koni ile düz fan katalogları. Değerler taranmış kataloglardan okundu; kritik seçimden önce detay penceresindeki kaynak sayfayla karşılaştırın.</div>
+    </div>
+  </section>
+  </div>`;
+}
+function schematicSVG(){
+  const nz=[372,410,448,486];
+  return `<svg viewBox="0 0 580 300" role="img" aria-label="Depo, pompa, boru hattı ve nozzle'lardan oluşan sistem şeması">
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="var(--hero-muted)"/></marker>
+      <linearGradient id="wt" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--hero-acc)" stop-opacity=".45"/><stop offset="1" stop-color="var(--hero-acc)" stop-opacity=".12"/></linearGradient>
+    </defs>
+    <path d="M18 176 V264 H132 V176" fill="none" stroke="var(--hero-muted)" stroke-width="1.6"/>
+    <rect x="19" y="196" width="112" height="67" fill="url(#wt)"/>
+    <path d="M19 196 h112" stroke="var(--hero-acc)" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="75" y="236" text-anchor="middle" class="cap">Depo</text>
+    <path d="M110 228 H160" stroke="var(--hero-ink)" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/>
+    <circle cx="184" cy="228" r="24" fill="var(--hero)" stroke="var(--hero-ink)" stroke-width="3"/>
+    <path d="M184 228 l15 -11 M184 228 l-6 18 M184 228 l-13 -11" stroke="var(--hero-sig)" stroke-width="2.6" stroke-linecap="round"/>
+    <text x="184" y="276" text-anchor="middle" class="lbl">Pompa</text>
+    <text x="184" y="292" text-anchor="middle" class="cap">H(Q) eğrisi</text>
+    <path d="M208 228 H318 Q332 228 332 214 V84 Q332 70 346 70 H500" stroke="var(--hero-ink)" stroke-width="7" fill="none" stroke-linejoin="round" opacity=".85"/>
+    <circle cx="332" cy="228" r="6" fill="var(--hero-sig)"/><circle cx="332" cy="70" r="6" fill="var(--hero-sig)"/>
+    <rect x="252" y="218" width="18" height="20" rx="3" fill="var(--hero)" stroke="var(--hero-ink)" stroke-width="1.6"/>
+    <text x="261" y="208" text-anchor="middle" class="cap">vana</text>
+    <text x="270" y="258" text-anchor="middle" class="lbl acc" id="sv_v">v = –</text>
+    <text x="270" y="273" text-anchor="middle" class="cap">L, D, ε → h<tspan baseline-shift="sub" font-size="8">f</tspan></text>
+    <text x="320" y="150" text-anchor="end" class="lbl sig" id="sv_k">h<tspan baseline-shift="sub" font-size="8">K</tspan> = –</text>
+    <text x="320" y="166" text-anchor="end" class="cap">dirsek · vana · ΣK</text>
+    ${nz.map(x=>`<path d="M${x} 74 v10" stroke="var(--hero-ink)" stroke-width="4"/><path d="M${x-5} 84 h10 l-2.5 7 h-5z" fill="var(--hero-sig)"/><path d="M${x} 93 l-16 40 M${x} 93 l16 40 M${x} 93 l-7 43 M${x} 93 l7 43 M${x} 93 v44" stroke="var(--hero-acc)" stroke-width="1.3" opacity=".8"/>`).join('')}
+    <text x="429" y="34" text-anchor="middle" class="lbl sig" id="sv_p">P = –</text>
+    <text x="429" y="52" text-anchor="middle" class="cap" id="sv_n">N × nozzle</text>
+    <text x="429" y="160" text-anchor="middle" class="lbl acc" id="sv_q">Q = –</text>
+    <path d="M534 196 V74" stroke="var(--hero-muted)" stroke-width="1.3" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="526" y="186" text-anchor="end" class="lbl" id="sv_z">Δz</text>
+  </svg>`;
+}
+function rangeFill(el){ const mi=+el.min, ma=+el.max; el.style.setProperty('--p', (clamp((+el.value-mi)/(ma-mi),0,1)*100)+'%'); }
+function syncLabInputs(v){ for(const [k] of LAB_FIELDS){ const a=$('#lab_'+k), b=$('#labr_'+k); if(a&&document.activeElement!==a) a.value=v[k]; if(b){ b.value=v[k]; rangeFill(b); } } }
+function updateLab(){
+  if(!$('#labSteps')) return;
+  const v=labVals(), r=labCalc(v);
+  syncLabInputs(v);
+  const set=(id,h)=>{ const e=document.getElementById(id); if(e) e.innerHTML=h; };
+  // üst bant ve şema
+  set('hs_H',`${fmt(r.H,1)}<small>m</small>`); set('hs_Q',`${fmt(r.Qlpm,0)}<small>l/dk</small>`);
+  set('hs_v',`${fmt(r.vel,2)}<small>m/s</small>`); { const e=document.getElementById('hs_v'); if(e) e.style.color = r.vel>3?'var(--hero-sig)':''; }
+  const t=(id,s)=>{ const e=document.getElementById(id); if(e) e.textContent=s; };
+  t('sv_v',`v = ${fmt(r.vel,2)} m/s`); t('sv_p',`P = ${fmt(v.P,2)} bar`); t('sv_n',`${v.n} × nozzle`); t('sv_q',`Q = ${fmt(r.Qlpm,0)} l/dk`); t('sv_z',`Δz = ${fmtA(v.dz)} m`);
+  const sk=document.getElementById('sv_k'); if(sk) sk.innerHTML=`h<tspan baseline-shift="sub" font-size="8">K</tspan> = ${fmt(r.hk,2)} m`;
+  STEPS.forEach((st,i)=>set('ex_'+i, st.ex(r)));
+  // yükseklik bileşimi
+  const parts=[['Yükseklik farkı',Math.max(0,v.dz),'#64748b'],['Boru sürtünmesi',r.hf,cssv('--pump')||'#2f5d8a'],['Armatürler',r.hk,'#7c3aed'],['Nozzle basıncı',r.hN,cssv('--signal')||'#e8590c']];
+  const tot=parts.reduce((a,p)=>a+p[1],0)||1;
+  set('labCompo',`<div class="top"><h4>Gereken basma yüksekliği nereye gidiyor?</h4><b>${fmt(r.H,1)}<small>m · ${fmt(r.Pout,2)} bar</small></b></div>
+    <div class="cbar">${parts.map(p=>`<div style="flex-grow:${p[1]};flex-basis:0;background:${p[2]}" title="${p[0]}: ${fmt(p[1],2)} m">${p[1]/tot>0.09?`%${Math.round(p[1]/tot*100)}`:''}</div>`).join('')}</div>
+    <div class="cleg">${parts.map(p=>`<div style="--c:${p[2]}"><span>${p[0]}</span><b>${fmt(p[1],2)} m</b></div>`).join('')}</div>`);
+  $('#labRegime').innerHTML = r.lam ? '<span class="pill warn">laminer akış</span>' : r.Re<4000 ? '<span class="pill warn">geçiş bölgesi</span>' : '<span class="pill info">türbülanslı akış</span>';
+  const m=x=>fmtA(x), n3=x=>fmt(x,3);
+  const rows=[
+    ['Nozzle debisi', `Q<sub>noz</sub> = ${m(v.q2)} · (${m(v.P)} / 2)<sup>${fmt(v.e,2)}</sup>`, `${fmt(r.qn,2)} l/dk`],
+    ['Toplam debi', `Q = ${v.n} · ${fmt(r.qn,2)}`, `${fmt(r.Qlpm,1)} l/dk`],
+    ['Kesit alanı', `A = π · ${n3(r.D)}² / 4`, `${fmt(r.A*1e4,2)} cm²`],
+    ['Hız', `v = ${fmt(r.Q,5)} / ${fmt(r.A,6)}`, `${fmt(r.vel,2)} m/s`],
+    ['Reynolds', `Re = ${fmt(r.vel,2)} · ${n3(r.D)} / ${fmt(r.fl.nu*1e6,3)}·10⁻⁶`, Math.round(r.Re).toLocaleString('tr-TR')],
+    ['Sürtünme kats.', r.lam?`f = 64 / ${Math.round(r.Re)}`:`f = 0,25 / [log(${fmt(r.rr,6)}/3,7 + 5,74/Re<sup>0,9</sup>)]²`, fmt(r.f,4)],
+    ['Dinamik yük.', `v²/2g = ${fmt(r.vel,2)}² / (2 · 9,81)`, `${n3(r.dyn)} m`],
+    ['Boru kaybı', `h<sub>f</sub> = ${fmt(r.f,4)} · (${m(v.L)} / ${n3(r.D)}) · ${n3(r.dyn)}`, `${fmt(r.hf,2)} m`],
+    ['Armatür kaybı', `h<sub>K</sub> = ${m(v.K)} · ${n3(r.dyn)}`, `${fmt(r.hk,2)} m`],
+    ['Nozzle basıncı', `h<sub>N</sub> = ${m(v.P)} · 10⁵ / (${fmt(r.fl.rho,1)} · 9,81)`, `${fmt(r.hN,2)} m`],
+    ['Toplam H', `H = ${m(v.dz)} + ${fmt(r.hf,2)} + ${fmt(r.hk,2)} + ${fmt(r.hN,2)}`, `${fmt(r.H,2)} m`],
+    ['Hidrolik güç', `P = ${fmt(r.rhoG,0)} · ${fmt(r.Q,5)} · ${fmt(r.H,2)} / 1000`, `${fmt(r.Phyd,3)} kW`]
+  ];
+  $('#labSteps').innerHTML = rows.map((x,i)=>`<div class="st ${i===10?'tot':''}"><span class="sn">${i+1}</span><span class="sl">${x[0]}</span><span class="se">${x[1]}</span><span class="sr">${x[2]}</span></div>`).join('');
+  // duyarlılık
+  const key=v.sens, f=LAB_FIELDS.find(x=>x[0]===key); const lo=f[3];
+  const hi=key==='D'?Math.min(f[4],v.D*3):key==='L'?Math.max(v.L*3,20):key==='n'?Math.max(v.n*3,10):key==='K'?Math.max(v.K*3,10):key==='q2'?Math.max(v.q2*3,5):f[4];
+  const H=[], Lo=[]; let yMax=0;
+  for(let i=0;i<=80;i++){ let x=lo+(hi-lo)*i/80; if(key==='n') x=Math.round(x); const rr=labCalc(Object.assign({},v,{[key]:x})); if(!isFinite(rr.H)) continue; H.push([x,rr.H]); Lo.push([x,rr.hf+rr.hk]); }
+  for(const a of H) if(a[1]<=r.H*4) yMax=Math.max(yMax,a[1]);
+  const clipS=a=>a.filter(p=>p[1]<=yMax*1.05);
+  drawChart($('#labChart'),{uid:7,h:300,xMax:hi,yMax:Math.max(yMax,r.H)*1.08,xLabel:`${SENS[key]} (${f[2]||'–'})`,yLabel:'Yükseklik (m)',xName:SENS[key],xUnit:f[2],yUnit:'m',
+    series:[{name:'Gereken H',color:'var(--signal)',pts:clipS(H),w:2.6},{name:'Boru + armatür',color:'var(--pump)',pts:clipS(Lo),area:true}],
+    marks:[{x:v[key],y:r.H,color:'var(--signal)',label:`şu an ${fmt(r.H,1)} m`}]});
+  // referans
+  const ref=S.labRef;
+  const items=[['Toplam debi','l/dk',r.Qlpm,'Qlpm'],['Borudaki hız','m/s',r.vel,'vel'],['Boru kaybı','m',r.hf,'hf'],['Armatür kaybı','m',r.hk,'hk'],['Gereken H','m',r.H,'H'],['Pompa çıkış basıncı','bar',r.Pout,'Pout'],['Hidrolik güç','kW',r.Phyd,'Phyd']];
+  $('#labCmp').innerHTML = !ref ? '<div class="empty" style="padding:22px">Henüz referans yok. "Bu sonucu referans al" düğmesine basın, sonra girdileri değiştirin.</div>'
+    : `<table><thead><tr><th>Büyüklük</th><th class="n">Referans</th><th class="n">Şimdi</th><th class="n">Değişim</th></tr></thead><tbody>${items.map(([l,u,val,k])=>{ const a=ref[k]; const d=a?((val-a)/Math.abs(a))*100:0; return `<tr><td>${l} <span style="color:var(--faint)">${u}</span></td><td class="n">${fmtA(a)}</td><td class="n">${fmtA(val)}</td><td class="n">${Math.abs(d)<0.05?'–':`<span class="pill info">${d>0?'+':''}${fmt(d,1)}%</span>`}</td></tr>`; }).join('')}</tbody></table>`;
+}
+
+/* ---------- KILAVUZ ---------- */
+const GUIDE = [
+  {k:'pipe', no:'01', t:'Önce boru hattını tanımlayın', lead:'Boru hattı paneli ilk üç ekranda ortaktır. Bir kez girdiğiniz değerler hepsinde kullanılır ve tarayıcıda saklanır.',
+   steps:[
+     ['Yükseklik farkını girin','Nozzle\'ların, pompanın emdiği su seviyesinden kaç metre yukarıda olduğu. Nozzle\'lar aşağıdaysa eksi değer yazın.'],
+     ['Hattı bölümlere ayırın','Çapın değiştiği her yer ayrı bir bölümdür: ana hat, kolektör, nozzle kolu… "+ Boru bölümü ekle" ile yeni bölüm açılır.'],
+     ['Malzeme ve çapı seçin','Listedeki standart borularda iç çap otomatik gelir. Farklı bir boru için "Özel iç çap…" seçip mm olarak yazın.'],
+     ['Dirsek, T ve vanaları sayın','Her bölümün kendi armatürlerini +/− düğmeleriyle girin. Listede olmayan bir eleman için "Ek ΣK" alanını kullanın.'],
+     ['Paralel hatları belirtin','Aynı bölümden birden fazla eşit kol çıkıyorsa "Paralel hat" sayısını girin; debi kollara eşit bölünür.']],
+   tips:['Nozzle\'ları besleyen kolektörü ayrı bir "Nozzle kolu" bölümü olarak girmek sonucu belirgin biçimde iyileştirir.','Filtre, eşanjör gibi sabit basınç düşüren cihazları "Ek sabit kayıp (bar)" alanına yazın.','Su sıcaklığı yoğunluk ve viskoziteyi değiştirir; sıcak su hattında güncelleyin.']},
+  {k:'analiz', no:'02', t:'Sistem Analizi', mode:'analiz', lead:'Elinizde belirli bir pompa ve nozzle varsa sistemin gerçekte hangi debi ve basınçta çalışacağını gösterir.',
+   steps:[
+     ['Pompayı seçin','Pompa kartındaki "Değiştir"e basın. Model, marka veya tip yazarak arayın.'],
+     ['Nozzle\'ı ve adedini seçin','Kod, seri veya açı ile arayın. Adet, aynı basınçta çalışan toplam nozzle sayısıdır.'],
+     ['Sonucu okuyun','Turuncu kutu nozzle basıncıdır. Altındaki renkli uyarılar pompanın eğrinin neresinde çalıştığını ve hız sorunlarını söyler.'],
+     ['Grafiği inceleyin','Mavi eğri pompa, camgöbeği eğri sistemdir; turuncu nokta çalışma noktasıdır. Grafiğin üstünde gezinince değerler görünür.'],
+     ['Alternatifleri karşılaştırın','"Nozzle sayısına göre" tablosu aynı pompayla farklı nozzle adetlerinde basıncın nasıl değiştiğini gösterir.']],
+   tips:['"Basma yüksekliği dağılımı" çubuğu basıncın nereye harcandığını gösterir. Boru payı büyükse önce çapı büyütün.','Kırmızı "eğri dışı" uyarısında değer katalog eğrisi uzatılarak tahmin edilmiştir; o pompayı seçmeyin.']},
+  {k:'pompa', no:'03', t:'Pompa Seçimi', mode:'pompa', lead:'Nozzle\'ınız ve boru hattınız belli, istediğiniz basıncı verecek pompayı arıyorsanız buradan başlayın.',
+   steps:[
+     ['Hedef basıncı ve toleransı girin','Örneğin 3 bar ±%10: 2,7–3,3 bar arasında çalışan pompalar "uygun" sayılır.'],
+     ['Nozzle ve adedini seçin','Gereken toplam debi ve basma yüksekliği üstteki kutularda hemen hesaplanır.'],
+     ['Markaya göre süzün','Liste üstündeki marka düğmeleri yalnızca o markanın pompalarını gösterir. Düğmedeki sayılar "toleransta / çalışan" pompa adedidir.'],
+     ['Sıralamayı seçin','Listenin üstündeki üç düğmeden birini seçin. Performans fiyatı hiç dikkate almaz. Fiyat, hedefi tutturan pompaları en ucuzdan sıralar. Fiyat / Performans ikisini dengeler. Euro fiyatlar, girdiğiniz kurla dolara çevrilip karşılaştırılır.'],
+     ['Pompayı inceleyin','Listede bir satıra tıklayınca grafikte vurgulanır. Çift tıklayınca o pompa Sistem Analizi\'nde açılır.']],
+   tips:['Öneriye varsayılan olarak yalnızca yatay santrifüj pompalar (tek ve çok kademeli) girer. Dik milli, dalgıç, drenaj ve foseptik pompaları da görmek için "Pompa filtresi"ndeki "Pompa türü"nü "Tümü" yapın.','Sol alttaki "Pompa filtresi" ile motor gücünü sınırlayabilir, monofaze/trifaze veya pompa tipini seçebilirsiniz.','Liste boşsa nozzle adedini değiştirin ya da filtreleri gevşetin.']},
+  {k:'kombi', no:'04', t:'Pompa + Nozzle', mode:'kombi', lead:'Yalnızca istediğiniz basıncı biliyorsanız, program katalogdaki tüm pompa–nozzle eşleşmelerini dener.',
+   steps:[
+     ['Hedef basıncı girin','Tolerans, kabul edilebilir sapmayı belirler.'],
+     ['Nozzle aralığını daraltın','Seri ve püskürtme açısı seçin. Belirli bir toplam debi istiyorsanız "Hedef toplam debi" alanına yazın.'],
+     ['Listeyi okuyun','Her satırda pompa, nozzle kodu ve adedi, gerçek basınç ve sapma yazar. Üstteki grafik seçili kombinasyonu çizer.'],
+     ['Seçimi doğrulayın','"Sistem analizinde aç" düğmesi seçilen pompa ve nozzle\'ı analiz ekranına aktarır.']],
+   tips:['"Her pompa için yalnızca en iyi nozzle\'ı göster" açıkken liste daha çeşitli olur. Kapatırsanız aynı pompanın farklı nozzle\'larla eşleşmeleri de görünür.','Marka düğmeleri bu ekranda da çalışır.']},
+  {k:'katalog', no:'05', t:'Katalog', mode:'katalog', lead:'Okunan kataloglardaki tüm pompa ve nozzle\'ları fotoğraflarıyla listeler.',
+   steps:[
+     ['Pompa veya nozzle sekmesini seçin','Arama kutusu model, seri ve kodlarda arar.'],
+     ['Kartı açın','Pompa kartında eğri ve Q–H tablosu, nozzle kartında basınca göre debi tablosu ve kaynak katalog sayfası görünür.'],
+     ['Kendi ürününüzü ekleyin','"+ Özel pompa ekle" ile her satıra "Q;H" (m³/h;m) yazarak eğri girin. Özel nozzle için 2 bar\'daki ya da bilinen bir basınçtaki debiyi girin.']],
+   tips:['Eklediğiniz ürünler tüm ekranlarda seçilebilir ve tarayıcıda saklanır. Detay penceresindeki "Sil" ile kaldırılır.']},
+  {k:'yontem', no:'06', t:'Hesap Yöntemi', mode:'yontem', lead:'Uygulamanın kullandığı formüller ve canlı bir örnek hesap.',
+   steps:[
+     ['Formülleri okuyun','Dokuz adımlık zincir, her sembolün anlamını ve birimini gösterir.'],
+     ['Örnek değerlerle deneyin','Kaydırıcıları oynatın; her adım ve şema anında güncellenir. "Mevcut sistemimden al" kendi hattınızı yükler.'],
+     ['Etkiyi ölçün','"Bu sonucu referans al" deyip bir değeri değiştirin; tablo yüzde değişimi gösterir.']],
+   tips:['"Değişimin etkisi" grafiğinde boru çapını seçmek, çap küçüldükçe gereken basıncın nasıl hızla arttığını görmenin en kolay yoludur.']}
+];
+const GLOSS = [
+  ['<span class="pill ok">uygun</span>','Pompa katalog eğrisinin içinde, verimli bölgede çalışıyor.'],
+  ['<span class="pill warn">eğri başı</span>','Pompa kapalı vanaya yakın, çok düşük debide çalışıyor. Isınma ve düşük verim riski.'],
+  ['<span class="pill bad">eğri dışı</span>','Debi katalog eğrisinin sonunu aşıyor. Motor aşırı yüklenebilir; seçmeyin.'],
+  ['<span class="pill bad">çalışmaz</span>','Pompanın en yüksek basma yüksekliği sistemin statik yükünü karşılamıyor.'],
+  ['<span class="pill ok">+2,1%</span>','Gerçek basıncın hedeften sapması. Yeşil toleransta, sarı iki katına kadar, kırmızı daha fazla.'],
+  ['<span class="pill info">türbülanslı akış</span>','Akış rejimi. Su tesisatlarında normal olan budur.']
+];
+const FAQ = [
+  ['Pompa listede neden "çalışmaz" görünüyor?','Pompanın sıfır debideki basma yüksekliği, yükseklik farkı ile nozzle basıncının toplamından küçük. Daha yüksek basınçlı bir pompa seçin ya da nozzle adedini artırarak gereken basıncı düşürün.'],
+  ['Basınç hedefin altında kalıyor, ne yapmalıyım?','Önce "Basma yüksekliği dağılımı" çubuğuna bakın. Boru veya armatür payı büyükse çapı büyütün ya da dirsek sayısını azaltın. Hâlâ yetmiyorsa daha küçük nozzle veya daha az adet seçin; bu da basıncı yükseltir.'],
+  ['Hız uyarısı ne anlama geliyor?','Basma hattında 3 m/s üstü hız gürültü, aşınma ve koç darbesi riski taşır; 2,2 m/s üstünde sürtünme kaybı belirgin artar. Uyarı veren bölümün çapını bir boy büyütün.'],
+  ['Değerler katalogla birebir aynı mı?','Değerler taranmış katalog sayfalarından okundu. Pompa ve nozzle detay penceresinde kaynak dosya ve sayfa numarası yazar; kritik bir seçimden önce karşılaştırın.'],
+  ['Girdiğim değerler kayboluyor mu?','Hayır. Tüm girdiler, eklediğiniz özel ürünler ve tema tercihi bu bilgisayardaki tarayıcıda saklanır. Dosyayı başka bir bilgisayarda açarsanız varsayılan değerlerle başlar.'],
+  ['İnternet gerekiyor mu?','Hayır. Uygulama tek bir HTML dosyasıdır; tüm veriler ve fotoğraflar içindedir. İnternet yoksa yalnızca yazı tipi sistem yazı tipine döner.']
+];
+function guideHTML(){
+  const paths=[
+    ['analiz','Pompam ve nozzle\'ım belli','Sistem hangi basınç ve debide çalışır?','Sistem Analizi'],
+    ['pompa','Nozzle\'ım belli, pompa arıyorum','Hedef basıncı hangi pompa verir?','Pompa Seçimi'],
+    ['kombi','Sadece istediğim basıncı biliyorum','Hangi pompa ve nozzle ikilisi en uygun?','Pompa + Nozzle']];
+  return `<div class="method guide">
+  <section class="m-hero g-hero">
+    <div>
+      <span class="eyebrow">Kullanım kılavuzu</span>
+      <h1>Ne biliyorsanız <em>oradan başlayın</em></h1>
+      <p>Program üç soruya cevap verir. Elinizdeki bilgiye uyan kartı seçin; ilgili ekran açılır. Boru hattını bir kez girmeniz yeterli, üç ekran da aynı hattı kullanır.</p>
+    </div>
+    <div class="paths">${paths.map(([m,a,q,b],i)=>`<button type="button" class="path" data-mode="${m}"><span class="pn">${i+1}</span><span class="pt"><b>${a}</b><small>${q}</small></span><span class="pg">${b} →</span></button>`).join('')}</div>
+  </section>
+
+  ${GUIDE.map(g=>`<section id="g_${g.k}">
+    <div class="sec-head"><span class="k">${g.no} · ${g.mode?'Ekran':'Hazırlık'}</span><h2>${g.t}</h2><p>${g.lead}</p></div>
+    <div class="gsec">
+      <ol class="gsteps">${g.steps.map(([h,d])=>`<li><b>${h}</b><span>${d}</span></li>`).join('')}</ol>
+      <aside class="gtips"><h4>İpuçları</h4>${g.tips.map(t=>`<p>${t}</p>`).join('')}${g.mode?`<button type="button" class="btn pri sm" data-mode="${g.mode}">${g.t} ekranını aç →</button>`:''}</aside>
+    </div>
+  </section>`).join('')}
+
+  <section>
+    <div class="sec-head"><span class="k">07 · Sözlük</span><h2>Sonuç etiketleri</h2><p>Listelerde ve tablolarda gördüğünüz renkli etiketlerin anlamı.</p></div>
+    <div class="gloss">${GLOSS.map(([p,d])=>`<div>${p}<span>${d}</span></div>`).join('')}</div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="k">08 · Kısayollar</span><h2>Klavye ve ayarlar</h2><p>Bir kutuya yazmıyorken çalışır.</p></div>
+    <div class="keys">
+      <div><span><kbd>1</kbd>–<kbd>6</kbd></span>Ekranlar arasında geçiş (sol menüdeki sırayla)</div>
+      <div><span><kbd>Esc</kbd></span>Açık pencereyi kapatır</div>
+      <div><span>Tema düğmesi</span>Sol alttaki düğme Sistem, Açık ve Koyu tema arasında geçer</div>
+      <div><span>Çift tıklama</span>Pompa Seçimi listesinde satırı Sistem Analizi\'nde açar</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="k">09 · Sorular</span><h2>Sık sorulan sorular</h2><p>Takıldığınız bir nokta varsa önce buraya bakın.</p></div>
+    <div class="faq">${FAQ.map(([q,a],i)=>`<details ${i===0?'open':''}><summary>${q}</summary><p>${a}</p></details>`).join('')}</div>
+  </section>
+
+  <section class="reset">
+    <div><h3>Baştan başlamak mı istiyorsunuz?</h3><p>Boru hattı, seçimler ve filtreler varsayılan örneğe döner. Eklediğiniz özel pompa ve nozzle'lar korunur.</p></div>
+    <button type="button" class="btn" id="resetAll">Tüm girdileri sıfırla</button>
+  </section>
+  </div>`;
+}
+
+/* ================= OLAYLAR ================= */
+function setSeg(i,k,v){
+  const s=S.segs[i]; if(!s) return;
+  if(k==='mat'){ s.mat=v; const m=MATERIALS[v]; s.eps=m.eps; if(m.sizes.length){ const pick=m.sizes.reduce((b,x)=>Math.abs(x[1]-s.id)<Math.abs(b[1]-s.id)?x:b); s.size=pick[0]; s.id=pick[1]; } else s.size='__c'; save(); render(); return; }
+  if(k==='size'){ s.size=v; if(v!=='__c'){ const z=(MATERIALS[s.mat]||MATERIALS.custom).sizes.find(x=>x[0]===v); if(z) s.id=z[1]; } save(); render(); return; }
+  if(k==='name'){ s.name=v; save(); return; }
+  s[k]=+v; save();
+}
+document.addEventListener('input',ev=>{
+  const t=ev.target, id=t.id;
+  if(t.dataset.seg!==undefined && t.tagName!=='SELECT'){ setSeg(+t.dataset.seg,t.dataset.k,t.value); if(t.dataset.k!=='name') compute(); return; }
+  const map={in_dz:'dz',in_extra:'extraBar',in_T:'T',in_nN:'nN',in_tp:'targetP',in_tol:'tol'};
+  if(map[id]){ S[map[id]]=+t.value; save(); compute(); return; }
+  if(id==='pf_maxKw'){ S.pf.maxKw=t.value; save(); compute(); return; }
+  if(id==='nf_qTot'){ S.nf.qTot=t.value; save(); compute(); return; }
+  if(id==='nf_qTol'){ S.nf.qTol=+t.value; save(); compute(); return; }
+  if(id==='cat_q'){ S.cat.q=t.value; S.cat.limit=48; save(); const pos=t.selectionStart; outKatalog($('#out')); const n=$('#cat_q'); n.focus(); n.setSelectionRange(pos,pos); return; }
+  if((id.startsWith('lab_')&&id!=='lab_sens')||id.startsWith('labr_')){ const k=id.replace(/^labr?_/,''); S.lab=Object.assign(labVals(),{[k]:+t.value}); save(); syncLabInputs(labVals()); updateLab(); return; }
+  if(id==='pk_q'){ $('#pk_list').innerHTML=pickerList(t.dataset.pk,t.value); return; }
+});
+document.addEventListener('change',ev=>{
+  const t=ev.target, id=t.id;
+  if(t.dataset.seg!==undefined && t.tagName==='SELECT'){ setSeg(+t.dataset.seg,t.dataset.k,t.value); return; }
+  if(id==='pf_brand'){ S.pf.brand=t.value; S.pf.cat='all'; save(); render(); return; }
+  if(id==='pf_cat'){ S.pf.cat=t.value; save(); compute(); return; }
+  if(id==='pf_volt'){ S.pf.volt=t.value; save(); compute(); return; }
+  if(id==='pf_rpm'){ S.pf.rpm=t.value; save(); compute(); return; }
+  if(id==='nf_series'){ S.nf.series=t.value; save(); compute(); return; }
+  if(id==='nf_angle'){ S.nf.angle=t.value; save(); compute(); return; }
+  if(id==='nf_perPump'){ S.nf.perPump=t.checked; save(); compute(); return; }
+  if(id==='lab_sens'){ S.lab=Object.assign(labVals(),{sens:t.value}); save(); updateLab(); return; }
+  if(id==='in_eur'){ S.eurUsd=+t.value||1.1; save(); compute(); return; }
+  if(id==='cat_brand'){ S.cat.brand=t.value; S.cat.group='all'; S.cat.limit=48; save(); outKatalog($('#out')); return; }
+  if(id==='cat_group'){ S.cat.group=t.value; S.cat.limit=48; save(); outKatalog($('#out')); return; }
+});
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('button,[data-ri],[data-pickpump],[data-picknoz],[data-detail-pump],[data-detail-noz],.modal');
+  if(!t) return;
+  const d=t.dataset;
+  if(t.id==='mdl' && ev.target===t){ closeModal(); return; }
+  if(d.mode){ S.mode=d.mode; save(); render(); window.scrollTo(0,0); return; }
+  if(d.close){ closeModal(); return; }
+  if(d.step){ const inp=document.getElementById(d.for); inp.value=Math.max(0,(+inp.value||0)+(+d.step)); inp.dispatchEvent(new Event('input',{bubbles:true})); return; }
+  if(t.id==='addSeg'){ const last=S.segs.at(-1); S.segs.push(Object.assign({},last,{name:'Bölüm '+(S.segs.length+1),n90:0,n45:0,teeR:0,teeB:0,ball:0,gate:0,check:0,filt:0,kx:0})); save(); render(); return; }
+  if(d.delseg!==undefined){ S.segs.splice(+d.delseg,1); save(); render(); return; }
+  if(d.open){ openPicker(d.open); return; }
+  if(d.pickpump){ S.pumpId=d.pickpump; save(); closeModal(); render(); return; }
+  if(d.picknoz){ S.nozzleId=d.picknoz; save(); closeModal(); render(); return; }
+  if(d.kind){ S.pf.kind=d.kind; S.pf.cat='all'; save(); render(); return; }
+  if(d.sort){ S.sort=d.sort; save(); compute(); return; }
+  if(d.quick!==undefined){ pumpQuick(+d.quick); return; }
+  if(d.ri!==undefined){ selRank=+d.ri; document.querySelectorAll('.ri').forEach((e,i)=>e.classList.toggle('sel',i===selRank)); if(S.mode==='kombi') drawCombo(); else { const n=nozById(S.nozzleId); const sys=makeSystem(n,Math.max(1,+S.nN||1)); drawCompare(sys, reqCard(n,sys,+S.targetP), +S.targetP); const r=lastRank[selRank]; if(r && ev.detail>=2){ S.pumpId=r.p.id; S.mode='analiz'; save(); render(); } } return; }
+  if(d.goanaliz){ const r=lastRank[selRank]; if(r){ S.pumpId=r.p.id; S.nozzleId=r.n.id; S.mode='analiz'; save(); render(); window.scrollTo(0,0);} return; }
+  if(d.detailPump){ pumpDetail(d.detailPump); return; }
+  if(d.detailNoz){ nozDetail(d.detailNoz); return; }
+  if(d.usepump){ S.pumpId=d.usepump; S.mode='analiz'; save(); closeModal(); render(); return; }
+  if(d.usenoz){ S.nozzleId=d.usenoz; S.mode='analiz'; save(); closeModal(); render(); return; }
+  if(t.id==='resetAll'){ if(!t.classList.contains('armed')){ t.classList.add('armed'); t.textContent='Emin misiniz? Sıfırlamak için tekrar basın'; return; }
+    const keep={custom:S.custom, theme:S.theme}; S=Object.assign(JSON.parse(JSON.stringify(DEF)), keep); S.mode='analiz'; save(); rebuildDB(); render(); window.scrollTo(0,0); return; }
+  if(t.id==='labReset'){ S.lab=null; save(); syncLabInputs(labVals()); updateLab(); return; }
+  if(t.id==='labRef'){ S.labRef=labCalc(labVals()); S.labRef={Qlpm:S.labRef.Qlpm,vel:S.labRef.vel,hf:S.labRef.hf,hk:S.labRef.hk,H:S.labRef.H,Pout:S.labRef.Pout,Phyd:S.labRef.Phyd}; save(); updateLab(); return; }
+  if(t.id==='labFromSys'){ const n=nozById(S.nozzleId), s0=S.segs[0]||{}; S.lab=Object.assign(labVals(),{P:+S.targetP||3,n:Math.max(1,+S.nN||1),q2:n?+n.q2.toFixed(3):10,e:n?+n.e.toFixed(3):0.5,D:+s0.id||40,eps:+s0.eps||0.15,L:S.segs.reduce((a,s)=>a+(+s.L||0),0),K:+S.segs.reduce((a,s)=>a+segK(s),0).toFixed(2),dz:+S.dz||0,T:+S.T||20}); save(); syncLabInputs(labVals()); updateLab(); return; }
+  if(d.brandchip){ S.pf.brand=d.brandchip; S.pf.cat='all'; save(); render(); return; }
+  if(d.cattab){ S.cat.tab=d.cattab; S.cat.brand='all'; S.cat.group='all'; S.cat.limit=48; save(); outKatalog($('#out')); return; }
+  if(t.id==='catMore'){ S.cat.limit+=48; outKatalog($('#out')); return; }
+  if(d.addcustom){ customForm(d.addcustom==='pump'?'pump':'noz'); return; }
+  if(d.delcustom){ const [k,id]=d.delcustom.split(':'); if(k==='pump') S.custom.pumps=S.custom.pumps.filter(x=>x.id!==id); else S.custom.nozzles=S.custom.nozzles.filter(x=>x.id!==id); save(); rebuildDB(); closeModal(); render(); return; }
+  if(t.id==='themeBtn'){ const order=['system','light','dark']; S.theme=order[(order.indexOf(S.theme)+1)%3]; applyTheme(); save(); render(); return; }
+});
+document.addEventListener('keydown',ev=>{
+  if(ev.key==='Escape') closeModal();
+  if(ev.target.matches('input,textarea,select')) return;
+  const k={'1':'analiz','2':'pompa','3':'kombi','4':'katalog','5':'yontem','6':'kilavuz'}[ev.key]; if(k && !$('#mdl')){ S.mode=k; save(); render(); }
+});
+function applyTheme(){ const r=document.documentElement; if(S.theme==='system') r.removeAttribute('data-theme'); else r.setAttribute('data-theme',S.theme); $('#themeBtn').textContent='Tema: '+({system:'Sistem',light:'Açık',dark:'Koyu'}[S.theme]); }
+
+applyTheme(); rebuildDB(); render();
+</script>
+</body>
+</html>

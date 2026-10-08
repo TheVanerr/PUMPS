@@ -1,0 +1,4296 @@
+[
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.301",
+"angle": 20,
+"orifice_mm": 0.7,
+"free_passage_mm": 0.6,
+"q2bar_lpm": 0.32,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 65 mm (H=200 mm), 120 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.361",
+"angle": 20,
+"orifice_mm": 1.0,
+"free_passage_mm": 0.8,
+"q2bar_lpm": 0.63,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 70 mm (H=200 mm), 130 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.441",
+"angle": 20,
+"orifice_mm": 1.35,
+"free_passage_mm": 1.1,
+"q2bar_lpm": 1.25,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 75 mm (H=200 mm), 145 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.481",
+"angle": 20,
+"orifice_mm": 1.5,
+"free_passage_mm": 1.2,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 75 mm (H=200 mm), 150 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.302",
+"angle": 30,
+"orifice_mm": 0.6,
+"free_passage_mm": 0.5,
+"q2bar_lpm": 0.32,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 120 mm (H=200 mm), 235 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.362",
+"angle": 30,
+"orifice_mm": 1.0,
+"free_passage_mm": 0.7,
+"q2bar_lpm": 0.63,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 120 mm (H=200 mm), 235 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.402",
+"angle": 30,
+"orifice_mm": 1.2,
+"free_passage_mm": 0.9,
+"q2bar_lpm": 1.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 120 mm (H=200 mm), 235 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.482",
+"angle": 30,
+"orifice_mm": 1.5,
+"free_passage_mm": 1.1,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 120 mm (H=200 mm), 235 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.562",
+"angle": 30,
+"orifice_mm": 2.0,
+"free_passage_mm": 1.5,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 120 mm (H=200 mm), 235 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.642",
+"angle": 30,
+"orifice_mm": 2.5,
+"free_passage_mm": 1.8,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 120 mm (H=200 mm), 240 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.722",
+"angle": 30,
+"orifice_mm": 3.0,
+"free_passage_mm": 2.4,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 125 mm (H=200 mm), 240 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.762",
+"angle": 30,
+"orifice_mm": 3.5,
+"free_passage_mm": 2.7,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 125 mm (H=200 mm), 240 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.802",
+"angle": 30,
+"orifice_mm": 4.0,
+"free_passage_mm": 3.1,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 130 mm (H=200 mm), 250 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.303",
+"angle": 45,
+"orifice_mm": 0.7,
+"free_passage_mm": 0.5,
+"q2bar_lpm": 0.32,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 150 mm (H=200 mm), 270 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.363",
+"angle": 45,
+"orifice_mm": 1.0,
+"free_passage_mm": 0.6,
+"q2bar_lpm": 0.63,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 155 mm (H=200 mm), 280 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.403",
+"angle": 45,
+"orifice_mm": 1.2,
+"free_passage_mm": 0.9,
+"q2bar_lpm": 1.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 175 mm (H=200 mm), 320 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.483",
+"angle": 45,
+"orifice_mm": 1.5,
+"free_passage_mm": 1.1,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 180 mm (H=200 mm), 340 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.563",
+"angle": 45,
+"orifice_mm": 2.0,
+"free_passage_mm": 1.4,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 185 mm (H=200 mm), 355 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.643",
+"angle": 45,
+"orifice_mm": 2.5,
+"free_passage_mm": 1.8,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 195 mm (H=200 mm), 370 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.673",
+"angle": 45,
+"orifice_mm": 2.7,
+"free_passage_mm": 2.0,
+"q2bar_lpm": 4.75,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 200 mm (H=200 mm), 375 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.723",
+"angle": 45,
+"orifice_mm": 3.0,
+"free_passage_mm": 2.4,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 200 mm (H=200 mm), 375 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.763",
+"angle": 45,
+"orifice_mm": 3.5,
+"free_passage_mm": 2.6,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 200 mm (H=200 mm), 380 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.803",
+"angle": 45,
+"orifice_mm": 4.0,
+"free_passage_mm": 3.0,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 205 mm (H=200 mm), 385 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.843",
+"angle": 45,
+"orifice_mm": 4.5,
+"free_passage_mm": 3.4,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 205 mm (H=200 mm), 385 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.883",
+"angle": 45,
+"orifice_mm": 5.0,
+"free_passage_mm": 3.8,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 220 mm (H=200 mm), 440 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.923",
+"angle": 45,
+"orifice_mm": 5.5,
+"free_passage_mm": 4.2,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 220 mm (H=200 mm), 440 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.963",
+"angle": 45,
+"orifice_mm": 6.0,
+"free_passage_mm": 4.4,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 220 mm (H=200 mm), 440 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.304",
+"angle": 60,
+"orifice_mm": 0.7,
+"free_passage_mm": 0.4,
+"q2bar_lpm": 0.32,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 215 mm (H=200 mm), 425 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.334",
+"angle": 60,
+"orifice_mm": 0.9,
+"free_passage_mm": 0.5,
+"q2bar_lpm": 0.45,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 220 mm (H=200 mm), 440 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.364",
+"angle": 60,
+"orifice_mm": 1.0,
+"free_passage_mm": 0.6,
+"q2bar_lpm": 0.63,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 230 mm (H=200 mm), 460 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.404",
+"angle": 60,
+"orifice_mm": 1.2,
+"free_passage_mm": 0.8,
+"q2bar_lpm": 1.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 245 mm (H=200 mm), 485 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.444",
+"angle": 60,
+"orifice_mm": 1.35,
+"free_passage_mm": 0.9,
+"q2bar_lpm": 1.25,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 255 mm (H=200 mm), 495 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.484",
+"angle": 60,
+"orifice_mm": 1.5,
+"free_passage_mm": 1.0,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 260 mm (H=200 mm), 510 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.514",
+"angle": 60,
+"orifice_mm": 1.65,
+"free_passage_mm": 1.1,
+"q2bar_lpm": 1.9,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 270 mm (H=200 mm), 520 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.564",
+"angle": 60,
+"orifice_mm": 2.0,
+"free_passage_mm": 1.3,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 280 mm (H=200 mm), 535 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.604",
+"angle": 60,
+"orifice_mm": 2.2,
+"free_passage_mm": 1.5,
+"q2bar_lpm": 3.15,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 290 mm (H=200 mm), 550 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.644",
+"angle": 60,
+"orifice_mm": 2.5,
+"free_passage_mm": 1.6,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 295 mm (H=200 mm), 565 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.674",
+"angle": 60,
+"orifice_mm": 2.7,
+"free_passage_mm": 1.8,
+"q2bar_lpm": 4.75,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 300 mm (H=200 mm), 575 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.724",
+"angle": 60,
+"orifice_mm": 3.0,
+"free_passage_mm": 2.1,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 305 mm (H=200 mm), 590 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.764",
+"angle": 60,
+"orifice_mm": 3.5,
+"free_passage_mm": 2.3,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 310 mm (H=200 mm), 595 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.804",
+"angle": 60,
+"orifice_mm": 4.0,
+"free_passage_mm": 2.6,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 310 mm (H=200 mm), 595 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.844",
+"angle": 60,
+"orifice_mm": 4.5,
+"free_passage_mm": 3.0,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 310 mm (H=200 mm), 590 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.884",
+"angle": 60,
+"orifice_mm": 5.0,
+"free_passage_mm": 3.4,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 300 mm (H=200 mm), 570 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.924",
+"angle": 60,
+"orifice_mm": 5.5,
+"free_passage_mm": 4.1,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 330 mm (H=200 mm), 630 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.964",
+"angle": 60,
+"orifice_mm": 6.0,
+"free_passage_mm": 4.2,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 330 mm (H=200 mm), 630 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "633.004",
+"angle": 60,
+"orifice_mm": 7.0,
+"free_passage_mm": 4.8,
+"q2bar_lpm": 31.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 330 mm (H=200 mm), 630 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "633.044",
+"angle": 60,
+"orifice_mm": 8.0,
+"free_passage_mm": 5.5,
+"q2bar_lpm": 40.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 340 mm (H=200 mm), 640 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "633.084",
+"angle": 60,
+"orifice_mm": 9.0,
+"free_passage_mm": 6.8,
+"q2bar_lpm": 50.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 340 mm (H=200 mm), 640 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.145",
+"angle": 75,
+"orifice_mm": 0.2,
+"free_passage_mm": 0.12,
+"q2bar_lpm": 0.05,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 280 mm (H=200 mm), 550 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.165",
+"angle": 75,
+"orifice_mm": 0.2,
+"free_passage_mm": 0.14,
+"q2bar_lpm": 0.07,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 290 mm (H=200 mm), 560 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.185",
+"angle": 75,
+"orifice_mm": 0.2,
+"free_passage_mm": 0.16,
+"q2bar_lpm": 0.08,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 300 mm (H=200 mm), 575 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.215",
+"angle": 75,
+"orifice_mm": 0.4,
+"free_passage_mm": 0.2,
+"q2bar_lpm": 0.11,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 300 mm (H=200 mm), 580 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.245",
+"angle": 75,
+"orifice_mm": 0.5,
+"free_passage_mm": 0.3,
+"q2bar_lpm": 0.16,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 310 mm (H=200 mm), 585 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.275",
+"angle": 75,
+"orifice_mm": 0.6,
+"free_passage_mm": 0.3,
+"q2bar_lpm": 0.22,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 310 mm (H=200 mm), 590 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.216",
+"angle": 90,
+"orifice_mm": 0.4,
+"free_passage_mm": 0.2,
+"q2bar_lpm": 0.11,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 370 mm (H=200 mm), 700 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.276",
+"angle": 90,
+"orifice_mm": 0.6,
+"free_passage_mm": 0.3,
+"q2bar_lpm": 0.22,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 375 mm (H=200 mm), 720 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.306",
+"angle": 90,
+"orifice_mm": 0.7,
+"free_passage_mm": 0.4,
+"q2bar_lpm": 0.32,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 380 mm (H=200 mm), 740 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.336",
+"angle": 90,
+"orifice_mm": 0.9,
+"free_passage_mm": 0.5,
+"q2bar_lpm": 0.45,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 415 mm (H=200 mm), 800 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.366",
+"angle": 90,
+"orifice_mm": 1.0,
+"free_passage_mm": 0.5,
+"q2bar_lpm": 0.63,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 420 mm (H=200 mm), 810 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.406",
+"angle": 90,
+"orifice_mm": 1.2,
+"free_passage_mm": 0.7,
+"q2bar_lpm": 1.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 430 mm (H=200 mm), 820 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.446",
+"angle": 90,
+"orifice_mm": 1.35,
+"free_passage_mm": 0.8,
+"q2bar_lpm": 1.25,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 435 mm (H=200 mm), 830 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.486",
+"angle": 90,
+"orifice_mm": 1.5,
+"free_passage_mm": 0.8,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 440 mm (H=200 mm), 835 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.516",
+"angle": 90,
+"orifice_mm": 1.65,
+"free_passage_mm": 0.9,
+"q2bar_lpm": 1.9,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 440 mm (H=200 mm), 840 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.566",
+"angle": 90,
+"orifice_mm": 2.0,
+"free_passage_mm": 1.1,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 445 mm (H=200 mm), 850 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.606",
+"angle": 90,
+"orifice_mm": 2.2,
+"free_passage_mm": 1.2,
+"q2bar_lpm": 3.15,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 450 mm (H=200 mm), 860 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.646",
+"angle": 90,
+"orifice_mm": 2.5,
+"free_passage_mm": 1.3,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 455 mm (H=200 mm), 865 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.676",
+"angle": 90,
+"orifice_mm": 2.7,
+"free_passage_mm": 1.4,
+"q2bar_lpm": 4.75,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 465 mm (H=200 mm), 875 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.726",
+"angle": 90,
+"orifice_mm": 3.0,
+"free_passage_mm": 1.7,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 470 mm (H=200 mm), 885 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.766",
+"angle": 90,
+"orifice_mm": 3.5,
+"free_passage_mm": 1.9,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 475 mm (H=200 mm), 890 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.806",
+"angle": 90,
+"orifice_mm": 4.0,
+"free_passage_mm": 2.4,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 480 mm (H=200 mm), 900 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.846",
+"angle": 90,
+"orifice_mm": 4.5,
+"free_passage_mm": 2.4,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 480 mm (H=200 mm), 900 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.886",
+"angle": 90,
+"orifice_mm": 5.0,
+"free_passage_mm": 3.1,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 480 mm (H=200 mm), 910 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.926",
+"angle": 90,
+"orifice_mm": 5.5,
+"free_passage_mm": 3.6,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 525 mm (H=200 mm), 1020 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.966",
+"angle": 90,
+"orifice_mm": 6.0,
+"free_passage_mm": 3.9,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 525 mm (H=200 mm), 1020 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.187",
+"angle": 120,
+"orifice_mm": 0.35,
+"free_passage_mm": 0.2,
+"q2bar_lpm": 0.08,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 630 mm (H=200 mm), 1200 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.217",
+"angle": 120,
+"orifice_mm": 0.4,
+"free_passage_mm": 0.2,
+"q2bar_lpm": 0.11,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 640 mm (H=200 mm), 1210 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.247",
+"angle": 120,
+"orifice_mm": 0.5,
+"free_passage_mm": 0.2,
+"q2bar_lpm": 0.16,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 650 mm (H=200 mm), 1230 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.277",
+"angle": 120,
+"orifice_mm": 0.6,
+"free_passage_mm": 0.3,
+"q2bar_lpm": 0.22,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 660 mm (H=200 mm), 1250 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.307",
+"angle": 120,
+"orifice_mm": 0.7,
+"free_passage_mm": 0.3,
+"q2bar_lpm": 0.32,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 660 mm (H=200 mm), 1250 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.337",
+"angle": 120,
+"orifice_mm": 0.9,
+"free_passage_mm": 0.4,
+"q2bar_lpm": 0.45,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 670 mm (H=200 mm), 1270 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.367",
+"angle": 120,
+"orifice_mm": 1.0,
+"free_passage_mm": 0.5,
+"q2bar_lpm": 0.63,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 670 mm (H=200 mm), 1270 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.407",
+"angle": 120,
+"orifice_mm": 1.2,
+"free_passage_mm": 0.6,
+"q2bar_lpm": 1.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 670 mm (H=200 mm), 1270 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.447",
+"angle": 120,
+"orifice_mm": 1.35,
+"free_passage_mm": 0.6,
+"q2bar_lpm": 1.25,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 675 mm (H=200 mm), 1270 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.487",
+"angle": 120,
+"orifice_mm": 1.5,
+"free_passage_mm": 0.6,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 680 mm (H=200 mm), 1275 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.517",
+"angle": 120,
+"orifice_mm": 1.65,
+"free_passage_mm": 0.9,
+"q2bar_lpm": 1.9,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 685 mm (H=200 mm), 1280 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.567",
+"angle": 120,
+"orifice_mm": 2.0,
+"free_passage_mm": 0.9,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 690 mm (H=200 mm), 1285 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.607",
+"angle": 120,
+"orifice_mm": 2.2,
+"free_passage_mm": 1.1,
+"q2bar_lpm": 3.15,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 700 mm (H=200 mm), 1300 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.647",
+"angle": 120,
+"orifice_mm": 2.5,
+"free_passage_mm": 1.3,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 700 mm (H=200 mm), 1300 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.677",
+"angle": 120,
+"orifice_mm": 2.7,
+"free_passage_mm": 1.4,
+"q2bar_lpm": 4.75,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 720 mm (H=200 mm), 1330 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.727",
+"angle": 120,
+"orifice_mm": 3.0,
+"free_passage_mm": 1.6,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 740 mm (H=200 mm), 1360 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.767",
+"angle": 120,
+"orifice_mm": 3.5,
+"free_passage_mm": 1.7,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 760 mm (H=200 mm), 1400 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.807",
+"angle": 120,
+"orifice_mm": 4.0,
+"free_passage_mm": 2.0,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 790 mm (H=200 mm), 1450 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.847",
+"angle": 120,
+"orifice_mm": 4.5,
+"free_passage_mm": 2.3,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 790 mm (H=200 mm), 1450 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.887",
+"angle": 120,
+"orifice_mm": 5.0,
+"free_passage_mm": 2.6,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 800 mm (H=200 mm), 1460 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "632/633",
+"kind": "Düz fan (flat fan)",
+"code": "632.927",
+"angle": 120,
+"orifice_mm": 5.5,
+"free_passage_mm": 2.9,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.5,
+10
+],
+"coverage": "Püskürtme genişliği @2 bar: 800 mm (H=200 mm), 1460 mm (H=500 mm)",
+"connections": "1/8\"–1/2\" BSPT",
+"image": "s632_p01_x41.png",
+"source": "lechler_flat_fan_nozzles_series_632_633.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.483",
+"angle": 45,
+"orifice_mm": 1.07,
+"free_passage_mm": 1.09,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 178 mm (H=254 mm), 330 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.563",
+"angle": 45,
+"orifice_mm": 1.42,
+"free_passage_mm": 1.4,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 178 mm (H=254 mm), 356 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.603",
+"angle": 45,
+"orifice_mm": 1.57,
+"free_passage_mm": 1.6,
+"q2bar_lpm": 3.2,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 203 mm (H=254 mm), 381 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.643",
+"angle": 45,
+"orifice_mm": 1.8,
+"free_passage_mm": 1.8,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 203 mm (H=254 mm), 381 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.723",
+"angle": 45,
+"orifice_mm": 2.16,
+"free_passage_mm": 2.39,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 203 mm (H=254 mm), 381 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.763",
+"angle": 45,
+"orifice_mm": 2.51,
+"free_passage_mm": 2.59,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 203 mm (H=254 mm), 381 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.803",
+"angle": 45,
+"orifice_mm": 2.87,
+"free_passage_mm": 3.0,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 203 mm (H=254 mm), 381 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.843",
+"angle": 45,
+"orifice_mm": 3.23,
+"free_passage_mm": 3.4,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 203 mm (H=254 mm), 381 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.883",
+"angle": 45,
+"orifice_mm": 3.58,
+"free_passage_mm": 3.81,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 229 mm (H=254 mm), 432 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.923",
+"angle": 45,
+"orifice_mm": 3.94,
+"free_passage_mm": 4.19,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 229 mm (H=254 mm), 432 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.963",
+"angle": 45,
+"orifice_mm": 4.29,
+"free_passage_mm": 4.39,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 229 mm (H=254 mm), 432 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.993",
+"angle": 45,
+"orifice_mm": 4.67,
+"free_passage_mm": 4.8,
+"q2bar_lpm": 30.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 229 mm (H=254 mm), 432 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.003",
+"angle": 45,
+"orifice_mm": 5.03,
+"free_passage_mm": 5.21,
+"q2bar_lpm": 31.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 229 mm (H=254 mm), 432 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.043",
+"angle": 45,
+"orifice_mm": 5.74,
+"free_passage_mm": 5.89,
+"q2bar_lpm": 40.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 229 mm (H=254 mm), 432 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.484",
+"angle": 60,
+"orifice_mm": 1.07,
+"free_passage_mm": 0.99,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 254 mm (H=254 mm), 508 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.564",
+"angle": 60,
+"orifice_mm": 1.42,
+"free_passage_mm": 1.3,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 279 mm (H=254 mm), 533 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.604",
+"angle": 60,
+"orifice_mm": 1.57,
+"free_passage_mm": 1.5,
+"q2bar_lpm": 3.2,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 279 mm (H=254 mm), 559 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.644",
+"angle": 60,
+"orifice_mm": 1.8,
+"free_passage_mm": 1.6,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 305 mm (H=254 mm), 559 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.724",
+"angle": 60,
+"orifice_mm": 2.16,
+"free_passage_mm": 2.11,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 305 mm (H=254 mm), 584 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.764",
+"angle": 60,
+"orifice_mm": 2.51,
+"free_passage_mm": 2.31,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 305 mm (H=254 mm), 584 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.804",
+"angle": 60,
+"orifice_mm": 2.87,
+"free_passage_mm": 2.59,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 305 mm (H=254 mm), 584 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.844",
+"angle": 60,
+"orifice_mm": 3.23,
+"free_passage_mm": 3.0,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 305 mm (H=254 mm), 584 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.884",
+"angle": 60,
+"orifice_mm": 3.58,
+"free_passage_mm": 3.4,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 305 mm (H=254 mm), 559 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.924",
+"angle": 60,
+"orifice_mm": 3.94,
+"free_passage_mm": 4.09,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 330 mm (H=254 mm), 635 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.964",
+"angle": 60,
+"orifice_mm": 4.29,
+"free_passage_mm": 4.19,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 330 mm (H=254 mm), 635 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.994",
+"angle": 60,
+"orifice_mm": 4.67,
+"free_passage_mm": 4.39,
+"q2bar_lpm": 30.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 330 mm (H=254 mm), 635 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.004",
+"angle": 60,
+"orifice_mm": 5.03,
+"free_passage_mm": 4.8,
+"q2bar_lpm": 31.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 330 mm (H=254 mm), 635 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.044",
+"angle": 60,
+"orifice_mm": 5.74,
+"free_passage_mm": 5.51,
+"q2bar_lpm": 40.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 330 mm (H=254 mm), 635 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.486",
+"angle": 90,
+"orifice_mm": 1.07,
+"free_passage_mm": 0.79,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 432 mm (H=254 mm), 838 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.566",
+"angle": 90,
+"orifice_mm": 1.42,
+"free_passage_mm": 1.09,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 457 mm (H=254 mm), 838 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.606",
+"angle": 90,
+"orifice_mm": 1.57,
+"free_passage_mm": 1.19,
+"q2bar_lpm": 3.2,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 457 mm (H=254 mm), 838 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.646",
+"angle": 90,
+"orifice_mm": 1.8,
+"free_passage_mm": 1.3,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 457 mm (H=254 mm), 864 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.726",
+"angle": 90,
+"orifice_mm": 2.16,
+"free_passage_mm": 1.7,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 483 mm (H=254 mm), 889 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.766",
+"angle": 90,
+"orifice_mm": 2.51,
+"free_passage_mm": 1.9,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 483 mm (H=254 mm), 889 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.806",
+"angle": 90,
+"orifice_mm": 2.87,
+"free_passage_mm": 2.39,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 483 mm (H=254 mm), 889 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.846",
+"angle": 90,
+"orifice_mm": 3.23,
+"free_passage_mm": 2.39,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 483 mm (H=254 mm), 889 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.886",
+"angle": 90,
+"orifice_mm": 3.58,
+"free_passage_mm": 3.1,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 483 mm (H=254 mm), 914 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.926",
+"angle": 90,
+"orifice_mm": 3.94,
+"free_passage_mm": 3.61,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 533 mm (H=254 mm), 1016 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.966",
+"angle": 90,
+"orifice_mm": 4.29,
+"free_passage_mm": 3.91,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 533 mm (H=254 mm), 1016 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.996",
+"angle": 90,
+"orifice_mm": 4.67,
+"free_passage_mm": 3.71,
+"q2bar_lpm": 30.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 533 mm (H=254 mm), 1016 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.006",
+"angle": 90,
+"orifice_mm": 5.03,
+"free_passage_mm": 4.19,
+"q2bar_lpm": 31.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 533 mm (H=254 mm), 1016 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.046",
+"angle": 90,
+"orifice_mm": 5.74,
+"free_passage_mm": 4.9,
+"q2bar_lpm": 40.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 533 mm (H=254 mm), 1016 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.487",
+"angle": 120,
+"orifice_mm": 1.07,
+"free_passage_mm": 0.61,
+"q2bar_lpm": 1.6,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 686 mm (H=254 mm), 1270 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.567",
+"angle": 120,
+"orifice_mm": 1.42,
+"free_passage_mm": 0.89,
+"q2bar_lpm": 2.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 686 mm (H=254 mm), 1295 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.607",
+"angle": 120,
+"orifice_mm": 1.57,
+"free_passage_mm": 1.09,
+"q2bar_lpm": 3.2,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 711 mm (H=254 mm), 1295 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.647",
+"angle": 120,
+"orifice_mm": 1.8,
+"free_passage_mm": 1.3,
+"q2bar_lpm": 4.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 711 mm (H=254 mm), 1295 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.727",
+"angle": 120,
+"orifice_mm": 2.16,
+"free_passage_mm": 1.6,
+"q2bar_lpm": 6.3,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 737 mm (H=254 mm), 1372 mm (H=508 mm)",
+"connections": "1/8\", 1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.767",
+"angle": 120,
+"orifice_mm": 2.51,
+"free_passage_mm": 1.7,
+"q2bar_lpm": 8.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 762 mm (H=254 mm), 1397 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.807",
+"angle": 120,
+"orifice_mm": 2.87,
+"free_passage_mm": 2.01,
+"q2bar_lpm": 10.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "1/4\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.847",
+"angle": 120,
+"orifice_mm": 3.23,
+"free_passage_mm": 2.31,
+"q2bar_lpm": 12.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.887",
+"angle": 120,
+"orifice_mm": 3.58,
+"free_passage_mm": 2.59,
+"q2bar_lpm": 16.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.927",
+"angle": 120,
+"orifice_mm": 3.94,
+"free_passage_mm": 2.9,
+"q2bar_lpm": 20.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "1/4\", 3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.967",
+"angle": 120,
+"orifice_mm": 4.29,
+"free_passage_mm": 3.2,
+"q2bar_lpm": 25.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "650.997",
+"angle": 120,
+"orifice_mm": 4.67,
+"free_passage_mm": 3.4,
+"q2bar_lpm": 30.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.007",
+"angle": 120,
+"orifice_mm": 5.03,
+"free_passage_mm": 3.71,
+"q2bar_lpm": 31.5,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "650/651",
+"kind": "Düz fan (flat fan)",
+"code": "651.047",
+"angle": 120,
+"orifice_mm": 5.74,
+"free_passage_mm": 4.39,
+"q2bar_lpm": 40.0,
+"exp": 0.5,
+"p_range": [
+0.7,
+7
+],
+"coverage": "Kapsama @30 psi: 787 mm (H=254 mm), 1448 mm (H=508 mm)",
+"connections": "3/8\" NPT erkek",
+"image": "s650_p01_x72.png",
+"source": "Series_650_651.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.361",
+"angle": 20,
+"orifice_mm": 0.99,
+"free_passage_mm": null,
+"q2bar_lpm": 0.6364,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "4.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.362",
+"angle": 30,
+"orifice_mm": 0.99,
+"free_passage_mm": null,
+"q2bar_lpm": 0.6364,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "4.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.363",
+"angle": 45,
+"orifice_mm": 0.99,
+"free_passage_mm": null,
+"q2bar_lpm": 0.6364,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "4.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.364",
+"angle": 60,
+"orifice_mm": 0.99,
+"free_passage_mm": null,
+"q2bar_lpm": 0.6364,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "4.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.381",
+"angle": 20,
+"orifice_mm": 1.09,
+"free_passage_mm": null,
+"q2bar_lpm": 0.792,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "5.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.382",
+"angle": 30,
+"orifice_mm": 1.09,
+"free_passage_mm": null,
+"q2bar_lpm": 0.792,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "5.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.383",
+"angle": 45,
+"orifice_mm": 1.09,
+"free_passage_mm": null,
+"q2bar_lpm": 0.792,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "5.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.384",
+"angle": 60,
+"orifice_mm": 1.09,
+"free_passage_mm": null,
+"q2bar_lpm": 0.792,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "5.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.401",
+"angle": 20,
+"orifice_mm": 1.17,
+"free_passage_mm": null,
+"q2bar_lpm": 0.9617,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "6.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.402",
+"angle": 30,
+"orifice_mm": 1.17,
+"free_passage_mm": null,
+"q2bar_lpm": 0.9617,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "6.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.403",
+"angle": 45,
+"orifice_mm": 1.17,
+"free_passage_mm": null,
+"q2bar_lpm": 0.9617,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "6.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.404",
+"angle": 60,
+"orifice_mm": 1.17,
+"free_passage_mm": null,
+"q2bar_lpm": 0.9617,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "6.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.411",
+"angle": 20,
+"orifice_mm": 1.3,
+"free_passage_mm": null,
+"q2bar_lpm": 1.1031,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "7.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.412",
+"angle": 30,
+"orifice_mm": 1.3,
+"free_passage_mm": null,
+"q2bar_lpm": 1.1031,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "7.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.413",
+"angle": 45,
+"orifice_mm": 1.3,
+"free_passage_mm": null,
+"q2bar_lpm": 1.1031,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "7.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.414",
+"angle": 60,
+"orifice_mm": 1.3,
+"free_passage_mm": null,
+"q2bar_lpm": 1.1031,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "7.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.451",
+"angle": 20,
+"orifice_mm": 1.35,
+"free_passage_mm": null,
+"q2bar_lpm": 1.3011,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "9.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.452",
+"angle": 30,
+"orifice_mm": 1.35,
+"free_passage_mm": null,
+"q2bar_lpm": 1.3011,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "9.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.453",
+"angle": 45,
+"orifice_mm": 1.35,
+"free_passage_mm": null,
+"q2bar_lpm": 1.3011,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "9.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.454",
+"angle": 60,
+"orifice_mm": 1.35,
+"free_passage_mm": null,
+"q2bar_lpm": 1.3011,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "9.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.471",
+"angle": 20,
+"orifice_mm": 1.4,
+"free_passage_mm": null,
+"q2bar_lpm": 1.4566,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "10.3 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.472",
+"angle": 30,
+"orifice_mm": 1.4,
+"free_passage_mm": null,
+"q2bar_lpm": 1.4566,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "10.3 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.473",
+"angle": 45,
+"orifice_mm": 1.4,
+"free_passage_mm": null,
+"q2bar_lpm": 1.4566,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "10.3 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.474",
+"angle": 60,
+"orifice_mm": 1.4,
+"free_passage_mm": null,
+"q2bar_lpm": 1.4566,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "10.3 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.481",
+"angle": 20,
+"orifice_mm": 1.55,
+"free_passage_mm": null,
+"q2bar_lpm": 1.6263,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "11.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.482",
+"angle": 30,
+"orifice_mm": 1.55,
+"free_passage_mm": null,
+"q2bar_lpm": 1.6263,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "11.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.483",
+"angle": 45,
+"orifice_mm": 1.55,
+"free_passage_mm": null,
+"q2bar_lpm": 1.6263,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "11.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.484",
+"angle": 60,
+"orifice_mm": 1.55,
+"free_passage_mm": null,
+"q2bar_lpm": 1.6263,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "11.5 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.501",
+"angle": 20,
+"orifice_mm": 1.6,
+"free_passage_mm": null,
+"q2bar_lpm": 1.7819,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "12.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.502",
+"angle": 30,
+"orifice_mm": 1.6,
+"free_passage_mm": null,
+"q2bar_lpm": 1.7819,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "12.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.503",
+"angle": 45,
+"orifice_mm": 1.6,
+"free_passage_mm": null,
+"q2bar_lpm": 1.7819,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "12.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.504",
+"angle": 60,
+"orifice_mm": 1.6,
+"free_passage_mm": null,
+"q2bar_lpm": 1.7819,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "12.6 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.521",
+"angle": 20,
+"orifice_mm": 1.7,
+"free_passage_mm": null,
+"q2bar_lpm": 1.9516,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "13.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.522",
+"angle": 30,
+"orifice_mm": 1.7,
+"free_passage_mm": null,
+"q2bar_lpm": 1.9516,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "13.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.523",
+"angle": 45,
+"orifice_mm": 1.7,
+"free_passage_mm": null,
+"q2bar_lpm": 1.9516,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "13.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.524",
+"angle": 60,
+"orifice_mm": 1.7,
+"free_passage_mm": null,
+"q2bar_lpm": 1.9516,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "13.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.531",
+"angle": 20,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.093,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "14.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.532",
+"angle": 30,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.093,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "14.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.533",
+"angle": 45,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.093,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "14.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.534",
+"angle": 60,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.093,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "14.8 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.541",
+"angle": 20,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.2486,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "15.9 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.542",
+"angle": 30,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.2486,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "15.9 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.543",
+"angle": 45,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.2486,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "15.9 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.544",
+"angle": 60,
+"orifice_mm": 1.78,
+"free_passage_mm": null,
+"q2bar_lpm": 2.2486,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "15.9 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.551",
+"angle": 20,
+"orifice_mm": 1.88,
+"free_passage_mm": null,
+"q2bar_lpm": 2.4042,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "17.0 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.552",
+"angle": 30,
+"orifice_mm": 1.88,
+"free_passage_mm": null,
+"q2bar_lpm": 2.4042,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "17.0 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.553",
+"angle": 45,
+"orifice_mm": 1.88,
+"free_passage_mm": null,
+"q2bar_lpm": 2.4042,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "17.0 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.554",
+"angle": 60,
+"orifice_mm": 1.88,
+"free_passage_mm": null,
+"q2bar_lpm": 2.4042,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "17.0 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.571",
+"angle": 20,
+"orifice_mm": 2.03,
+"free_passage_mm": null,
+"q2bar_lpm": 2.5739,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "18.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.572",
+"angle": 30,
+"orifice_mm": 2.03,
+"free_passage_mm": null,
+"q2bar_lpm": 2.5739,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "18.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.573",
+"angle": 45,
+"orifice_mm": 2.03,
+"free_passage_mm": null,
+"q2bar_lpm": 2.5739,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "18.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.574",
+"angle": 60,
+"orifice_mm": 2.03,
+"free_passage_mm": null,
+"q2bar_lpm": 2.5739,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "18.2 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.591",
+"angle": 20,
+"orifice_mm": 2.08,
+"free_passage_mm": null,
+"q2bar_lpm": 2.9698,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "21 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.592",
+"angle": 30,
+"orifice_mm": 2.08,
+"free_passage_mm": null,
+"q2bar_lpm": 2.9698,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "21 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.593",
+"angle": 45,
+"orifice_mm": 2.08,
+"free_passage_mm": null,
+"q2bar_lpm": 2.9698,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "21 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.594",
+"angle": 60,
+"orifice_mm": 2.08,
+"free_passage_mm": null,
+"q2bar_lpm": 2.9698,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "21 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.601",
+"angle": 20,
+"orifice_mm": 2.29,
+"free_passage_mm": null,
+"q2bar_lpm": 3.2527,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "23 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.602",
+"angle": 30,
+"orifice_mm": 2.29,
+"free_passage_mm": null,
+"q2bar_lpm": 3.2527,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "23 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.603",
+"angle": 45,
+"orifice_mm": 2.29,
+"free_passage_mm": null,
+"q2bar_lpm": 3.2527,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "23 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.604",
+"angle": 60,
+"orifice_mm": 2.29,
+"free_passage_mm": null,
+"q2bar_lpm": 3.2527,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "23 l/dk @ 100 bar",
+"connections": "608: 1/8\" · 602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.641",
+"angle": 20,
+"orifice_mm": 2.49,
+"free_passage_mm": null,
+"q2bar_lpm": 3.9598,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "28 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.642",
+"angle": 30,
+"orifice_mm": 2.49,
+"free_passage_mm": null,
+"q2bar_lpm": 3.9598,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "28 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.643",
+"angle": 45,
+"orifice_mm": 2.49,
+"free_passage_mm": null,
+"q2bar_lpm": 3.9598,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "28 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.644",
+"angle": 60,
+"orifice_mm": 2.49,
+"free_passage_mm": null,
+"q2bar_lpm": 3.9598,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "28 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.671",
+"angle": 20,
+"orifice_mm": 2.69,
+"free_passage_mm": null,
+"q2bar_lpm": 4.8083,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "34 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.672",
+"angle": 30,
+"orifice_mm": 2.69,
+"free_passage_mm": null,
+"q2bar_lpm": 4.8083,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "34 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.673",
+"angle": 45,
+"orifice_mm": 2.69,
+"free_passage_mm": null,
+"q2bar_lpm": 4.8083,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "34 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.674",
+"angle": 60,
+"orifice_mm": 2.69,
+"free_passage_mm": null,
+"q2bar_lpm": 4.8083,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "34 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.701",
+"angle": 20,
+"orifice_mm": 3.0,
+"free_passage_mm": null,
+"q2bar_lpm": 5.6569,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "40 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.702",
+"angle": 30,
+"orifice_mm": 3.0,
+"free_passage_mm": null,
+"q2bar_lpm": 5.6569,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "40 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.703",
+"angle": 45,
+"orifice_mm": 3.0,
+"free_passage_mm": null,
+"q2bar_lpm": 5.6569,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "40 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.704",
+"angle": 60,
+"orifice_mm": 3.0,
+"free_passage_mm": null,
+"q2bar_lpm": 5.6569,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "40 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.723",
+"angle": 45,
+"orifice_mm": 3.05,
+"free_passage_mm": null,
+"q2bar_lpm": 6.5054,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "46 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.724",
+"angle": 60,
+"orifice_mm": 3.05,
+"free_passage_mm": null,
+"q2bar_lpm": 6.5054,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "46 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+},
+{
+"brand": "Lechler",
+"series": "602/608/652",
+"kind": "Yüksek basınç düz fan",
+"code": "602.793",
+"angle": 45,
+"orifice_mm": 3.91,
+"free_passage_mm": null,
+"q2bar_lpm": 9.4752,
+"exp": 0.5,
+"p_range": [
+40,
+300
+],
+"coverage": "67 l/dk @ 100 bar",
+"connections": "602: 1/4\" NPT · 652: somun",
+"image": "s602_p01_x57.png",
+"source": "Series_602_608_652_FlatFan.pdf"
+}
+]
